@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:controls="clr-namespace:StrongBeaver.Showroom.Controls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StrongBeaver.Showroom.View.ArchitecturePage"
+             Title="Architecture">
+    <ScrollView x:Name="ScrollContainer" Orientation="Both">
+        <Grid WidthRequest="900" HeightRequest="600">
+            <controls:PinchToZoomContainer>
+                <Grid WidthRequest="300" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Image Source="img-architecture-large.png" />
+                </Grid>
+            </controls:PinchToZoomContainer>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>BeaverSoft.StrongBeaver.Core</id>
+		<version>0.9-alpha</version>
+		<title>StrongBeaver Framework (the core library)</title>
+		<authors>BeaverSoft (Ales Kobr)</authors>
+		<owners>BeaverSoft (Ales Kobr)</owners>
+
+		<!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+        <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+        <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Multi-platform application Framework (the core library).</description>
+		<releaseNotes>Alpha version of BeaverSoft multi-platform application Framework (the core library).</releaseNotes>
+		<copyright>Copyright 2017</copyright>
+		<tags>Framework Architecture MVVM PureMVC MVC</tags>
+
+		<!-- TODO: [P3] Delete these comments in this file and specify real URLs -->
+		<!-- nuget pack StrongBeaver.Core.nuspec -Properties Configuration=Debug -->
+		<!-- nuget pack StrongBeaver.Core.nuspec -Properties Configuration=Release -->
+		<!-- nuget pack StrongBeaver.Core.nuspec -Version 1.0.0 -Properties Configuration=Release -->
+
+		<dependencies>
+			<group targetFramework="netstandard1.1">
+				<!--<dependency id="CommonServiceLocator" version="1.3.0" />-->
+				<dependency id="MvvmLightLibs" version="5.3.0" />
+				<dependency id="Newtonsoft.Json" version="10.0.3" />
+			</group>
+		</dependencies>
+	</metadata>
+
+	<files>
+		<!-- Cross-platform reference assemblies (netstandard1.1) -->
+		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.dll" target="lib\netstandard1.1\StrongBeaver.Core.dll" />
+		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.pdb" target="lib\netstandard1.1\StrongBeaver.Core.pdb" />
+		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.xml" target="lib\netstandard1.1\StrongBeaver.Core.xml" />
+	</files>
+</package>

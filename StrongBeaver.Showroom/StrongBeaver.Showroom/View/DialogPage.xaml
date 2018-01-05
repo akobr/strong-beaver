@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StrongBeaver.Showroom.View.DialogPage"
+             Title="Dialog &amp; Toast">
+
+    <TableView HasUnevenRows="True" Intent="Form" RowHeight="-1">
+        <TableRoot>
+
+            <TableSection Title="Dialog box">
+                <EntryCell x:Name="entryDialogTitle" Label="Title:" Placeholder="Nice looking title" />
+                <EntryCell x:Name="entryDialogText" Label="Text:" Placeholder="Sample message" />
+                <SwitchCell x:Name="switchDialogFiveButtons" Text="Five buttons" />
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            ContentLayout="Left,8" BackgroundColor="#01579B" TextColor="White" FontAttributes="Bold"
+                            Image="icon-message.png" Text="SHOW DIALOG" HorizontalOptions="Center"
+                            Clicked="HandleShowDialogClicked" />
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Toast message">
+                <EntryCell x:Name="entryToastText" Label="Text:" Placeholder="Simple toast message" />
+                <SwitchCell x:Name="switchToastDismiss" Text="Dismiss after 3 seconds" On="True" />
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            ContentLayout="Left,8" BackgroundColor="#0288D1" TextColor="White" FontAttributes="Bold"
+                            Image="icon-toast.png" Text="SHOW TOAST" HorizontalOptions="Center"
+                            Clicked="HandleShowToastClicked" />
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Custom dialog box">
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            ContentLayout="Left,8" BackgroundColor="#E65100" TextColor="White" FontAttributes="Bold"
+                            Image="icon-message.png" Text="SHOW DIALOG" HorizontalOptions="Center"
+                            Clicked="HandleShowCustomDialogClicked" />
+                </ViewCell>
+            </TableSection>
+
+        </TableRoot>
+    </TableView>
+</ContentPage>

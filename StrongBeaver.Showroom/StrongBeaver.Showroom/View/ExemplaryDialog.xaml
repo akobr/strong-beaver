@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="StrongBeaver.Showroom.View.ExemplaryDialog">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+              PositionIn="Top"
+              PositionOut="Bottom"
+              ScaleIn="1.2"
+              ScaleOut="0.8"
+              DurationIn="400"
+              DurationOut="300"
+              EasingIn="SinOut"
+              EasingOut="SinIn"
+              HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <Frame x:Name="FramePopupBackground"
+           HorizontalOptions="Center" VerticalOptions="Center"
+           Margin="48" Padding="0" CornerRadius="5">
+        <StackLayout>
+            <Label Text="Custom dialog!" FontSize="Large" FontAttributes="Bold" Margin="16" />
+            <BoxView HorizontalOptions="Fill" VerticalOptions="Start" HeightRequest="0.5" Color="#A3A3A3" />
+            <Label Text="Message of a custom dialog." Margin="16,16,16,0" />
+            <Grid>
+                <BoxView HorizontalOptions="Fill" VerticalOptions="Center" HeightRequest="0.5" Color="#A3A3A3" />
+                <Button Margin="16" BorderRadius="22" WidthRequest="60" HeightRequest="44"
+                        BackgroundColor="#5FC782" TextColor="White" FontAttributes="Bold"
+                        Text="ONE" HorizontalOptions="Start" Clicked="HandleFirstButtonClicked" />
+                <Button Margin="16" BorderRadius="22" WidthRequest="60" HeightRequest="44"
+                        BackgroundColor="#F55949" TextColor="White" FontAttributes="Bold"
+                        Text="TWO" HorizontalOptions="End" Clicked="HandleSecondButtonClicked" />
+            </Grid>
+        </StackLayout>
+    </Frame>
+
+</pages:PopupPage>

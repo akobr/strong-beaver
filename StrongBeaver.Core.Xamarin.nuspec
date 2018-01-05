@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>BeaverSoft.StrongBeaver.Core.Xamarin</id>
+		<version>0.9-alpha</version>
+		<title>StrongBeaver Framework for Xamarin</title>
+		<authors>BeaverSoft (Ales Kobr)</authors>
+		<owners>BeaverSoft (Ales Kobr)</owners>
+
+		<!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+        <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+        <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Multi-platform (Xamarin) mobile application Framework.</description>
+		<releaseNotes>Alpha version of BeaverSoft multi-platform (Xamarin) mobile application Framework.</releaseNotes>
+		<copyright>Copyright 2017</copyright>
+		<tags>Xamarin Mobile Framework iOS Android UWP Architecture MVVM PureMVC MVC</tags>
+
+		<!-- TODO: [P3] Delete these comments in this file and specify real URLs -->
+		<!-- nuget pack StrongBeaver.Core.Xamarin.nuspec -Properties Configuration=Debug -->
+		<!-- nuget pack StrongBeaver.Core.Xamarin.nuspec -Properties Configuration=Release -->
+		<!-- nuget pack StrongBeaver.Core.Xamarin.nuspec -Version 1.0.0 -Properties Configuration=Release -->
+
+		<dependencies>
+			<group targetFramework="netstandard1.1">
+				<!--<dependency id="CommonServiceLocator" version="1.3.0" />-->
+				<dependency id="MvvmLightLibs" version="5.3.0" />
+				<dependency id="Newtonsoft.Json" version="10.0.3" />
+				<dependency id="Xamarin.Forms" version="2.4.0.91020" />
+				<dependency id="Rg.Plugins.Popup" version="1.0.4" />
+				<dependency id="BeaverSoft.StrongBeaver.Core" version="0.9-alpha" />
+			</group>
+			<group targetFramework="MonoAndroid">
+				<dependency id="MvvmLightLibs" version="5.3.0" />
+				<dependency id="Newtonsoft.Json" version="10.0.3" />
+				<dependency id="Xamarin.Forms" version="2.4.0.91020" />
+				<dependency id="Rg.Plugins.Popup" version="1.0.4" />
+				<dependency id="BeaverSoft.StrongBeaver.Core" version="0.9-alpha" />
+			</group>
+			<group targetFramework="Xamarin.iOS">
+				<dependency id="MvvmLightLibs" version="5.3.0" />
+				<dependency id="Newtonsoft.Json" version="10.0.3" />
+				<dependency id="Xamarin.Forms" version="2.4.0.91020" />
+				<dependency id="Rg.Plugins.Popup" version="1.0.4" />
+				<dependency id="BeaverSoft.StrongBeaver.Core" version="0.9-alpha" />
+			</group>
+		</dependencies>
+	</metadata>
+
+	<files>
+		<!-- Cross-platform reference assemblies (netstandard1.1) -->
+		<file src="StrongBeaver.Core.Xamarin\bin\$configuration$\StrongBeaver.Core.Xamarin.dll" target="lib\netstandard1.1\StrongBeaver.Core.Xamarin.dll" />
+		<file src="StrongBeaver.Core.Xamarin\bin\$configuration$\StrongBeaver.Core.Xamarin.pdb" target="lib\netstandard1.1\StrongBeaver.Core.Xamarin.pdb" />
+		<file src="StrongBeaver.Core.Xamarin\bin\$configuration$\StrongBeaver.Core.Xamarin.xml" target="lib\netstandard1.1\StrongBeaver.Core.Xamarin.xml" />
+
+		<!-- iOS reference assemblies -->
+		<file src="StrongBeaver.Core.iOS\bin\$configuration$\StrongBeaver.Core.iOS.dll" target="lib\Xamarin.iOS\StrongBeaver.Core.iOS.dll" />
+		<file src="StrongBeaver.Core.iOS\bin\$configuration$\StrongBeaver.Core.iOS.pdb" target="lib\Xamarin.iOS\StrongBeaver.Core.iOS.pdb" />
+		<file src="StrongBeaver.Core.iOS\bin\$configuration$\StrongBeaver.Core.iOS.xml" target="lib\Xamarin.iOS\StrongBeaver.Core.iOS.xml" />
+
+		<!-- Android reference assemblies -->
+		<file src="StrongBeaver.Core.Droid\bin\$configuration$\StrongBeaver.Core.Droid.dll" target="lib\MonoAndroid\StrongBeaver.Core.Droid.dll" />
+		<file src="StrongBeaver.Core.Droid\bin\$configuration$\StrongBeaver.Core.Droid.pdb" target="lib\MonoAndroid\StrongBeaver.Core.Droid.pdb" />
+		<file src="StrongBeaver.Core.Droid\bin\$configuration$\StrongBeaver.Core.Droid.xml" target="lib\MonoAndroid\StrongBeaver.Core.Droid.xml" />
+	</files>
+</package>

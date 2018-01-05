@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StrongBeaver.Showroom.View.StoragePage"
+             BindingContext="{Binding Source={StaticResource ViewModelLocator}, Path=Exemplary}"
+             Title="Storage">
+    <TableView HasUnevenRows="True" Intent="Form" RowHeight="-1">
+        <TableRoot>
+
+            <TableSection Title="Example data" BindingContext="{Binding CurrentItem}">
+                <EntryCell Label="Id:" Text="{Binding Id}" Placeholder="4042" IsEnabled="False" />
+                <EntryCell Label="Text:" Text="{Binding Text}" Placeholder="Example text" />
+                <EntryCell Label="Decimal:" Text="{Binding Decimal}" Placeholder="42.0420" Keyboard="Numeric" />
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#0288D1" TextColor="White" FontAttributes="Bold"
+                            Text="GENERATE NEW" HorizontalOptions="Center"
+                            Command="{Binding Source={StaticResource ViewModelLocator}, Path=Exemplary.GenerateNewItemCommand}" />
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Key/Value storage">
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#0288D1" TextColor="White" FontAttributes="Bold"
+                            Text="STORE" HorizontalOptions="Center"
+                            Command="{Binding StoreKeyValueCommand}" />
+                </ViewCell>
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#E65100" TextColor="White" FontAttributes="Bold"
+                            Text="RETRIEVE" HorizontalOptions="Center"
+                            Command="{Binding RetrieveKeyValueCommand}" />
+                </ViewCell>
+                <ViewCell>
+                    <Editor Text="{Binding KeyValueData}" HeightRequest="120" />
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="JSON storage">
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#0288D1" TextColor="White" FontAttributes="Bold"
+                            Text="STORE" HorizontalOptions="Center"
+                            Command="{Binding StoreJsonCommand}" />
+                </ViewCell>
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#E65100" TextColor="White" FontAttributes="Bold"
+                            Text="RETRIEVE" HorizontalOptions="Center"
+                            Command="{Binding RetrieveJsonCommand}" />
+                </ViewCell>
+                <ViewCell>
+                    <Editor Text="{Binding JsonData}" HeightRequest="120" />
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="SQLite storage">
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#0288D1" TextColor="White" FontAttributes="Bold"
+                            Text="STORE" HorizontalOptions="Center"
+                            Command="{Binding StoreRelationCommand}" />
+                </ViewCell>
+                <ViewCell Height="76">
+                    <Button Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#E65100" TextColor="White" FontAttributes="Bold"
+                            Text="RETRIEVE ALL" HorizontalOptions="Center"
+                            Command="{Binding RetrieveRelationCommand}" />
+                </ViewCell>
+                <ViewCell>
+                    <Grid HeightRequest="150" MinimumHeightRequest="150" Margin="16,0,32,0">
+                        <ListView ItemsSource="{Binding RelationItems}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextCell Text="{Binding Text}" Detail="{Binding Id}" />
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+
+        </TableRoot>
+    </TableView>
+</ContentPage>

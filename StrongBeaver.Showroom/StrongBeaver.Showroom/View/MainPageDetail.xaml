@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:webContent="clr-namespace:StrongBeaver.Showroom.View.WebContent"
+             x:Class="StrongBeaver.Showroom.View.MainPageDetail"
+             BindingContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainViewModel}"
+             Title="StrongBeaver">
+    <ScrollView>
+        <Grid Margin="10" RowSpacing="10" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Frame Grid.ColumnSpan="2" Padding="0" CornerRadius="0">
+                <Grid>
+                    <Image Source="img-architecture-small.png" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Framework Architecture" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToArchitecturePageCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Column="2" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#ECEFF1">
+                    <Image Source="img-services.png" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Services" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:LocalWebContentDescription Title="Services" PageName="page-services.html" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="1" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#FBE9E7">
+                    <Image Source="icon-clippy-orange.png" Aspect="AspectFit" Margin="16,10,16,16" HorizontalOptions="Fill" VerticalOptions="Fill"></Image>
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="How it works" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:LocalWebContentDescription Title="How it works" PageName="page-how-it-works.html" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="0" CornerRadius="0">
+                <Grid>
+                    <Image Source="img-storage.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Storage" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToStoragePageCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Padding="0" CornerRadius="0">
+                <Grid>
+                    <Image Source="img-dialog.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Dialog &amp; Toast" FontSize="Micro" TextColor="White" />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToDialogPageCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="2" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#E3F2FD">
+                    <Image Source="img-xamagon.png" Aspect="AspectFit" Margin="16,10" HorizontalOptions="Fill" VerticalOptions="Start"></Image>
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Plugins for Xamarin" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:LocalWebContentDescription Title="Plugins" PageName="page-xamarin-plugins.html" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="3" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#E8F5E9">
+                    <Image Source="icon-puzzle-green.png" Aspect="AspectFit" Margin="16,10" HorizontalOptions="Fill" VerticalOptions="Fill"></Image>
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Controls" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:LocalWebContentDescription Title="Controls" PageName="page-controls.html" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="4" Padding="0" CornerRadius="0">
+                <Grid>
+                    <Image Source="img-networking.jpg" Aspect="AspectFill" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Networking" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToNetworkPageCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="4" Grid.Column="1" Padding="0" CornerRadius="0">
+                <Grid>
+                    <Image Source="img-device.png" Aspect="AspectFit" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Device info" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToDeviceInfoPageCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="4" Grid.Column="2" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#E3F2FD">
+                    <Image Source="img-nuget.png" Aspect="AspectFit" Margin="8" HorizontalOptions="Fill" VerticalOptions="Fill" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="NuGet" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:LocalWebContentDescription Title="NuGet" PageName="page-nuget-packages.html" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="5" Grid.ColumnSpan="2" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#FFF8E1">
+                    <Image Source="logo-beaver-soft.png" Aspect="AspectFit" Margin="16" HorizontalOptions="Fill" VerticalOptions="Start" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="Contact" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:LocalWebContentDescription Title="Contact" PageName="page-contact.html" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+
+            <Frame Grid.Row="5" Grid.Column="2" Padding="0" CornerRadius="0">
+                <Grid BackgroundColor="#E0F2F1">
+                    <Image Source="img-octocat.png" Aspect="AspectFit" Margin="8" HorizontalOptions="Fill" VerticalOptions="Start" />
+                    <Grid Margin="0,0,0,-0.5" VerticalOptions="End" HorizontalOptions="Fill" Padding="8" BackgroundColor="#9C212121">
+                        <Label Text="GitHub" FontSize="Micro" TextColor="White"  />
+                    </Grid>
+                </Grid>
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                        <TapGestureRecognizer.CommandParameter>
+                            <webContent:ExternalWebContentDescription Title="GitHub" Path="https://github.com/akobr/strong-beaver" />
+                        </TapGestureRecognizer.CommandParameter>
+                    </TapGestureRecognizer>
+                </Frame.GestureRecognizers>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

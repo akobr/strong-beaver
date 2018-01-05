@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin</id>
+		<version>0.9-alpha</version>
+		<title>Wrapper of Xamarin Connectivity Plugin as Service into StrongBeaver</title>
+		<authors>BeaverSoft (Ales Kobr)</authors>
+		<owners>BeaverSoft (Ales Kobr)</owners>
+
+		<!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+        <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
+        <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Wrapper of Xamarin Connectivity Plugin as Service into StrongBeaver.</description>
+		<releaseNotes>Wrapper of Xamarin Connectivity Plugin as Service into StrongBeaver.</releaseNotes>
+		<copyright>Copyright 2017</copyright>
+		<tags>Connectivity Network Service Plugin Framework Architecture</tags>
+
+		<dependencies>
+			<group targetFramework="netstandard1.1">
+				<dependency id="BeaverSoft.StrongBeaver.Core.Xamarin" version="0.9-alpha" />
+				<dependency id="Xam.Plugin.Connectivity" version="3.0.3" />
+			</group>
+			<group targetFramework="MonoAndroid">
+				<dependency id="BeaverSoft.StrongBeaver.Core.Xamarin" version="0.9-alpha" />
+				<dependency id="Xam.Plugin.Connectivity" version="3.0.3" />
+			</group>
+			<group targetFramework="Xamarin.iOS">
+				<dependency id="BeaverSoft.StrongBeaver.Core.Xamarin" version="0.9-alpha" />
+				<dependency id="Xam.Plugin.Connectivity" version="3.0.3" />
+			</group>
+		</dependencies>
+	</metadata>
+
+	<files>
+		<!-- Cross-platform reference assemblies (netstandard1.1) -->
+		<file src="StrongBeaver.Services.Connectivity.Xamarin\bin\$configuration$\StrongBeaver.Services.Connectivity.Xamarin.dll" target="lib\netstandard1.1\StrongBeaver.Services.Connectivity.Xamarin.dll" />
+		<file src="StrongBeaver.Services.Connectivity.Xamarin\bin\$configuration$\StrongBeaver.Services.Connectivity.Xamarin.pdb" target="lib\netstandard1.1\StrongBeaver.Services.Connectivity.Xamarin.pdb" />
+		<file src="StrongBeaver.Services.Connectivity.Xamarin\bin\$configuration$\StrongBeaver.Services.Connectivity.Xamarin.xml" target="lib\netstandard1.1\StrongBeaver.Services.Connectivity.Xamarin.xml" />
+	</files>
+</package>

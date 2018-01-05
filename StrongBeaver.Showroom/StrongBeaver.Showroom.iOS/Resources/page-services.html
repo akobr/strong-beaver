@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 12px; line-height: 22px; word-wrap: break-word; } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } img { max-width: 100%; max-height: 100%; } a { color: #4080D0; text-decoration: none; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } a:hover { color: #4080D0; text-decoration: underline; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left: 5px solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ .vscode-light { color: rgb(30, 30, 30); } .vscode-dark { color: #DDD; } .vscode-high-contrast { color: white; } .vscode-light code { color: #A31515; } .vscode-dark code { color: #D7BA7D; } .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } .vscode-light blockquote, .vscode-dark blockquote { background: rgba(127, 127, 127, 0.1); border-color: rgba(0, 122, 204, 0.5); } .vscode-high-contrast blockquote { background: transparent; border-color: #fff; }
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-left: 40px; } .task-list-item { list-style-type: none; } .task-list-item-checkbox { vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="service-list">Service list</h1>
+<blockquote>
+<ul>
+<li>A service written in <strong>Bold</strong> is already done.</li>
+<li>A service written in <em>Italic</em> will be imlemented.</li>
+</ul>
+</blockquote>
+<ul>
+<li><strong>Accounts</strong> - Service for authenticating users. Support for <em>OAuth protocols</em> and third-party services, e.g. <em>Facebook</em>, <em>Google</em> account, <em>Microsoft</em> account, and <em>Twitter</em>. <em>Implementation is planned for next phase.</em></li>
+<li><strong>Cleanup</strong> - Simple way how to delete instance(s) from main IoC container.</li>
+<li><strong>Device</strong>
+<ul>
+<li><strong>Connectivity</strong> - Network connectivity information, e.g. if a connection is available.</li>
+<li><em>CurrentPosition</em> - This service simplifies access to the current location of the device to one method. Combination of in-memory cache storage, permissions service and KeyValues persistent storage service. <em>Implementation is in progress.</em></li>
+<li><strong>Geolocator</strong> - Get GPS location of a device.</li>
+<li><em>Sensors and Motion</em> - Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.</li>
+</ul>
+</li>
+<li><strong>Dialog</strong> - The service for showing dialogues and toasts.</li>
+<li><strong>Localisation</strong> - Retrieving and setting culture to an application.</li>
+<li><strong>Logging</strong>
+<ul>
+<li><strong>Debug</strong> - The simple logging service which uses the <em>System.Diagnostics.Debug</em> class.</li>
+<li><em>NLog</em> - More useful logging service wrapping NLog. <em>Implementation is in progress.</em></li>
+</ul>
+</li>
+<li><strong>Navigation</strong> - Manages application navigation between pages or screens.</li>
+<li><strong>Network</strong>
+<ul>
+<li><strong>Http</strong> - The service for sending HTTP requests.</li>
+<li><strong>Rest</strong> - The generic service for sending and processing REST requests.</li>
+<li><em>Transfer</em> - Download or upload files in the background.</li>
+</ul>
+</li>
+<li><em>Notifications</em>
+<ul>
+<li><em>We are planning to integrate a system, local and push notifications into the framework.</em></li>
+</ul>
+</li>
+<li><strong>Permissions</strong> - Manage permission on any platform.</li>
+<li><em>Progress</em> - Generic way how to show progress of any background operation on UI.</li>
+<li><strong>Reflection</strong> - Simple service for runtime object creation (object/type instantiation).</li>
+<li><strong>Serialisation</strong>
+<ul>
+<li><em>XML</em> - For serialisation and deserialization of an object from XML. <em>Implementation is scheduled, the default serialisation concept of .NET will be used.</em></li>
+<li><strong>JSON</strong> - For serialisation and deserialization of objects from JSON.</li>
+</ul>
+</li>
+<li><strong>Storage</strong> (Persistent)
+<ul>
+<li><em>Data</em> - Universal persistent data storage service. The service interface supports transition and all basic CRUD operations. All operations can be used synchronously or asynchronously.
+<ul>
+<li><em>Entity Framework (Core)</em> - <em>In development</em></li>
+</ul>
+</li>
+<li><strong>JSON</strong> - Universal persistent storage service for JSON format. Objects will be automatically serialised / deserialized by JSON serialisation service. <em>On Xamarin platform JSON objects are stored in the application dictionary.</em></li>
+<li><strong>KeyValues</strong> - Storage for key / value pairs. <em>On Xamarin platform the application dictionary is used.</em></li>
+<li><em>File</em> - Universal file storage service. <em>Implementation is in progress.</em></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>A number of services will grow, with new versions of the framework. <em>More services = more power :)</em></p>
+</blockquote>
+
+    </body>
+    </html>

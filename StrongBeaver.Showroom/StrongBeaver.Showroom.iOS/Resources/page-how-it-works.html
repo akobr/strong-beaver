@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <style>
+/*--------------------------------------------------------------------------------------------- * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. See License.txt in the project root for license information. *--------------------------------------------------------------------------------------------*/ body { font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback"; font-size: 14px; padding: 0 12px; line-height: 22px; word-wrap: break-word; } body.scrollBeyondLastLine { margin-bottom: calc(100vh - 22px); } body.showEditorSelection .code-line { position: relative; } body.showEditorSelection .code-active-line:before, body.showEditorSelection .code-line:hover:before { content: ""; display: block; position: absolute; top: 0; left: -12px; height: 100%; } body.showEditorSelection li.code-active-line:before, body.showEditorSelection li.code-line:hover:before { left: -30px; } .vscode-light.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(0, 0, 0, 0.15); } .vscode-light.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(0, 0, 0, 0.40); } .vscode-dark.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 255, 255, 0.4); } .vscode-dark.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 255, 255, 0.60); } .vscode-high-contrast.showEditorSelection .code-active-line:before { border-left: 3px solid rgba(255, 160, 0, 0.7); } .vscode-high-contrast.showEditorSelection .code-line:hover:before { border-left: 3px solid rgba(255, 160, 0, 1); } img { max-width: 100%; max-height: 100%; } a { color: #4080D0; text-decoration: none; } a:focus, input:focus, select:focus, textarea:focus { outline: 1px solid -webkit-focus-ring-color; outline-offset: -1px; } hr { border: 0; height: 2px; border-bottom: 2px solid; } h1 { padding-bottom: 0.3em; line-height: 1.2; border-bottom-width: 1px; border-bottom-style: solid; } h1, h2, h3 { font-weight: normal; } h1 code, h2 code, h3 code, h4 code, h5 code, h6 code { font-size: inherit; line-height: auto; } a:hover { color: #4080D0; text-decoration: underline; } table { border-collapse: collapse; } table > thead > tr > th { text-align: left; border-bottom: 1px solid; } table > thead > tr > th, table > thead > tr > td, table > tbody > tr > th, table > tbody > tr > td { padding: 5px 10px; } table > tbody > tr + tr > td { border-top: 1px solid; } blockquote { margin: 0 7px 0 5px; padding: 0 16px 0 10px; border-left: 5px solid; } code { font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback"; font-size: 14px; line-height: 19px; } body.wordWrap pre { white-space: pre-wrap; } .mac code { font-size: 12px; line-height: 18px; } code > div { padding: 16px; border-radius: 3px; overflow: auto; } /** Theming */ .vscode-light { color: rgb(30, 30, 30); } .vscode-dark { color: #DDD; } .vscode-high-contrast { color: white; } .vscode-light code { color: #A31515; } .vscode-dark code { color: #D7BA7D; } .vscode-light code > div { background-color: rgba(220, 220, 220, 0.4); } .vscode-dark code > div { background-color: rgba(10, 10, 10, 0.4); } .vscode-high-contrast code > div { background-color: rgb(0, 0, 0); } .vscode-high-contrast h1 { border-color: rgb(0, 0, 0); } .vscode-light table > thead > tr > th { border-color: rgba(0, 0, 0, 0.69); } .vscode-dark table > thead > tr > th { border-color: rgba(255, 255, 255, 0.69); } .vscode-light h1, .vscode-light hr, .vscode-light table > tbody > tr + tr > td { border-color: rgba(0, 0, 0, 0.18); } .vscode-dark h1, .vscode-dark hr, .vscode-dark table > tbody > tr + tr > td { border-color: rgba(255, 255, 255, 0.18); } .vscode-light blockquote, .vscode-dark blockquote { background: rgba(127, 127, 127, 0.1); border-color: rgba(0, 122, 204, 0.5); } .vscode-high-contrast blockquote { background: transparent; border-color: #fff; }
+</style>
+<style>
+/* Tomorrow Theme */ /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */ /* Original theme - https://github.com/chriskempson/tomorrow-theme */ /* Tomorrow Comment */ .hljs-comment, .hljs-quote { color: #8e908c; } /* Tomorrow Red */ .hljs-variable, .hljs-template-variable, .hljs-tag, .hljs-name, .hljs-selector-id, .hljs-selector-class, .hljs-regexp, .hljs-deletion { color: #c82829; } /* Tomorrow Orange */ .hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link { color: #f5871f; } /* Tomorrow Yellow */ .hljs-attribute { color: #eab700; } /* Tomorrow Green */ .hljs-string, .hljs-symbol, .hljs-bullet, .hljs-addition { color: #718c00; } /* Tomorrow Blue */ .hljs-title, .hljs-section { color: #4271ae; } /* Tomorrow Purple */ .hljs-keyword, .hljs-selector-tag { color: #8959a8; } .hljs { display: block; overflow-x: auto; color: #4d4d4c; padding: 0.5em; } .hljs-emphasis { font-style: italic; } .hljs-strong { font-weight: bold; }
+</style>
+<style>
+ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-left: 40px; } .task-list-item { list-style-type: none; } .task-list-item-checkbox { vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="strongbeaver-framework">StrongBeaver Framework</h1>
+<blockquote>
+<p>Simplicity is the ultimate sofistication.</p>
+<p>— <em>Leonardo da Vinci</em></p>
+</blockquote>
+<h2 id="introduction">Introduction</h2>
+<blockquote>
+<p>The pattern <strong>TVMS</strong> has been created to help us to simplify application design and guide us how to separate concerns of layers and minimise coupling inside sub-systems.</p>
+</blockquote>
+<p>The architecture is called <strong>TVMS</strong> from <em><strong>T</strong>idy <strong>V</strong>iew and <strong>M</strong>odel <strong>S</strong>eparation</em> and has been designed to be able to use it with any View-Model layered application.
+The middle layer is universally named <strong>separation</strong>, which can be used with any well-known patterns, e.g. <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>, <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">MVVM</a>, or any <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">MVP</a>.</p>
+<p>The Framework as one product is called <strong>StrongBeaver</strong>. The concepts and base interfaces can be used for any .NET application, but the framework is mainly created for <em><a href="https://www.xamarin.com/">Xamarin</a> platform</em>.</p>
+<h2 id="concepts">Concepts</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activator</td>
+<td>Static public class which will be called on application start for initialisation purposes.</td>
+</tr>
+<tr>
+<td>Binder</td>
+<td>Middle-man responsible for data and commands binding between view and view model.</td>
+</tr>
+<tr>
+<td>IoC and DI</td>
+<td>Inversion of Control and Dependency Injection are the heart of this framework.</td>
+</tr>
+<tr>
+<td>Manager</td>
+<td>Long-life and stateful service inside a specific instance of object.</td>
+</tr>
+<tr>
+<td>MessageBus (Messanger)</td>
+<td>Message bus for a specific group of objects, e.g. services or view models.</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>The facade / locator for a specific type of objects, e.g. services, view models and more.</td>
+</tr>
+<tr>
+<td>Service</td>
+<td>Stateful or stateless, singleton and long-life service, which is registered in system.</td>
+</tr>
+<tr>
+<td>ServiceLocator (IoC)</td>
+<td><a href="https://msdn.microsoft.com/en-us/library/ff648968.aspx">ServiceLocator</a> is an abstraction of IoC container, which is used in the framework.</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>In memory storage, responsible for caching and reusability of objects.</td>
+</tr>
+<tr>
+<td>Strategy</td>
+<td>Lightweight service / behaviour inside a intance of object, which is used in unit of work approach.</td>
+</tr>
+<tr>
+<td>TVMS (Tidy View and Model Separation)</td>
+<td>Universal architectural pattern for any layered application.</td>
+</tr>
+<tr>
+<td>View Model</td>
+<td>Bindable model of view, brinks for MVVM and binding is a grout.</td>
+</tr>
+<tr>
+<td>XAML</td>
+<td>In the Microsoft solution stack, the universal binder is a markup language called XAML.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="framework-basics">Framework basics</h2>
+<blockquote>
+<p>Everything is implemented with the main focus on <strong>extensibility</strong> and <strong>flexibility</strong>.</p>
+</blockquote>
+<p>The heart of the framework is <strong>IoC container</strong> wrapped by <a href="https://msdn.microsoft.com/en-us/library/ff648968.aspx">ServiceLocator</a> pattern and <strong>ISimpleIoc</strong> interface from <a href="http://www.mvvmlight.net/">MVVM Light Toolkit</a>, which allow us to use any IoC container.</p>
+<p>The main concept is <strong>services</strong>, which should be registered in global IoC container and for less coupling, they can communicate through a shared <strong>message bus</strong>. The concept of services with message bus is accessible via facade <strong>ServiceProvider</strong>. Respectively each layer is realised by own provider and main object type, e.g. the view model layer contains many <strong>ViewModels</strong> and <strong>ViewModelProvider</strong>.</p>
+<p>With a problem of <em>data caching</em> or <em>in-memory storage</em> helps the concept of <strong>stores</strong>. A store can handle <em>life-time</em> and <em>destruction of stored objects</em>.</p>
+<p>For better code management and low coupling, we are recommending to use <a href="https://en.wikipedia.org/wiki/Strategy_pattern">Strategy pattern</a> as much as possible. We are even splitting this pattern into more detailed cases. The first one we called same like pattern itself, therefore <strong>Strategy</strong> and should be used as a unit of the work, the instance of the strategy class will be created before calling an executive method and after execution would be forgotten. The Second case is when you need behaviour with state and longer lifetime, but only per one instance of an object, in this case we call it <strong>Manager</strong>. The <em>singleton</em> strategy (stateful or stateless) which can be used in many places in the system is realised by already spoken <strong>Service</strong> concept.</p>
+<blockquote>
+<p>We are working on concepts of generic <strong>Behaviours</strong> and <strong>States</strong> of any object but mainly used for UI components. <em>We're going to describe it soon.</em></p>
+</blockquote>
+<h2 id="recommendations-and-guidelines">Recommendations and guidelines</h2>
+<p>With the architecture pattern and framework, we are coming with recommendations, as well. These guidelines can be followed or not. They can help with better and cleaner application design and code base.</p>
+<blockquote>
+<p>We will add more recommendations and specify <em>code standards</em> with <em>naming convention</em> during the Framework growth.</p>
+</blockquote>
+<ul>
+<li>Each class should have one and only one responsibility.</li>
+<li>Every public type which can be used and extended outside a namespace should be  available also as an interface instead of just as a class.</li>
+<li>Strategy pattern should be used as a unit of work (one instance per call), in other cases, we are speaking about a Manager or a Service.</li>
+<li>If a behaviour / responsibility needs to have a state and would have long-life, then should be designed as a Manager.</li>
+<li>If a Provider contains a message bus, then the bus should be used only by objects which provider provides.</li>
+</ul>
+<blockquote>
+<p>Our codding bible is <a href="https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882">Clean Code</a> and we follow <a href="https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a> principle.</p>
+</blockquote>
+<h2 id="dependencies">Dependencies</h2>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.mvvmlight.net/">MVVM Light Toolkit</a></td>
+<td>The framework takes a lot of inspiration from this great and powerful toolkit. <em>This dependency will be integrated.</em></td>
+</tr>
+<tr>
+<td><a href="https://www.newtonsoft.com/json">Json.NET</a></td>
+<td>The JSON is the most popular data transfer format used on the network and for communication between systems.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rotorgames/Rg.Plugins.Popup">Popup Page Plugin for Xamarin</a></td>
+<td>Xamarin plugin which is used for showing user-defined dialogues. <em>This dependency would be removed soon.</em></td>
+</tr>
+</tbody>
+</table>
+
+    </body>
+    </html>

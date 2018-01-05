@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StrongBeaver.Showroom.View.NetworkPage"
+             Title="Networking">
+    <TableView HasUnevenRows="True" Intent="Form" RowHeight="-1">
+        <TableRoot>
+
+            <TableSection Title="Http">
+                <EntryCell x:Name="entryHttpUrl" Label="URL:" Placeholder="http://www.seznam.cz" />
+                <ViewCell Height="76">
+                    <Button x:Name="buttonHttp" Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#01579B" TextColor="White" FontAttributes="Bold"
+                            Text="SEND REQUEST" HorizontalOptions="Center" Clicked="HandleSendHttpRequestButtonClicked" />
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Editor x:Name="editorHttpResponse" HeightRequest="120" />
+                        <ActivityIndicator x:Name="progressHttp" IsRunning="True" IsEnabled="True" IsVisible="False" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+
+            <TableSection Title="Rest (GET JSON)">
+                <EntryCell x:Name="entryRestUri" Label="URI:" Placeholder="http://services.groupkt.com/country/get/iso3code/CZE" />
+                <ViewCell Height="76">
+                    <Button x:Name="buttonRest" Margin="16" BorderRadius="22" WidthRequest="200" HeightRequest="44"
+                            BackgroundColor="#01579B" TextColor="White" FontAttributes="Bold"
+                            Text="SEND REQUEST" HorizontalOptions="Center" Clicked="HandleSendRestRequestButtonClicked" />
+                </ViewCell>
+                <ViewCell>
+                    <Grid>
+                        <Editor x:Name="editorRestResponse" HeightRequest="120" />
+                        <ActivityIndicator x:Name="progressRest" IsRunning="True" IsEnabled="True" IsVisible="False" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+
+        </TableRoot>
+    </TableView>
+</ContentPage>

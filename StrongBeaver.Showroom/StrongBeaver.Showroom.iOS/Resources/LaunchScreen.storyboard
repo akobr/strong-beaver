@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="gAE-YM-kbH">
+            <objects>
+                <viewController id="X5k-f2-b5h" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y8P-hJ-Z43"/>
+                        <viewControllerLayoutGuide type="bottom" id="9ZL-r4-8FZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yd7-JS-zBw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="494" translatesAutoresizingMaskIntoConstraints="NO" spacing="15" misplaced="YES">
+                                <rect key="frame" x="164" y="219" width="271.5" height="162"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" image="icon-60-rounded.png" translatesAutoresizingMaskIntoConstraints="NO" id="495">
+                                        <rect key="frame" x="0.0" y="0.0" width="271.5" height="61"/>
+                                        <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="StrongBeaver" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1389" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="76" width="271.5" height="21.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18" weight="semibold"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Framework for Xamarin and .NET platform" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1390" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="112.5" width="271.5" height="16.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TVMS - Tidy View and Model Separation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1391" translatesAutoresizingMaskIntoConstraints="NO">
+                                        <rect key="frame" x="0.0" y="144" width="271.5" height="18"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1.0" green="0.925" blue="0.702" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint id="719" firstItem="494" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX"/>
+                            <constraint id="720" firstItem="494" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="349" y="339"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Icon-60.png" width="60" height="60"/>
+        <image name="Default-568h.png" width="320" height="568"/>
+        <image name="Default-Portrait.png" width="768" height="1004"/>
+        <image name="Default.png" width="320" height="480"/>
+        <image name="icon-60-rounded.png" width="60" height="60"/>
+        <image name="icon-60.png" width="60" height="60"/>
+        <image name="Icon-76.png" width="76" height="76"/>
+        <image name="icon-clippy-orange.png" width="29" height="29"/>
+        <image name="icon-clippy.png" width="29" height="29"/>
+        <image name="icon-contacts.png" width="29" height="29"/>
+        <image name="icon-database.png" width="29" height="29"/>
+        <image name="icon-device.png" width="29" height="29"/>
+        <image name="icon-github.png" width="29" height="29"/>
+        <image name="icon-hexagon.png" width="29" height="29"/>
+        <image name="icon-lightbulb.png" width="29" height="29"/>
+        <image name="icon-menu.png" width="29" height="29"/>
+        <image name="icon-message.png" width="29" height="29"/>
+        <image name="icon-puzzle-green.png" width="29" height="29"/>
+        <image name="icon-puzzle.png" width="29" height="29"/>
+        <image name="icon-settings.png" width="29" height="29"/>
+        <image name="Icon-Small-40.png" width="40" height="40"/>
+        <image name="Icon-Small.png" width="29" height="29"/>
+        <image name="icon-toast.png" width="29" height="29"/>
+        <image name="img-architecture-large.png" width="3006" height="1978"/>
+        <image name="img-architecture-small.png" width="962" height="633"/>
+        <image name="img-device.jpg" width="275" height="183"/>
+        <image name="img-device.png" width="1200" height="843"/>
+        <image name="img-dialog.jpg" width="1024" height="768"/>
+        <image name="img-networking.jpg" width="1024" height="768"/>
+        <image name="img-nuget.png" width="1200" height="1197"/>
+        <image name="img-octocat.png" width="800" height="665"/>
+        <image name="img-services.png" width="1920" height="745"/>
+        <image name="img-storage.jpg" width="414" height="290"/>
+        <image name="img-strong-beaver.png" width="300" height="168"/>
+        <image name="img-xamagon.png" width="609" height="609"/>
+        <image name="logo-beaver-soft.png" width="687" height="151"/>
+    </resources>
+</document>

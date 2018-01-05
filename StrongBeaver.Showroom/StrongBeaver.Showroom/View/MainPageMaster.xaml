@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:webContent="clr-namespace:StrongBeaver.Showroom.View.WebContent"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StrongBeaver.Showroom.View.MainPageMaster"
+             BindingContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainViewModel}"
+             Title="Menu"
+             Icon="icon-menu.png">
+    <StackLayout>
+        <Grid BackgroundColor="#FFC107">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="1" Grid.Column="1" Source="img-strong-beaver.png" HorizontalOptions="Fill" />
+
+            <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Intent="Menu" HasUnevenRows="true">
+                <TableRoot>
+                    <TableSection Title="Menu">
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Architecture" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToArchitecturePageCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Contact" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:LocalWebContentDescription Title="Contact" PageName="page-contact.html" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Controls for Xamarin" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:LocalWebContentDescription Title="Controls" PageName="page-controls.html" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Device info" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToDeviceInfoPageCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Dialog &amp; Toasts" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToDialogPageCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="GitHub homepage" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:ExternalWebContentDescription Title="GitHub" Path="https://github.com/akobr/strong-beaver" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="How it works" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:LocalWebContentDescription Title="How it works" PageName="page-how-it-works.html" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Networking" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToNetworkPageCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="NuGet packages" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:LocalWebContentDescription Title="NuGet" PageName="page-nuget-packages.html" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Plugins for Xamarin" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:LocalWebContentDescription Title="Plugins" PageName="page-xamarin-plugins.html" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Services" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToWebContentPageCommand}">
+                                        <TapGestureRecognizer.CommandParameter>
+                                            <webContent:LocalWebContentDescription Title="Services" PageName="page-services.html" />
+                                        </TapGestureRecognizer.CommandParameter>
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Padding="16,8" HorizontalOptions="FillAndExpand">
+                                <Label Text="Storage" FontSize="18" />
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateToStoragePageCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+
+        </Grid>
+    </StackLayout>
+</ContentPage>
