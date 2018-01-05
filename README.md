@@ -2,16 +2,20 @@
 
 The StrongBeaver is .NET application framework mainly designed for Xamarin, but can be used with any platform and any layered architecture.
 
+![Strong beaver image](doc/design/img-strong-beaver.png)
+
+**The Framework is in early stage (ALFA version). A lot of stuff can be changed and unit testing is coming. Can be used for testing and as a playground, but for a real deployment please wait for a stable release.**
+
 > Simplicity is the ultimate sofistication.
 >
 > &mdash; *Leonardo da Vinci*
 
 ## Introduction
 
-> The pattern **TVMS** has been created to help us to simplify application design and guide us how to separate concerns of layers and minimise coupling inside sub-systems.
-
 The architecture is called **TVMS** from ***T**idy **V**iew and **M**odel **S**eparation* and has been designed to be able to use it with any View-Model layered application.
 The middle layer is universally named **separation**, which can be used with any well-known patterns, e.g. [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel), or any [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter).
+
+> The pattern **TVMS** has been created to help us to simplify application design and guide us how to separate concerns of layers and minimise coupling inside sub-systems.
 
 The Framework as one product is called **StrongBeaver**. The concepts and base interfaces can be used for any .NET application, but the framework is mainly created for *[Xamarin](https://www.xamarin.com/) platform*.
 
@@ -48,7 +52,7 @@ Provider | The facade / locator for a specific type of objects, e.g. services, v
 Service | Stateful or stateless, singleton and long-life service, which is registered in system.
 ServiceLocator (IoC) | [ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) is an abstraction of IoC container, which is used in the framework.
 Store | In memory storage, responsible for caching and reusability of objects.
-Strategy | Lightweight service / behaviour inside a intance of object, which is used in unit of work approach.
+Strategy | Lightweight service / behaviour inside a instance of object, which is used in unit of work approach.
 TVMS (Tidy View and Model Separation) | Universal architectural pattern for any layered application.
 View Model | Bindable model of view, brinks for MVVM and binding is a grout.
 XAML | In the Microsoft solution stack, the universal binder is a markup language called XAML.
@@ -85,6 +89,7 @@ With the architecture pattern and framework, we are coming with recommendations,
 
 Dependency | Description
 --- | ---
+[CommonServiceLocator](https://github.com/unitycontainer/commonservicelocator) | The library provides an abstraction over IoC containers and service locators. Using the library allows an application to indirectly access the capabilities without relying on hard references.
 [MVVM Light Toolkit](http://www.mvvmlight.net/) | The framework takes a lot of inspiration from this great and powerful toolkit. *This dependency will be integrated.*
 [Json.NET](https://www.newtonsoft.com/json) | The JSON is the most popular data transfer format used on the network and for communication between systems.
 [Popup Page Plugin for Xamarin](https://github.com/rotorgames/Rg.Plugins.Popup) | Xamarin plugin which is used for showing user-defined dialogues. *This dependency would be removed soon.*
@@ -94,7 +99,7 @@ Dependency | Description
 >* A service written in **Bold** is already done.
 >* A service written in *Italic* will be imlemented.
 
-* **Accounts** - Service for authenticating users. Support for *OAuth protocols* and third-party services, e.g. *Facebook*, *Google* account, *Microsoft* account, and *Twitter*. *Implementation is planned for next phase.*
+* *Accounts* - Service for authenticating users. Support for *OAuth protocols* and third-party services, e.g. *Facebook*, *Google* account, *Microsoft* account, and *Twitter*. *Implementation is planned for next phase.*
 * **Cleanup** - Simple way how to delete instance(s) from main IoC container.
 * **Device**
   * **Connectivity** - Network connectivity information, e.g. if a connection is available.
@@ -154,6 +159,10 @@ Dependency | Description
 >
 > The complete [list of available Xamarin Plugins](https://github.com/xamarin/XamarinComponents).
 
+## Download the showroom application
+
+> Will be added.
+
 ## Nuget packages
 
 * Framework
@@ -168,16 +177,25 @@ Dependency | Description
     * Get GPS location of a device. *Realised by [Geolocator Plugin for Xamarin](https://github.com/jamesmontemagno/GeolocatorPlugin)*.
   * *BeaverSoft.StrongBeaver.Service.Permissions*
     * The service for managing permissions on any platform. *Realised by [Permissions Plugin for Xamarin](https://github.com/jamesmontemagno/PermissionsPlugin)*.
+  * *BeaverSoft.StrongBeaver.Services.DataStorage.SqlLite.Xamarin*
+    * Persistent storage base od SQLite, this service is using *[SQLite.Net-PCL library](https://github.com/oysteinkrog/SQLite.Net-PCL)*.
+  * *BeaverSoft.StrongBeaver.Services.DataStorage.EFC*
+    * Persistent storage service by *[Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore)*. *Development in progress.*  
+  * *BeaverSoft.StrongBeaver.Services.DataStorage.Embedded.Xamarin*
+    * Unpack embedded resource cross-platform. *Realised by [EmbeddedResource Plugin for Xamarin](https://github.com/JosephHill/EmbeddedResourcePlugin)*. *Development in progress.*
 
-## Thanks
+### Package versions
 
-We gladly thank designers, developers, and co-workers of:
-
-* [.NET](https://www.microsoft.com/net/) developer platform
-* [Xamarin](https://www.xamarin.com/) and [Plugins of Xamarin](https://github.com/xamarin/XamarinComponents)
-* [MVVM Light Toolkit](http://www.mvvmlight.net/)
-* [Json.NET](https://www.newtonsoft.com/json)
-* [The PureMVC Framework](http://puremvc.org/)
+Nuget package | version
+--- | ---
+BeaverSoft.StrongBeaver | 0.9-alfa is coming
+BeaverSoft.StrongBeaver.Core |  0.9-alfa is coming
+BeaverSoft.StrongBeaver.Service.Device.Connectivity | 0.9-alfa is coming
+BeaverSoft.StrongBeaver.Service.Device.Geolocator | 0.9-alfa is coming
+BeaverSoft.StrongBeaver.Service.Permissions | 0.9-alfa is coming
+BeaverSoft.StrongBeaver.Services.DataStorage.SqlLite.Xamarin | 0.9-alfa is coming
+BeaverSoft.StrongBeaver.Services.DataStorage.EFC | -
+BeaverSoft.StrongBeaver.Services.DataStorage.Embedded.Xamarin | -
 
 ## Examples
 
@@ -324,23 +342,21 @@ public class NewObservableObject : BaseViewModelStoreItem
 }
 ```
 
-### Create Provider (Facade)
+### Create ViewModelLocator
 
-Sometimes can be handy to create your own layer or type Provider (Facade) which can contain for example static reference to the objects inside.
-
-> This example will create new *ViewModelProvider* for easier referencing of view models in **Xaml**.
+This example will create new *ViewModelLocator* for easier referencing of view models in **Xaml**.
 
 #### View Model Provider
 
 ```cs
-public interface INewViewModelProvider : IViewModelProvider
+public interface IViewModelLocator : IBaseViewModelLocator
 {
   public NewViewModel { get; }
 }
 
-public class NewViewModelProvider : ViewModelProvider
+public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
 {
-  public NewViewModelProvider()
+  public ViewModelLocator()
   {
     if (IsInDesignMode)
     {
@@ -352,11 +368,11 @@ public class NewViewModelProvider : ViewModelProvider
     }
   }
 
-  public static INewViewModelProvider Current { get; private set; }
+  public static IViewModelLocator Current { get; private set; }
 
-  public static void SetCurrentProvider(INewViewModelProvider newProvider)
+  public static void SetCurrentLocator(IViewModelLocator newLocator)
   {
-    Current = newProvider;
+    Current = newLocator;
   }
 }
 ```
@@ -364,7 +380,7 @@ public class NewViewModelProvider : ViewModelProvider
 #### View Model
 
 ```cs
-public interface INewViewModel
+public interface INewViewModel : IViewModel
 {
   public string Text { get; }
 }
@@ -389,7 +405,7 @@ public class NewViewModelDesignMock : INewViewModel
              x:Class="StrongBeaver.Showroom.App">
     <Application.Resources>
         <ResourceDictionary>
-            <viewModel:ShowroomViewModelProvider x:Name="ViewModelProvider" />
+            <viewModel:ViewModelLocator x:Name="ViewModelLocator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>
@@ -400,20 +416,166 @@ public class NewViewModelDesignMock : INewViewModel
 ```cs
 public class Application : App
 {
-  private const string VIEW_MODEL_PROVIDER_RESOURCE_KEY = "ViewModelProvider";
+  private const string VIEW_MODEL_LOCATOR_RESOURCE_KEY = "ViewModelLocator";
 
   public Application()
   {
     SetViewModelProvider();
   }
 
-  private static INewViewModelProvider NewViewModelProvider { get; private set; }
+  private static IViewModelLocator ViewModelLocator { get; private set; }
 
   private void SetViewModelProvider()
   {
-    NewViewModelProvider = (INewViewModelProvider)Resources[VIEW_MODEL_PROVIDER_RESOURCE_KEY];
-    SimpleIoc.Default.Register<INewViewModelProvider>(() => { return NewViewModelProvider; });
-    NewViewModelProvider.SetCurrentProvider(NewViewModelProvider);
+    ViewModelLocator = (IViewModelLocator)Resources[VIEW_MODEL_LOCATOR_RESOURCE_KEY];
+    SimpleIoc.Default.Register<IViewModelLocator>(() => { return ViewModelLocator; });
+    ViewModel.ViewModelLocator.SetCurrentProvider(ViewModelLocator);
   }
 }
 ```
+
+### Create own Provider
+
+Sometimes can be handy to create your own layer or type Provider (Facade) which can contain for example static reference to the objects inside.
+
+####  Own Service Provider
+
+```cs
+public interface IOwnServiceProvider : IServiceProvider
+{
+  INavigationService Navigation { get; }
+
+  IDialogService Dialog { get; }
+
+  IPermissionsService Permissions { get; }
+}
+
+public OwnServiceProvider : ServiceProvider, IOwnServiceProvider
+{
+  public ServiceProvider(ISimpleIoc container, ILogService logService)
+    : base(container, logService)
+  {
+    Navigation = container.GetInstance<INavigationService>();
+    Dialog = container.GetInstance<IDialogService>();
+    Permissions = container.GetInstance<IPermissionsService>();
+  }
+
+  public INavigationService Navigation { get; }
+
+  public IDialogService Dialog { get; }
+
+  public IPermissionsService Permissions { get; }
+
+  public static IOwnServiceProvider Current { get; private set; }
+
+  public static void SetDefaultProvider()
+  {
+    SetProvider(ServiceLocator.Current.GetInstance<IOwnServiceProvider>());
+  }
+
+  public static void SetProvider(IOwnServiceProvider newProvider)
+  {
+    Current = newProvider;
+  }
+}
+```
+
+#### Action Provider (pureMVC)
+
+```cs
+public interface IAction
+{
+  // Implementation of action interface
+}
+
+public class ActionProvider : IProvider<IAction>
+{
+  private SimpleIoc container;
+
+  public ActionProvider(SimpleIoc container)
+  {
+    this.container = container;
+  }
+
+  public TInterface Get<TInterface>()
+    where TItem : class, IAction
+  {
+    // Always create a new instance of an action (command)
+    return container.GetInstanceWithoutCaching<TInterface>();
+  }
+
+  public TInterface Get<TInterface>(string key)
+    where TInterface : TProvidedItem
+  {
+    // Always create a new instance of an action (command)
+    return container.GetInstanceWithoutCaching<TInterface>(key);
+  }
+
+  public void Register<TInterface, TClass>()
+    where TInterface : class, TProvidedItem
+    where TClass : class, TInterface
+  {
+    container.Register<TInterface, TClass>();
+  }
+
+  public void Register<TInterface>(Func<TInterface> factory, string key)
+      where TInterface : class, TProvidedItem
+  {
+    container.Register<TInterface>(factory, key);
+  }
+
+  public void Unregister<TInterface>()
+    where TInterface : class, TProvidedItem
+  {
+    container.Unregister<TInterface>();
+  }
+
+  public void Unregister<TInterface>(TInterface item)
+    where TInterface : class, TProvidedItem
+  {
+    container.Unregister<TInterface>(item);
+  }
+
+  public void Unregister<TInterface>(string key)
+    where TInterface : class, TProvidedItem
+  {
+    container.Unregister<TInterface>(key);
+  }  
+}
+```
+
+## Thanks
+
+We gladly thank designers, developers, and co-workers of:
+
+* [.NET](https://www.microsoft.com/net/) developer platform
+* [Xamarin](https://www.xamarin.com/) and [Plugins of Xamarin](https://github.com/xamarin/XamarinComponents)
+* [MVVM Light Toolkit](http://www.mvvmlight.net/)
+* [Json.NET](https://www.newtonsoft.com/json)
+* [The PureMVC Framework](http://puremvc.org/)
+
+## Contact
+
+![BeaverSoft logo](doc/design/logo-beaversoft-border.png)
+
+<address>
+  <a href="http://www.beaversoft.cz/" target="blank">Beaver soft</a><br/>
+  <strong>Aleš Kobr</strong><br/><br/>
+  Hoření Lomnice 287<br/>
+  Lomnice n. Pop., 512 51<br/>
+  Czech Republic<br/>
+  <br/>
+  <a href="mailto:kobr.ales@hotmail.cz" class="mt-small">kobr.ales@hotmail.cz</a>
+  <br/>
+  <a href="tel:+420724979498">+420 724 97 94 98</a>
+  <br/>
+  <a href="tel:+447448503302">+44 744 850 33 02</a>
+</address>
+
+## Licence and Notes
+
+Created by [BeaverSoft](http://www.beaversoft.cz/).
+
+Entire framework is under [MIT licence](https://github.com/akobr/strong-beaver/blob/master/LICENSE).
+
+The strong beaver image is <a href="http://www.freepik.com">designed by Ajipebriana / Freepik</a>.
