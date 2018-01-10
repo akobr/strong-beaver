@@ -188,12 +188,12 @@ Dependency | Description
 
 Nuget package | version
 --- | ---
-BeaverSoft.StrongBeaver.Xamarin | 0.9-alfa
-BeaverSoft.StrongBeaver.Core |  0.9-alfa
-BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin | 0.9-alfa
-BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin | 0.9-alfa
-BeaverSoft.StrongBeaver.Services.Permissions.Xamarin | 0.9-alfa
-BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin | 0.9-alfa
+BeaverSoft.StrongBeaver.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Xamarin/)
+BeaverSoft.StrongBeaver.Core |  [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Core/)
+BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin/)
+BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin/)
+BeaverSoft.StrongBeaver.Services.Permissions.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Permissions.Xamarin/)
+BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin/)
 BeaverSoft.StrongBeaver.Services.DataStorage.EFC | -
 BeaverSoft.StrongBeaver.Services.DataStorage.Embedded.Xamarin | -
 
