@@ -1,6 +1,5 @@
 ﻿using StrongBeaver.Core.Helpers;
 using StrongBeaver.Core.Helpers.Lifetime;
-using StrongBeaver.Core.Services;
 using System;
 
 namespace StrongBeaver.Core.Model

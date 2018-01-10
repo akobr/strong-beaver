@@ -43,6 +43,12 @@
     <Compile Include="Constants\ShowroomDialogKeys.cs" />
     <Compile Include="Constants\ShowroomPageKeys.cs" />
     <Compile Include="Controls\PinchToZoomContainer.cs" />
+    <Compile Include="Examples\ActionProvider.cs" />
+    <Compile Include="Examples\NewMessageBusService.cs" />
+    <Compile Include="Examples\NewService.cs" />
+    <Compile Include="Examples\NewSimpleStore.cs" />
+    <Compile Include="Examples\NewViewModelStore.cs" />
+    <Compile Include="Examples\OwnServiceProvider.cs" />
     <Compile Include="Model\ExemplaryItem.cs" />
     <Compile Include="Model\ExemplaryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

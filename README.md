@@ -188,12 +188,12 @@ Dependency | Description
 
 Nuget package | version
 --- | ---
-BeaverSoft.StrongBeaver.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Xamarin/)
-BeaverSoft.StrongBeaver.Core |  [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Core/)
-BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin/)
-BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin/)
-BeaverSoft.StrongBeaver.Services.Permissions.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Permissions.Xamarin/)
-BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin | [0.9-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin/)
+BeaverSoft.StrongBeaver.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Xamarin/)
+BeaverSoft.StrongBeaver.Core |  [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Core/)
+BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin/)
+BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin/)
+BeaverSoft.StrongBeaver.Services.Permissions.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Permissions.Xamarin/)
+BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin/)
 BeaverSoft.StrongBeaver.Services.DataStorage.EFC | -
 BeaverSoft.StrongBeaver.Services.DataStorage.Embedded.Xamarin | -
 
@@ -207,31 +207,75 @@ Here is some useful code by examples.
 
 This example shows how to initialise Xamarin application with the *StrongBeaver* framework.
 
-#### Activator static class
+#### Shared Activator static class
 
 ```cs
-public static class Activator
+namespace MyNamespace
 {
-  public static void Initialise()
+  public static class Activator
   {
-    StrongBeaver.Core.Activator.Initialise();
+    public static void Initialise(ISimpleIoc container)
+    {
+      // Do your specific initialisation here
+    }
 
-    // Do your specific initialisation here
-  }
-
-  public static void InitialiseIoc(ISimpleIoc container)
-  {
-    StrongBeaver.Core.Activator.InitialiseIoc(container);
-
-    // Add your own types to IoC container
-    // Register services and stores
+    public static void InitialiseIoc(ISimpleIoc container)
+    {
+      // Register services and stores
+      // Add your own types to IoC container
+    }
   }
 }
 ```
 
 #### iOS app intialisation
 
-> TODO: Add iOS initialisation example.
+```cs
+public static class Activator
+{
+  public static void Initialise(UIApplication application)
+  {
+    ISimpleIoc serviceLocator = SimpleIoc.Default;
+
+    InitializeIoc(serviceLocator);
+
+    DispatcherHelper.Initialize(application);
+
+    Core.Activator.Initialise(serviceLocator);
+    MyNamespace.Activator.Initialise(serviceLocator);
+  }
+
+  private static void InitializeIoc(ISimpleIoc container)
+  {
+    Core.IosActivator.InitialiseIoc(container);
+    MyNamespace.Activator.InitialiseIoc(container);
+
+    InitialisePlatform(container);
+    InitialiseServices(container);
+  }
+
+  private static void InitialisePlatform(ISimpleIoc container)
+  {
+    container.Register<IApplicationInfo, MyIosApplicationInfo>();
+  }
+
+  private static void InitialiseServices(ISimpleIoc container)
+  {
+    // Register iOS specific services
+  }
+}
+
+public class MyIosApplicationInfo : BaseIosApplicationInfo
+{
+  public override bool IsBackgroundTask => false;
+
+  public override string Name => "MyApplication";
+
+  public override Guid Identifier => new Guid("42a4e765-8e57-4031-849b-9f726a57559b");
+
+  public override string Secret => "d93e3af0-a36b-44b3-aabb-3e43719a6e50";
+}
+```
 
 #### Android app initialisation
 
@@ -240,19 +284,19 @@ public static class Activator
 ### Create Service
 
 ```cs
-public class NewService : BaseService
+public class NewFirstService : BaseService
 {
-   // Implement your new service
+  // Implement your new service
 
-   protected override void OnDispose(bool disposing)
-   {
-     // Implement overrided method or delete
-   }
+  protected override void OnDispose(bool disposing)
+  {
+    // Implement overrided method or delete
+  }
 }
 
 // OR
 
-public class NewService : IService
+public class NewSecondService : IService
 {
   // Implement your new service
 
@@ -266,18 +310,24 @@ public class NewService : IService
 ### Create Service with ability to use message bus
 
 ```cs
-public interface NewMessageType : IServiceMessage
+public interface INewServiceMessage : IServiceMessage
 {
   // Specify the members
+  void PerformMessage(INewMessageBusService service);
 }
 
-public class NewMessageBusService : BaseService, IMessageBusService<NewMessageType>
+public interface INewMessageBusService : IMessageBusService<INewServiceMessage>
+{
+  // Implement your service interface
+}
+
+public class NewMessageBusService : BaseService, INewMessageBusService
 {
   // Implement your service
 
-  public void ProcessMessage(NewMessageType message)
+  public void ProcessMessage(INewServiceMessage message)
   {
-    message.Process(this);
+    message.PerformMessage(this);
   }
 }
 ```
@@ -285,24 +335,21 @@ public class NewMessageBusService : BaseService, IMessageBusService<NewMessageTy
 ### Create Store
 
 ```cs
-// TODO: Create SImpleStore
-
 public class NewItem
 {
-  public NewItem(int id)
-  {
-    Id = id;
-  }
-
   public int Id { get; }
 }
 
-public class NewStore : SimpleStore<int>
+public class NewStore : SimpleStore<int, NewItem>
 {
-  public NewStore()
-   : base((item) => item.Id)
+  // Create a new store class only if you need some extra logic
+  // for it or simply use SimpleStore class directly
 
-  // Create a new store class only if you need some extra logic for the new store or simply use the class SimpleStore directly
+  public NewStore()
+    : base((item) => item.Id) // Item key factory
+  {
+    // No operation
+  }
 }
 ```
 
@@ -312,32 +359,42 @@ The store for model or view model layer can be totally same, but we're expecting
 
 > A Lifetime of an object is managed by **ILifetimeManager**, the system contains one *manual* and *auto (reference counting)* lifetime manager.
 
-For this reasons, the framework contains more complex store named **ViewModelStore** for observable items *(binding sources)* which implemented **IViewModelStoreItem** interface.
+For this reasons, the framework contains more complex store named **ComplexStore** for any items which implement **IComplexStoreItem** interface.
 
 ```cs
-// TODO: Implement ReferenceCountingManager
-// TODO: Implement ItemIdBuilder
-
-public class NewViewModelStore : ViewModelStore
+public class NewViewModelStore : ComplexStore<int, NewObservableItem>
 {
-  // Create a new store class only if you need some extra logic for the new store
+  // Create a new store class isn't necessary
+
+  public NewViewModelStore()
+    : base((item) => item.Id) // Factory for item key
+  {
+    // No operation
+  }
 }
 
-public class NewObservableObject : BaseViewModelStoreItem
+public class NewObservableItem : ObservableObject, IComplexStoreItem<NewObservableItem>
 {
-  // Implement a new store item
+  // The base class ObservableObject is only recomendation for databinding,
+  // mandatory is only IComplexStoreItem interface
 
-  // The base class BaseViewModelStoreItem is only recomendation, mandatory is IViewStoreItem interface
+  // Item key property
+  public int Id { get; set; }
 
-  public override void Update(NewObservableObject newItem)
+  public void Update(NewObservableItem newItem)
   {
     // Update item with new content
   }
 
-  public override void Initialise()
+  public void Initialise()
   {
-    // Implement iteminitialisation or delete method override
+    // Implement item initialisation
     // (calculate view properties)
+  }
+
+  public void Dispose()
+  {
+    // Dospose item
   }
 }
 ```
@@ -351,15 +408,17 @@ This example will create new *ViewModelLocator* for easier referencing of view m
 ```cs
 public interface IViewModelLocator : IBaseViewModelLocator
 {
-  public NewViewModel { get; }
+  INewViewModel NewViewModel { get; }
 }
 
 public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
 {
   public ViewModelLocator()
+    : base(ServiceLocator.Current.GetInstance<IPlatformInfo>())
   {
-    if (IsInDesignMode)
+    if (BaseViewModel.IsInDesignModeStatic)
     {
+      // Or rather do it through IoC
       NewViewModel = new NewViewModelDesignMock();
     }
     else
@@ -369,6 +428,8 @@ public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
   }
 
   public static IViewModelLocator Current { get; private set; }
+
+  public INewViewModel NewViewModel { get; }
 
   public static void SetCurrentLocator(IViewModelLocator newLocator)
   {
@@ -382,7 +443,7 @@ public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
 ```cs
 public interface INewViewModel : IViewModel
 {
-  public string Text { get; }
+  string Text { get; }
 }
 
 public class NewViewModel : BaseViewModel, INewViewModel
@@ -390,13 +451,13 @@ public class NewViewModel : BaseViewModel, INewViewModel
   // Implementation of the view model
 }
 
-public class NewViewModelDesignMock : INewViewModel
+public class NewViewModelDesignMock : BaseViewModel, INewViewModel
 {
   public string Text => "Lorem ipsum";
 }
 ```
 
-#### Application.xaml
+#### App.xaml
 
 ```xml
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
@@ -411,16 +472,18 @@ public class NewViewModelDesignMock : INewViewModel
 </Application>
 ```
 
-#### Application.cs
+#### App.cs
 
 ```cs
-public class Application : App
+public partial class App : Application 
 {
   private const string VIEW_MODEL_LOCATOR_RESOURCE_KEY = "ViewModelLocator";
 
-  public Application()
+  public App()
   {
+    InitializeComponent();
     SetViewModelProvider();
+    // ...
   }
 
   private static IViewModelLocator ViewModelLocator { get; private set; }
@@ -450,9 +513,9 @@ public interface IOwnServiceProvider : IServiceProvider
   IPermissionsService Permissions { get; }
 }
 
-public OwnServiceProvider : ServiceProvider, IOwnServiceProvider
+public class OwnServiceProvider : ServiceProvider, IOwnServiceProvider
 {
-  public ServiceProvider(ISimpleIoc container, ILogService logService)
+  public OwnServiceProvider(ISimpleIoc container, ILogService logService)
     : base(container, logService)
   {
     Navigation = container.GetInstance<INavigationService>();
@@ -466,7 +529,7 @@ public OwnServiceProvider : ServiceProvider, IOwnServiceProvider
 
   public IPermissionsService Permissions { get; }
 
-  public static IOwnServiceProvider Current { get; private set; }
+  public new static IOwnServiceProvider Current { get; private set; }
 
   public static void SetDefaultProvider()
   {
@@ -485,7 +548,7 @@ public OwnServiceProvider : ServiceProvider, IOwnServiceProvider
 ```cs
 public interface IAction
 {
-  // Implementation of action interface
+    // Implementation of action interface
 }
 
 public class ActionProvider : IProvider<IAction>
@@ -494,53 +557,53 @@ public class ActionProvider : IProvider<IAction>
 
   public ActionProvider(SimpleIoc container)
   {
-    this.container = container;
+      this.container = container;
   }
 
   public TInterface Get<TInterface>()
-    where TItem : class, IAction
+    where TInterface : IAction
   {
     // Always create a new instance of an action (command)
     return container.GetInstanceWithoutCaching<TInterface>();
   }
 
   public TInterface Get<TInterface>(string key)
-    where TInterface : TProvidedItem
+    where TInterface : IAction
   {
     // Always create a new instance of an action (command)
     return container.GetInstanceWithoutCaching<TInterface>(key);
   }
 
   public void Register<TInterface, TClass>()
-    where TInterface : class, TProvidedItem
+    where TInterface : class, IAction
     where TClass : class, TInterface
   {
     container.Register<TInterface, TClass>();
   }
 
   public void Register<TInterface>(Func<TInterface> factory, string key)
-      where TInterface : class, TProvidedItem
+    where TInterface : class, IAction
   {
     container.Register<TInterface>(factory, key);
   }
 
   public void Unregister<TInterface>()
-    where TInterface : class, TProvidedItem
+    where TInterface : class, IAction
   {
     container.Unregister<TInterface>();
   }
 
   public void Unregister<TInterface>(TInterface item)
-    where TInterface : class, TProvidedItem
+    where TInterface : class, IAction
   {
     container.Unregister<TInterface>(item);
   }
 
   public void Unregister<TInterface>(string key)
-    where TInterface : class, TProvidedItem
+    where TInterface : class, IAction
   {
     container.Unregister<TInterface>(key);
-  }  
+  }
 }
 ```
 
