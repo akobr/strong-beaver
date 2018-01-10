@@ -5,7 +5,7 @@ using System.Resources;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("StrongBeaver.Core")]
-[assembly: AssemblyDescription("Multi-platform (Xamarin) mobile app Framework.")]
+[assembly: AssemblyDescription("The application framework.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BeaverSoft (Ales Kobr)")]
 [assembly: AssemblyProduct("StrongBeaver.Core")]
@@ -24,8 +24,8 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyInformationalVersion("0.9-alpha")]
+[assembly: AssemblyInformationalVersion("0.9.0-alpha")]
 [assembly: AssemblyVersion("0.9")]
 #pragma warning disable CS7035
-[assembly: AssemblyFileVersion("0.9.*")]
+[assembly: AssemblyFileVersion("0.9.0.*")]
 #pragma warning restore CS7035

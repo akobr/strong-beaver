@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("StrongBeaver.Core.iOS")]
-[assembly: AssemblyDescription("Multi-platform (Xamarin) mobile app Framework.")]
+[assembly: AssemblyDescription("Xamarin multi-platform mobile application framework.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BeaverSoft (Ales Kobr)")]
 [assembly: AssemblyProduct("StrongBeaver.Core.iOS")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,8 +30,8 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
-[assembly: AssemblyInformationalVersion("0.9-alpha")]
+[assembly: AssemblyInformationalVersion("0.9.0-alpha")]
 [assembly: AssemblyVersion("0.9")]
 #pragma warning disable CS7035
-[assembly: AssemblyFileVersion("0.9.*")]
+[assembly: AssemblyFileVersion("0.9.0.*")]
 #pragma warning restore CS7035

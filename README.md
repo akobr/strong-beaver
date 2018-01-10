@@ -97,7 +97,7 @@ Dependency | Description
 ## Service list
 
 >* A service written in **Bold** is already done.
->* A service written in *Italic* will be imlemented.
+>* A service written in *Italic* will be implemented.
 
 * *Accounts* - Service for authenticating users. Support for *OAuth protocols* and third-party services, e.g. *Facebook*, *Google* account, *Microsoft* account, and *Twitter*. *Implementation is planned for next phase.*
 * **Cleanup** - Simple way how to delete instance(s) from main IoC container.
@@ -166,18 +166,18 @@ Dependency | Description
 ## Nuget packages
 
 * Framework
-  * ***BeaverSoft.StrongBeaver***
+  * BeaverSoft.StrongBeaver.Xamarin
     * Main package with the framework. Contains implementation for *Xamarin* platform and all important services.
-  * *BeaverSoft.StrongBeaver.Core*
+  * BeaverSoft.StrongBeaver.Core
     * Core concepts of the framework and platform independent implementations of base services.
 * Services
-  * *BeaverSoft.StrongBeaver.Service.Device.Connectivity*
+  * BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin
     * The service with network connectivity information. *Powered by [Connectivity Plugin for Xamarin](https://github.com/jamesmontemagno/ConnectivityPlugin)*.
-  * *BeaverSoft.StrongBeaver.Service.Device.Geolocator*
+  * BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin
     * Get GPS location of a device. *Realised by [Geolocator Plugin for Xamarin](https://github.com/jamesmontemagno/GeolocatorPlugin)*.
-  * *BeaverSoft.StrongBeaver.Service.Permissions*
+  * BeaverSoft.StrongBeaver.Services.Permissions.Xamarin
     * The service for managing permissions on any platform. *Realised by [Permissions Plugin for Xamarin](https://github.com/jamesmontemagno/PermissionsPlugin)*.
-  * *BeaverSoft.StrongBeaver.Services.DataStorage.SqlLite.Xamarin*
+  * BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin
     * Persistent storage base od SQLite, this service is using *[SQLite.Net-PCL library](https://github.com/oysteinkrog/SQLite.Net-PCL)*.
   * *BeaverSoft.StrongBeaver.Services.DataStorage.EFC*
     * Persistent storage service by *[Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore)*. *Development in progress.*  
@@ -188,12 +188,12 @@ Dependency | Description
 
 Nuget package | version
 --- | ---
-BeaverSoft.StrongBeaver | 0.9-alfa is coming
-BeaverSoft.StrongBeaver.Core |  0.9-alfa is coming
-BeaverSoft.StrongBeaver.Service.Device.Connectivity | 0.9-alfa is coming
-BeaverSoft.StrongBeaver.Service.Device.Geolocator | 0.9-alfa is coming
-BeaverSoft.StrongBeaver.Service.Permissions | 0.9-alfa is coming
-BeaverSoft.StrongBeaver.Services.DataStorage.SqlLite.Xamarin | 0.9-alfa is coming
+BeaverSoft.StrongBeaver.Xamarin | 0.9-alfa
+BeaverSoft.StrongBeaver.Core |  0.9-alfa
+BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin | 0.9-alfa
+BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin | 0.9-alfa
+BeaverSoft.StrongBeaver.Services.Permissions.Xamarin | 0.9-alfa
+BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin | 0.9-alfa
 BeaverSoft.StrongBeaver.Services.DataStorage.EFC | -
 BeaverSoft.StrongBeaver.Services.DataStorage.Embedded.Xamarin | -
 
@@ -231,11 +231,11 @@ public static class Activator
 
 #### iOS app intialisation
 
-TODO: in iOS initialisation.
+> TODO: Add iOS initialisation example.
 
 #### Android app initialisation
 
-TODO: in Android initialisation.
+> TODO: Add Android initialisation example.
 
 ### Create Service
 

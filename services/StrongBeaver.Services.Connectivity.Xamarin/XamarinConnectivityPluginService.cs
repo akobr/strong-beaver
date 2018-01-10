@@ -42,7 +42,7 @@ namespace StrongBeaver.Core.Services.Device.Connectivity
         {
             if(!CrossConnectivity.IsSupported)
             {
-
+                return Task.FromResult(false);
             }
 
             return connectivity.IsReachable(host, timeoutMiliseconds);
