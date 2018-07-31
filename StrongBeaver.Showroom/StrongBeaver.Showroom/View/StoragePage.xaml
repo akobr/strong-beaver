@@ -69,7 +69,7 @@
                             Command="{Binding RetrieveRelationCommand}" />
                 </ViewCell>
                 <ViewCell>
-                    <Grid HeightRequest="150" MinimumHeightRequest="150" Margin="16,0,32,0">
+                    <Grid MinimumHeightRequest="200" Margin="0,0,16,0">
                         <ListView ItemsSource="{Binding RelationItems}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>

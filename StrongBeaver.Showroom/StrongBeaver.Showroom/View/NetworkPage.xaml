@@ -15,7 +15,7 @@
                 </ViewCell>
                 <ViewCell>
                     <Grid>
-                        <Editor x:Name="editorHttpResponse" HeightRequest="120" />
+                        <Editor x:Name="editorHttpResponse" HeightRequest="220" />
                         <ActivityIndicator x:Name="progressHttp" IsRunning="True" IsEnabled="True" IsVisible="False" />
                     </Grid>
                 </ViewCell>
@@ -30,7 +30,7 @@
                 </ViewCell>
                 <ViewCell>
                     <Grid>
-                        <Editor x:Name="editorRestResponse" HeightRequest="120" />
+                        <Editor x:Name="editorRestResponse" HeightRequest="220" />
                         <ActivityIndicator x:Name="progressRest" IsRunning="True" IsEnabled="True" IsVisible="False" />
                     </Grid>
                 </ViewCell>

@@ -4,7 +4,7 @@
              x:Class="StrongBeaver.Showroom.View.DialogPage"
              Title="Dialog &amp; Toast">
 
-    <TableView HasUnevenRows="True" Intent="Form" RowHeight="-1">
+    <TableView HasUnevenRows="True" Intent="Settings" RowHeight="-1">
         <TableRoot>
 
             <TableSection Title="Dialog box">

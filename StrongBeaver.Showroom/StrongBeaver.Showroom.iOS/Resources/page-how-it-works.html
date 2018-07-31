@@ -26,11 +26,11 @@ ul.contains-task-list { padding-left: 0; } ul ul.contains-task-list { padding-le
 <p>— <em>Leonardo da Vinci</em></p>
 </blockquote>
 <h2 id="introduction">Introduction</h2>
+<p>The architecture is called <strong>TVMS</strong> from <em><strong>T</strong>idy <strong>V</strong>iew and <strong>M</strong>odel <strong>S</strong>eparation</em> and has been designed to be able to use it with any View-Model layered application.
+The middle layer is universally named <strong>separation</strong>, which can be used with any well-known patterns, e.g. <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>, <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">MVVM</a>, or any <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">MVP</a>.</p>
 <blockquote>
 <p>The pattern <strong>TVMS</strong> has been created to help us to simplify application design and guide us how to separate concerns of layers and minimise coupling inside sub-systems.</p>
 </blockquote>
-<p>The architecture is called <strong>TVMS</strong> from <em><strong>T</strong>idy <strong>V</strong>iew and <strong>M</strong>odel <strong>S</strong>eparation</em> and has been designed to be able to use it with any View-Model layered application.
-The middle layer is universally named <strong>separation</strong>, which can be used with any well-known patterns, e.g. <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a>, <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel">MVVM</a>, or any <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">MVP</a>.</p>
 <p>The Framework as one product is called <strong>StrongBeaver</strong>. The concepts and base interfaces can be used for any .NET application, but the framework is mainly created for <em><a href="https://www.xamarin.com/">Xamarin</a> platform</em>.</p>
 <h2 id="concepts">Concepts</h2>
 <table>
@@ -79,7 +79,7 @@ The middle layer is universally named <strong>separation</strong>, which can be 
 </tr>
 <tr>
 <td>Strategy</td>
-<td>Lightweight service / behaviour inside a intance of object, which is used in unit of work approach.</td>
+<td>Lightweight service / behaviour inside a instance of object, which is used in unit of work approach.</td>
 </tr>
 <tr>
 <td>TVMS (Tidy View and Model Separation)</td>
@@ -130,6 +130,10 @@ The middle layer is universally named <strong>separation</strong>, which can be 
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/unitycontainer/commonservicelocator">CommonServiceLocator</a></td>
+<td>The library provides an abstraction over IoC containers and service locators. Using the library allows an application to indirectly access the capabilities without relying on hard references.</td>
+</tr>
 <tr>
 <td><a href="http://www.mvvmlight.net/">MVVM Light Toolkit</a></td>
 <td>The framework takes a lot of inspiration from this great and powerful toolkit. <em>This dependency will be integrated.</em></td>
