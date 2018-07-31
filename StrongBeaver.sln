@@ -51,6 +51,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Services.DataS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Services.DataStorage.SqlLite.Xamarin", "services\StrongBeaver.Services.DataStorage.SqlLite.Xamarin\StrongBeaver.Services.DataStorage.SqlLite.Xamarin.csproj", "{D5165F0C-CD17-4AA4-8594-D367AE519F50}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8D86B4E2-FCB5-49DF-87A0-2CB85168E01D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU

@@ -4,6 +4,8 @@ The StrongBeaver is .NET application framework mainly designed for Xamarin, but 
 
 ![Strong beaver image](doc/design/img-strong-beaver.png)
 
+**The Framework is migrating to .NET standard and going to be split to small and more specific libraries!**
+
 **The Framework is in early stage (ALFA version). A lot of stuff can be changed and unit testing is coming. Can be used for testing and as a playground, but for a real deployment please wait for a stable release.**
 
 > Simplicity is the ultimate sofistication.
@@ -166,18 +168,18 @@ Dependency | Description
 ## Nuget packages
 
 * Framework
-  * BeaverSoft.StrongBeaver.Xamarin
+  * [BeaverSoft.StrongBeaver.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Xamarin/)
     * Main package with the framework. Contains implementation for *Xamarin* platform and all important services.
-  * BeaverSoft.StrongBeaver.Core
+  * [BeaverSoft.StrongBeaver.Core](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Core/)
     * Core concepts of the framework and platform independent implementations of base services.
 * Services
-  * BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin
+  * [BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin/)
     * The service with network connectivity information. *Powered by [Connectivity Plugin for Xamarin](https://github.com/jamesmontemagno/ConnectivityPlugin)*.
-  * BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin
+  * [BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin/)
     * Get GPS location of a device. *Realised by [Geolocator Plugin for Xamarin](https://github.com/jamesmontemagno/GeolocatorPlugin)*.
-  * BeaverSoft.StrongBeaver.Services.Permissions.Xamarin
+  * [BeaverSoft.StrongBeaver.Services.Permissions.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Permissions.Xamarin/)
     * The service for managing permissions on any platform. *Realised by [Permissions Plugin for Xamarin](https://github.com/jamesmontemagno/PermissionsPlugin)*.
-  * BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin
+  * [BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin/)
     * Persistent storage base od SQLite, this service is using *[SQLite.Net-PCL library](https://github.com/oysteinkrog/SQLite.Net-PCL)*.
   * *BeaverSoft.StrongBeaver.Services.DataStorage.EFC*
     * Persistent storage service by *[Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore)*. *Development in progress.*  
@@ -188,12 +190,12 @@ Dependency | Description
 
 Nuget package | version
 --- | ---
-BeaverSoft.StrongBeaver.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Xamarin/)
-BeaverSoft.StrongBeaver.Core |  [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Core/)
-BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin/)
-BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin/)
-BeaverSoft.StrongBeaver.Services.Permissions.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Permissions.Xamarin/)
-BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin | [0.9.0-alfa](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin/)
+[BeaverSoft.StrongBeaver.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Xamarin/) | 0.9.0-alfa
+[BeaverSoft.StrongBeaver.Core](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Core/) |  0.9.0-alfa
+[BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin/) | 0.9.0-alfa
+[BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Geolocator.Xamarin/) | 0.9.0-alfa
+[BeaverSoft.StrongBeaver.Services.Permissions.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.Permissions.Xamarin/) | 0.9.0-alfa
+[BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin](https://www.nuget.org/packages/BeaverSoft.StrongBeaver.Services.DataStorage.SQLite.Xamarin/) | 0.9.0-alfa
 BeaverSoft.StrongBeaver.Services.DataStorage.EFC | -
 BeaverSoft.StrongBeaver.Services.DataStorage.Embedded.Xamarin | -
 
