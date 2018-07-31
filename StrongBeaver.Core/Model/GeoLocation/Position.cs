@@ -71,6 +71,11 @@ namespace StrongBeaver.Core.Model.GeoLocation
 
         public static bool IsEmpty(IPosition position)
         {
+            if (position == null)
+            {
+                return true;
+            }
+
             return double.IsNaN(position.Latitude) && double.IsNaN(position.Longitude);
         }
 
