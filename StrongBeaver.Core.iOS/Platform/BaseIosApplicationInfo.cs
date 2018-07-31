@@ -8,11 +8,9 @@ namespace StrongBeaver.Core.Platform
     {
         protected BaseIosApplicationInfo()
         {
-            string appVersion = NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString();
-            string buildVersion = NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
-            string fullVersion = $"{appVersion}.{buildVersion}";
+            string appVersion = NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
 
-            Version = new Version(fullVersion);
+            Version = new Version(appVersion);
             VersionSimple = float.Parse($"{Version.Major}.{Version.Minor}", NumberStyles.Float, CultureInfo.InvariantCulture);
         }
 
