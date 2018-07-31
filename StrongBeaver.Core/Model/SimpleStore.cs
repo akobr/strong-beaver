@@ -21,6 +21,8 @@ namespace StrongBeaver.Core.Model
             // No operation
         }
 
+        public int Count { get => items.Count; }
+
         public bool Contains(TKey key)
         {
             return items.ContainsKey(key);
@@ -52,6 +54,16 @@ namespace StrongBeaver.Core.Model
         public virtual void Delete(TKey key)
         {
             items.Remove(key);
+        }
+
+        public IEnumerable<TKey> GetAllKeys()
+        {
+            return items.Keys;
+        }
+
+        public IEnumerable<TItem> GetAll()
+        {
+            return items.Values;
         }
 
         protected override void OnCleanup()

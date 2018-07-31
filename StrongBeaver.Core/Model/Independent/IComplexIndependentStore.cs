@@ -1,12 +1,10 @@
-﻿namespace StrongBeaver.Core.Model
+﻿namespace StrongBeaver.Core.Model.Independent
 {
     /// <summary>
     /// The complex store is extending the simple one.
-    /// Initialisable, Updatable, and Disposable item.
     /// Lifetime of each item is hadled by reference counting.
     /// </summary>
-    public interface IComplexStore<TKey, TItem> : ISimpleStore<TKey, TItem>
-        where TItem : IComplexStoreItem<TItem>
+    public interface IComplexIndependentStore<TKey, TItem> : ISimpleStore<TKey, TItem>
     {
         bool TryUpdate(TItem item);
 

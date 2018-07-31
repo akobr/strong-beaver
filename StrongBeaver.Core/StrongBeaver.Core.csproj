@@ -54,7 +54,11 @@
     <Compile Include="Helpers\Lifetime\ReferenceCountLifetimeManager.cs" />
     <Compile Include="IMessageBusRecipient.cs" />
     <Compile Include="Interfaces\IFactory.cs" />
+    <Compile Include="Strategies\IDisposableStrategy.cs" />
+    <Compile Include="Strategies\IInitialisationStrategy.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="Model\Independent\ComplexIndependentStore.cs" />
+    <Compile Include="Model\Independent\IComplexIndependentStore.cs" />
     <Compile Include="Model\ISimpleStore.cs" />
     <Compile Include="Model\SimpleStore.cs" />
     <Compile Include="Provider.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="Services\Storage\Data\IDataStorageService.cs" />
     <Compile Include="Services\Storage\Json\IJsonStorageService.cs" />
     <Compile Include="Services\Storage\KeyValues\IKeyValuesStorageService.cs" />
+    <Compile Include="Strategies\IUpdateStrategy.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModelLocator.cs" />
     <Compile Include="ViewModel\IBaseViewModelLocator.cs" />

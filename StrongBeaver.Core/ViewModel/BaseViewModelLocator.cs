@@ -61,8 +61,6 @@ namespace StrongBeaver.Core.ViewModel
             {
                 model.Cleanup();
             }
-
-            models.Clear();
         }
 
         protected void RegisterViewModel(IViewModel model)

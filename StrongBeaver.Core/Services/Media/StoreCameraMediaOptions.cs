@@ -27,7 +27,7 @@ namespace StrongBeaver.Core.Services.Media
         public Func<object> OverlayViewProvider { get; set; }
 
         /// <summary>
-        // Get or set if the image should be stored public.
+        /// Get or set if the image should be stored public.
         /// </summary>
         public bool SaveToAlbum { get; set; }
 
