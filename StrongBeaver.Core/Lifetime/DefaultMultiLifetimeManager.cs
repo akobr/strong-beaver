@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using StrongBeaver.Core.Helpers;
 
-namespace StrongBeaver.Core.Helpers.Lifetime
+namespace StrongBeaver.Core.Lifetime
 {
     public class DefaultMultiLifetimeManager<TKey, TLifetimeManager> : IMultiLifetimeManager<TKey, TLifetimeManager>
         where TLifetimeManager : class, ILifetimeManager
@@ -40,12 +41,13 @@ namespace StrongBeaver.Core.Helpers.Lifetime
 
         public TLifetimeManager Get(TKey key)
         {
-            if (!managers.TryGetValue(key, out TLifetimeManager manager))
-            {
-                return null;
-            }
-
+            TryGet(key, out TLifetimeManager manager);
             return manager;
+        }
+
+        public bool TryGet(TKey key, out TLifetimeManager manager)
+        {
+            return managers.TryGetValue(key, out manager);
         }
 
         public bool IsAlive(TKey key)

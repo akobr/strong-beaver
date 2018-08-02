@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using StrongBeaver.Core.Services.Network.Http;
-using StrongBeaver.Core.Services.Serialization;
+using StrongBeaver.Core.Services.Serialisation;
 
 namespace StrongBeaver.Core.Services.Network.Rest
 {

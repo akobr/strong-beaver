@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 
-namespace StrongBeaver.Core.Services.Serialization
+namespace StrongBeaver.Core.Services.Serialisation
 {
     public interface ISerialisationService
         : ISerialisationSyncService, ISerialisationAsyncService

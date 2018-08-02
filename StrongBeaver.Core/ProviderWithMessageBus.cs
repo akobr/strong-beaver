@@ -1,6 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Ioc;
-using System;
+﻿using StrongBeaver.Core.Container;
+using StrongBeaver.Core.Messaging;
 
 namespace StrongBeaver.Core
 {
@@ -9,7 +8,7 @@ namespace StrongBeaver.Core
     {
         private readonly IMessenger messenger;
 
-        public ProviderWithMessageBus(ISimpleIoc container)
+        public ProviderWithMessageBus(IContainer container)
             : base(container)
         {
             messenger = new Messenger();

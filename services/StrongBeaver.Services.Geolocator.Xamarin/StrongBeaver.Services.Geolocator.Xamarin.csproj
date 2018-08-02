@@ -62,12 +62,6 @@
     <None Include="packages.config" />
     <None Include="StrongBeaver.Services.Geolocator.Xamarin.ruleset" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj">
-      <Project>{877c2aa7-5fcb-4ca8-b757-376654ad72ce}</Project>
-      <Name>StrongBeaver.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.4.0.91020\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.91020\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,6 +1,6 @@
 ﻿using StrongBeaver.Core.Platform;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Ioc;
+using StrongBeaver.Core.Container;
 
 namespace StrongBeaver.Core.ViewModel
 {
@@ -8,7 +8,7 @@ namespace StrongBeaver.Core.ViewModel
     {
         private readonly IMessenger messenger;
 
-        public ViewModelProvider(ISimpleIoc container, IPlatformInfo platformInfo)
+        public ViewModelProvider(IContainer container, IPlatformInfo platformInfo)
             : base(container)
         {
             messenger = GalaSoft.MvvmLight.Messaging.Messenger.Default;

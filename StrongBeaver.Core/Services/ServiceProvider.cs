@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using StrongBeaver.Core.Services.Logging;
-using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Ioc;
+using StrongBeaver.Core.Container;
+using StrongBeaver.Core.Messaging;
 using StrongBeaver.Core.ViewModel;
 
 namespace StrongBeaver.Core.Services
@@ -11,7 +11,7 @@ namespace StrongBeaver.Core.Services
     {
         private readonly IMessenger messenger;
 
-        public ServiceProvider(ISimpleIoc container, ILogService logService)
+        public ServiceProvider(IContainer container, ILogService logService)
             : base(container)
         {
             messenger = new Messenger();

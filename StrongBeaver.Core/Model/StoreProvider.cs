@@ -1,10 +1,10 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using StrongBeaver.Core.Container;
 
 namespace StrongBeaver.Core.Model
 {
     public class StoreProvider : Provider<IStore>, IStoreProvider
     {
-        public StoreProvider(ISimpleIoc container)
+        public StoreProvider(IContainer container)
             : base(container)
         {
             Provider.LogDebugMessage($"The Store provider ''{GetType().Name}'' has been created.");

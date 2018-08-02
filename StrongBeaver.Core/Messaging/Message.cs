@@ -2,7 +2,7 @@
 using StrongBeaver.Core.Constants;
 using System.Text;
 
-namespace StrongBeaver.Core
+namespace StrongBeaver.Core.Messaging
 {
     public class Message : MessageBase, IMessage
     {

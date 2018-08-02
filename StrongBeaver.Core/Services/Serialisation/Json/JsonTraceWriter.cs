@@ -1,8 +1,8 @@
 ﻿using System;
-using Newtonsoft.Json;
+using System.Diagnostics;
 using Newtonsoft.Json.Serialization;
 
-namespace StrongBeaver.Core.Services.Serialization.Json
+namespace StrongBeaver.Core.Services.Serialisation.Json
 {
     public class JsonTraceWriter : ITraceWriter
     {

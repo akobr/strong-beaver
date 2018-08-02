@@ -1,4 +1,4 @@
-﻿namespace StrongBeaver.Core.Helpers.Lifetime
+﻿namespace StrongBeaver.Core.Lifetime
 {
     public class ReferenceCountLifetimeManager : ILifetimeManager
     {

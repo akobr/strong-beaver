@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using StrongBeaver.Core.Messaging;
 
 namespace StrongBeaver.Core.ViewModel
 {

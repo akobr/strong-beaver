@@ -1,4 +1,4 @@
-﻿namespace StrongBeaver.Core
+﻿namespace StrongBeaver.Core.Messaging
 {
     public interface IMessage
     {

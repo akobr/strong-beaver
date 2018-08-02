@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-
-namespace StrongBeaver.Core
+﻿namespace StrongBeaver.Core.Messaging
 {
     public interface IMessageBusProvider
     {

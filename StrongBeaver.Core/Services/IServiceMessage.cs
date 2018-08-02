@@ -1,4 +1,6 @@
-﻿namespace StrongBeaver.Core.Services
+﻿using StrongBeaver.Core.Messaging;
+
+namespace StrongBeaver.Core.Services
 {
     public interface IServiceMessage : IMessage
     {

@@ -1,4 +1,5 @@
-﻿using StrongBeaver.Core.Services.Logging;
+﻿using StrongBeaver.Core.Messaging;
+using StrongBeaver.Core.Services.Logging;
 
 namespace StrongBeaver.Core.Services
 {

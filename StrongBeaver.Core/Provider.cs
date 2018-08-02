@@ -1,19 +1,17 @@
 ﻿using System;
-using GalaSoft.MvvmLight.Ioc;
 using System.Diagnostics;
 using StrongBeaver.Core.Services;
-using Microsoft.Practices.ServiceLocation;
+using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Model;
-using StrongBeaver.Core.ViewModel;
 
 namespace StrongBeaver.Core
 {
     public class Provider<TProvidedItem> : IProvider<TProvidedItem>
         where TProvidedItem : class
     {
-        private readonly ISimpleIoc container;
+        private readonly IContainer container;
 
-        public Provider(ISimpleIoc container)
+        public Provider(IContainer container)
         {
             this.container = container;
         }
@@ -64,18 +62,9 @@ namespace StrongBeaver.Core
 
     public static class Provider
     {
-        public static IServiceLocator Locator => ServiceLocator.Current;
-
         public static Services.IServiceProvider Services => ServiceProvider.Current;
 
         public static IStoreProvider Stores => StoreProvider.Current;
-
-        public static IViewModelProvider ViewModels => ViewModelProvider.Current;
-
-        public static TItem Get<TItem>()
-        {
-            return ServiceLocator.Current.GetInstance<TItem>();
-        }
 
         [Conditional("TRACE")]
         public static void LogTraceMessage(string message, params object[] args)

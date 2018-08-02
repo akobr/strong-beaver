@@ -70,10 +70,6 @@
       <Project>{87c5c96c-c9d7-407c-a3fa-b94afa3cd99a}</Project>
       <Name>StrongBeaver.Core.Xamarin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StrongBeaver.Core\StrongBeaver.Core.csproj">
-      <Project>{877c2aa7-5fcb-4ca8-b757-376654ad72ce}</Project>
-      <Name>StrongBeaver.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

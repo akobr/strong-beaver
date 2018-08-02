@@ -1,4 +1,6 @@
-﻿namespace StrongBeaver.Core.ViewModel
+﻿using StrongBeaver.Core.Messaging;
+
+namespace StrongBeaver.Core.ViewModel
 {
     public class ViewModelMessage : Message, IViewModelMessage
     {
