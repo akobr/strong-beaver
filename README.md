@@ -12,6 +12,12 @@ The StrongBeaver is .NET application framework mainly designed for Xamarin, but 
 >
 > &mdash; *Leonardo da Vinci*
 
+## Work in progress
+
+- [ ] Make the framework more .net standard friendly
+- [ ] Split framework to multiple libraries
+- [ ] Remove service locator as a anti-pattern from framework core 
+
 ## Introduction
 
 The architecture is called **TVMS** from ***T**idy **V**iew and **M**odel **S**eparation* and has been designed to be able to use it with any View-Model layered application.
