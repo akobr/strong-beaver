@@ -34,7 +34,7 @@
 	</metadata>
 
 	<files>
-		<!-- Cross-platform reference assemblies (netstandard1.1) -->
+		<!-- Cross-platform reference assemblies (netstandard2.0) -->
 		<file src="StrongBeaver.Services.Geolocator.Xamarin\bin\$configuration$\StrongBeaver.Services.Geolocator.Xamarin.dll" target="lib\netstandard2.0\StrongBeaver.Services.Geolocator.Xamarin.dll" />
 		<file src="StrongBeaver.Services.Geolocator.Xamarin\bin\$configuration$\StrongBeaver.Services.Geolocator.Xamarin.pdb" target="lib\netstandard2.0\StrongBeaver.Services.Geolocator.Xamarin.pdb" />
 		<file src="StrongBeaver.Services.Geolocator.Xamarin\bin\Debug\StrongBeaver.Services.Geolocator.Xamarin.xml" target="lib\netstandard2.0\StrongBeaver.Services.Geolocator.Xamarin.xml" />

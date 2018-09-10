@@ -34,7 +34,7 @@
 	</metadata>
 
 	<files>
-		<!-- Cross-platform reference assemblies (netstandard1.1) -->
+		<!-- Cross-platform reference assemblies (netstandard2.0) -->
 		<file src="StrongBeaver.Services.Permissions.Xamarin\bin\$configuration$\StrongBeaver.Services.Permissions.Xamarin.dll" target="lib\netstandard2.0\StrongBeaver.Services.Permissions.Xamarin.dll" />
 		<file src="StrongBeaver.Services.Permissions.Xamarin\bin\$configuration$\StrongBeaver.Services.Permissions.Xamarin.pdb" target="lib\netstandard2.0\StrongBeaver.Services.Permissions.Xamarin.pdb" />
 		<file src="StrongBeaver.Services.Permissions.Xamarin\bin\Debug\StrongBeaver.Services.Permissions.Xamarin.xml" target="lib\netstandard2.0\StrongBeaver.Services.Permissions.Xamarin.xml" />
