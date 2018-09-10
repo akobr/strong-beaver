@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\services\StrongBeaver.Services.DataStorage.SqlLite.Xamarin\StrongBeaver.Services.DataStorage.SqlLite.Xamarin.csproj" />
     <ProjectReference Include="..\..\services\StrongBeaver.Services.Geolocator.Xamarin\StrongBeaver.Services.Geolocator.Xamarin.csproj" />
     <ProjectReference Include="..\..\services\StrongBeaver.Services.Permissions.Xamarin\StrongBeaver.Services.Permissions.Xamarin.csproj" />
+    <ProjectReference Include="..\..\StrongBeaver.Core.ViewModel\StrongBeaver.Core.ViewModel.csproj" />
     <ProjectReference Include="..\..\StrongBeaver.Core.Xamarin\StrongBeaver.Core.Xamarin.csproj" />
     <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
   </ItemGroup>

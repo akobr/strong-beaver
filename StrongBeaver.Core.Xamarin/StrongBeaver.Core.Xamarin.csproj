@@ -12,7 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Core.Platform\StrongBeaver.Core.Platform.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Core.Providers\StrongBeaver.Core.Providers.csproj" />
   </ItemGroup>
 
 </Project>

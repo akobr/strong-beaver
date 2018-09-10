@@ -1,5 +1,4 @@
-﻿using StrongBeaver.Core.Extensions;
-using System;
+﻿using System;
 
 namespace StrongBeaver.Core.Services
 {
@@ -8,8 +7,6 @@ namespace StrongBeaver.Core.Services
         public void Dispose()
         {
             OnDispose(true);
-
-            this.RemoveFromIoc();
             GC.SuppressFinalize(this);
         }
 

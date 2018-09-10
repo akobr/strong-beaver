@@ -3,24 +3,27 @@ using System.Diagnostics;
 using StrongBeaver.Core.Services.Logging;
 using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Messaging;
-using StrongBeaver.Core.ViewModel;
 
 namespace StrongBeaver.Core.Services
 {
     public class ServiceProvider : ProviderWithMessageBus<IService>, IServiceProvider
     {
-        private readonly IMessenger messenger;
-
         public ServiceProvider(IContainer container, ILogService logService)
             : base(container)
         {
-            messenger = new Messenger();
+            Messenger = new Messenger();
 
             RegisterLogService(logService);
             LogDebug($"The Services provider '{GetType().Name}' has been created.");
         }
 
-        public IMessenger Messenger => messenger;
+        public ServiceProvider(ILogService logService)
+            : this(new SimpleIocContainer(), logService)
+        {
+            // no operataion
+        }
+
+        public IMessenger Messenger { get; }
 
         public ILogService Logger { get; private set; }
 
@@ -48,8 +51,7 @@ namespace StrongBeaver.Core.Services
                 return;
             }
 
-            RegisterTraceLoggingForMessanger<IServiceMessage>(messenger, service);
-            RegisterTraceLoggingForMessanger<IViewModelMessage>(messenger, service);
+            RegisterTraceLoggingForMessanger<IServiceMessage>(Messenger, service);
 #endif
         }
 
@@ -68,7 +70,7 @@ namespace StrongBeaver.Core.Services
         private void RegisterTraceLoggingForMessanger<TMesage>(IMessenger messanger, ILogService logService)
             where TMesage : IMessage
         {
-            messenger.Register<TMesage>(logService, true, (message) =>
+            Messenger.Register<TMesage>(logService, true, (message) =>
             {
                 logService.Trace(
                     $"The message '{message.GetType().Name}' has been sended by service bus with code '{message.Code ?? "[NoN]"}'.",

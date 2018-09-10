@@ -2,6 +2,6 @@
 {
     public interface IUpdateStrategy<in TItem>
     {
-        void UpdateItem(TItem updateItem, TItem byItem);
+        void UpdateIt(TItem updateItem, TItem byItem);
     }
 }

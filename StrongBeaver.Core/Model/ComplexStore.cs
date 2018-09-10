@@ -1,5 +1,4 @@
-﻿using StrongBeaver.Core.Helpers;
-using System;
+﻿using System;
 using StrongBeaver.Core.Lifetime;
 
 namespace StrongBeaver.Core.Model
@@ -57,7 +56,6 @@ namespace StrongBeaver.Core.Model
 
             if (!lifetime.IsAlive)
             {
-                Provider.LogDebugMessage($"The complex store '{GetType().Name}' is removing item with key '{key}', because has no reference.");
                 RemoveItem(key, item);
             }
         }

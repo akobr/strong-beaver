@@ -15,9 +15,6 @@ namespace StrongBeaver.Core
         void Unregister<TInterface>()
             where TInterface : class, TProvidedItem;
 
-        void Unregister<TInterface>(TInterface item)
-            where TInterface : class, TProvidedItem;
-
         void Unregister<TInterface>(string key)
             where TInterface : class, TProvidedItem;
 

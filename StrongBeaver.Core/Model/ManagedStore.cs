@@ -1,5 +1,4 @@
 ﻿using System;
-using StrongBeaver.Core.Helpers;
 using StrongBeaver.Core.Lifetime;
 
 namespace StrongBeaver.Core.Model

@@ -6,15 +6,19 @@ namespace StrongBeaver.Core
     public class ProviderWithMessageBus<TItem> : Provider<TItem>, IMessageBusProvider
         where TItem : class
     {
-        private readonly IMessenger messenger;
-
         public ProviderWithMessageBus(IContainer container)
             : base(container)
         {
-            messenger = new Messenger();
+            Messanger = new Messenger();
         }
 
-        public IMessenger Messanger => messenger;
+        public ProviderWithMessageBus()
+            : this(new SimpleIocContainer())
+        {
+            // no operation
+        }
+
+        public IMessenger Messanger { get; }
 
         public void RegisterToMessageBus<TRecipient, TMessage>(TRecipient recipient)
             where TRecipient : class, IMessageBusRecipient<TMessage>
@@ -24,13 +28,13 @@ namespace StrongBeaver.Core
                 return;
             }
 
-            messenger.Register<TMessage>(recipient, recipient.ProcessMessage);
+            Messanger.Register<TRecipient, TMessage>(recipient);
             Provider.LogDebugMessage($"The message bus recipient '{typeof(TRecipient).Name}' has been registered with message type '{typeof(TMessage).Name}'.");
         }
 
         public void UnregisterFromMessageBus(object recipient)
         {
-            messenger.Unregister(recipient);
+            Messanger.Unregister(recipient);
         }
     }
 }

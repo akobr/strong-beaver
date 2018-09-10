@@ -2,6 +2,6 @@
 {
     public interface IDisposableStrategy<in TItem>
     {
-        void DisposeItem(TItem item);
+        void DisposeIt(TItem item);
     }
 }

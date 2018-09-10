@@ -1,5 +1,4 @@
 ﻿using System;
-using StrongBeaver.Core.Extensions;
 
 namespace StrongBeaver.Core.Model
 {
@@ -13,7 +12,6 @@ namespace StrongBeaver.Core.Model
         public void Dispose()
         {
             OnDispose(true);
-            this.RemoveFromIoc();
             GC.SuppressFinalize(this);
         }
 

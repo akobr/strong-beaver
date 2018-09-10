@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace StrongBeaver.Core.Platform
+﻿namespace StrongBeaver.Core.Platform
 {
     public interface IPlatformModel
     {

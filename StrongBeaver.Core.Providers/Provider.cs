@@ -16,6 +16,12 @@ namespace StrongBeaver.Core
             this.container = container;
         }
 
+        public Provider()
+            : this(new SimpleIocContainer())
+        {
+            // no operation
+        }
+
         public TItem Get<TItem>()
             where TItem : TProvidedItem
         {
@@ -45,12 +51,6 @@ namespace StrongBeaver.Core
             where TInterface : class, TProvidedItem
         {
             container.Unregister<TInterface>();
-        }
-
-        public void Unregister<TInterface>(TInterface item)
-            where TInterface : class, TProvidedItem
-        {
-            container.Unregister<TInterface>(item);
         }
 
         public void Unregister<TInterface>(string key)

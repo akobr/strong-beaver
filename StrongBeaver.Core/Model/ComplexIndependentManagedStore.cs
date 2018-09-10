@@ -38,7 +38,7 @@ namespace StrongBeaver.Core.Model
                 return false;
             }
 
-            update.UpdateItem(existingItem, item);
+            update.UpdateIt(existingItem, item);
             return true;
         }
 
@@ -50,19 +50,19 @@ namespace StrongBeaver.Core.Model
                 return true;
             }
 
-            update?.UpdateItem(existingItem, item);
+            update?.UpdateIt(existingItem, item);
             resultItem = existingItem;
             return false;
         }
 
         protected override void OnItemCreation(TItem item)
         {
-            initialisation?.InitialiseItem(item);
+            initialisation?.InitialiseIt(item);
         }
 
         protected override void OnItemRemove(TItem item)
         {
-            dispose?.DisposeItem(item);
+            dispose?.DisposeIt(item);
         }
 
         protected override void OnCleanup()
@@ -71,7 +71,7 @@ namespace StrongBeaver.Core.Model
             {
                 foreach (TItem item in items.Values)
                 {
-                    dispose.DisposeItem(item);
+                    dispose.DisposeIt(item);
                 }
             }
 

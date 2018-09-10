@@ -1,5 +1,5 @@
 ﻿using System;
-namespace StrongBeaver.Core.Helpers
+namespace StrongBeaver.Core
 {
     public class DelegatedFactory<TCreation> : IFactory<TCreation>
     {

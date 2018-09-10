@@ -55,6 +55,10 @@
     <Compile Include="Services\Localisation\IosLocalisationService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StrongBeaver.Core.Platform\StrongBeaver.Core.Platform.csproj">
+      <Project>{aeabfd9e-3141-4a4b-984c-2b69eeb6c779}</Project>
+      <Name>StrongBeaver.Core.Platform</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StrongBeaver.Core.Xamarin\StrongBeaver.Core.Xamarin.csproj">
       <Project>{f8a18afa-9516-40b2-a2af-73d95dab8a56}</Project>
       <Name>StrongBeaver.Core.Xamarin</Name>

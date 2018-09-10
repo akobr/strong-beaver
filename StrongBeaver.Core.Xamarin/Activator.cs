@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
 using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Model;
 using StrongBeaver.Core.Platform;
@@ -17,7 +16,6 @@ using StrongBeaver.Core.Services.Serialisation;
 using StrongBeaver.Core.Services.Serialisation.Json;
 using StrongBeaver.Core.Services.Storage.Json;
 using StrongBeaver.Core.Services.Storage.KeyValues;
-using StrongBeaver.Core.ViewModel;
 using Xamarin.Forms;
 
 namespace StrongBeaver.Core
@@ -36,7 +34,6 @@ namespace StrongBeaver.Core
             // Set providers
             ServiceProvider.SetCurrentProvider(serviceLocator.GetInstance<IServiceProvider>());
             StoreProvider.SetCurrentProvider(serviceLocator.GetInstance<IStoreProvider>());
-            ViewModelProvider.SetCurrentProvider(serviceLocator.GetInstance<IViewModelProvider>());
 
             // Initialize an application culture
             InitialiseCulture(serviceLocator);
@@ -112,7 +109,6 @@ namespace StrongBeaver.Core
             // Providers (services, stores, view models)
             container.Register<IServiceProvider, ServiceProvider>();
             container.Register<IStoreProvider, StoreProvider>();
-            container.Register<IViewModelProvider, ViewModelProvider>();
 
             // Instance creation
             container.Register<IInstanceCreationService, DefaultInstanceCreationService>();
