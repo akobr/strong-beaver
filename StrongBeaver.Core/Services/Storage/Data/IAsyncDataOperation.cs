@@ -15,37 +15,37 @@ namespace StrongBeaver.Core.Services.Storage.Data
 
 
         Task<TData> GetAsync<TData>(object primaryKey)
-            where TData : class;
+            where TData : new();
 
         Task<TData> GetAsync<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class;
+            where TData : new();
 
         Task<IList<TData>> GetAllAsync<TData>()
-            where TData : class;
+            where TData : new();
 
         Task<IList<TData>> GetAllAsync<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class;
+            where TData : new();
 
         Task StoreAsync<TData>(TData item)
-            where TData : class;
+            where TData : new();
 
         Task StoreAsync<TData>(IEnumerable<TData> items)
-            where TData : class;
+            where TData : new();
 
         Task<bool> DeleteAsync<TData>(object primaryKey)
-            where TData : class;
+            where TData : new();
 
         Task<bool> DeleteAsync<TData>(TData item)
-            where TData : class;
+            where TData : new();
 
         Task<int> DeleteAllAsync<TData>()
-            where TData : class;
+            where TData : new();
 
         Task<int> DeleteAllAsync<TData>(IEnumerable<TData> items)
-            where TData : class;
+            where TData : new();
 
         Task<int> DeleteAllAsync<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class;
+            where TData : new();
 
         Task SaveAsync();
     }

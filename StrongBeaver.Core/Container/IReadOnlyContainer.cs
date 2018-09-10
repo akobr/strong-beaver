@@ -5,5 +5,9 @@
         TType GetInstance<TType>();
 
         TType GetInstance<TType>(string key);
+
+        TService GetInstanceWithoutCaching<TService>();
+
+        TService GetInstanceWithoutCaching<TService>(string key);
     }
 }

@@ -1,7 +1,6 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using StrongBeaver.Core.Constants;
+﻿using StrongBeaver.Core.Constants;
 using StrongBeaver.Core.Platform;
-using System;
+using CommonServiceLocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

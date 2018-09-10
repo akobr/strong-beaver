@@ -1,5 +1,5 @@
-﻿using StrongBeaver.Core.Services.Storage.Data;
-using SQLite.Net;
+﻿using SQLite;
+using StrongBeaver.Core.Services.Storage.Data;
 using StrongBeaver.Showroom.Model;
 
 namespace StrongBeaver.Showroom.Services.DataStorage

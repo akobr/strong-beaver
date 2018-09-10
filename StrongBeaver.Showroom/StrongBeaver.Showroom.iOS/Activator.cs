@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Threading;
+using StrongBeaver.Core.Container;
 using StrongBeaver.Showroom.iOS.Platform;
 using StrongBeaver.Core.Platform;
 using UIKit;
@@ -14,17 +15,17 @@ namespace StrongBeaver.Showroom.iOS
     {
         public static void Initialise(UIApplication application)
         {
-            ISimpleIoc serviceLocator = SimpleIoc.Default;
+            SimpleServiceLocator container = new SimpleServiceLocator();
 
-            InitializeIoc(serviceLocator);
+            InitializeIoc(container);
 
             DispatcherHelper.Initialize(application);
 
-            Core.Activator.Initialise(serviceLocator);
-            Showroom.Activator.Initialise(serviceLocator);
+            Core.Activator.Initialise(container);
+            Showroom.Activator.Initialise(container);
         }
 
-        private static void InitializeIoc(ISimpleIoc container)
+        private static void InitializeIoc(IContainer container)
         {
             Core.IosActivator.InitialiseIoc(container);
             Showroom.Activator.InitialiseIoc(container);
@@ -33,14 +34,14 @@ namespace StrongBeaver.Showroom.iOS
             InitialiseServices(container);
         }
 
-        private static void InitialisePlatform(ISimpleIoc container)
+        private static void InitialisePlatform(IContainer container)
         {
             container.Register<IApplicationInfo, ShowroomIosApplicationInfo>();
         }
 
-        private static void InitialiseServices(ISimpleIoc container)
+        private static void InitialiseServices(IContainer container)
         {
-            container.Register<ISqlContext, IosSQLiteContext>();
+            container.Register<ISqlContext, IosSqLiteContext>();
             container.Register<IWebContentPathService, IosWebContentPathService>();
         }
     }

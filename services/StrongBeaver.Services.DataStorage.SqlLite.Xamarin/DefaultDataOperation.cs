@@ -1,9 +1,9 @@
-﻿using SQLite.Net;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using SQLite;
 
 namespace StrongBeaver.Core.Services.Storage.Data
 {
@@ -13,7 +13,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
 
         public DefaultDataOperation(ISqlContext context)
         {
-            connection = new SQLiteConnection(context.SqlPlatform, context.DatabasePath);
+            connection = new SQLiteConnection(context.DatabasePath);
         }
 
         public void StartTransaction()
@@ -37,55 +37,58 @@ namespace StrongBeaver.Core.Services.Storage.Data
         }
 
         public TData Get<TData>(object primaryKey)
-            where TData : class
+            where TData : new()
         {
             return connection.Find<TData>(primaryKey);
         }
 
         public TData Get<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class
+            where TData : new()
         {
             return connection.Find<TData>(predicate);
         }
 
         public IEnumerable<TData> GetAll<TData>()
-            where TData : class
+            where TData : new()
         {
             return connection.Table<TData>();
         }
 
         public void Store<TData>(TData item)
-            where TData : class
+            where TData : new()
         {
-            connection.InsertOrReplace(item, typeof(TData));
+            connection.InsertOrReplace(item);
         }
 
         public void Store<TData>(IEnumerable<TData> items)
-            where TData : class
+            where TData : new()
         {
-            connection.InsertOrReplaceAll(items, typeof(TData));
+            foreach (TData item in items)
+            {
+                connection.InsertOrReplace(item);
+            }
         }
 
         public bool Delete<TData>(TData item)
-            where TData : class
+            where TData : new()
         {
             return connection.Delete(item) > 0;
         }
 
         public bool Delete<TData>(object primaryKey)
-            where TData : class
+            where TData : new()
         {
             return connection.Delete<TData>(primaryKey) > 0;
         }
 
         public int DeleteAll<TData>()
-            where TData : class
+            where TData : new()
         {
             return connection.DeleteAll<TData>();
         }
 
         public int DeleteAll<TData>(IEnumerable<TData> items)
-            where TData : class
+            where TData : new()
         {
             int result = 0;
 
@@ -101,7 +104,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
         }
 
         public int DeleteAll<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class
+            where TData : new()
         {
             int result = 0;
 

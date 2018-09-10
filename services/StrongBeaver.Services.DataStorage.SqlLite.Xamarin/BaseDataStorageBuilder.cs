@@ -1,6 +1,7 @@
-﻿using SQLite.Net;
+﻿
 using StrongBeaver.Core.Services.Storage.File;
 using System.Threading.Tasks;
+using SQLite;
 
 namespace StrongBeaver.Core.Services.Storage.Data
 {
@@ -8,7 +9,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
     {
         private readonly ISqlContext context;
 
-        public BaseDataStorageBuilder(ISqlContext context)
+        protected BaseDataStorageBuilder(ISqlContext context)
         {
             this.context = context;
         }
@@ -59,7 +60,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
 
         private SQLiteConnection BuildConnection()
         {
-            return new SQLiteConnection(context.SqlPlatform, context.DatabasePath);
+            return new SQLiteConnection(context.DatabasePath);
         }
     }
 }

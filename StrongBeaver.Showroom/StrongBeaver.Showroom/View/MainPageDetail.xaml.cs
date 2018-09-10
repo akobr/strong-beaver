@@ -1,9 +1,9 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using System;
+using CommonServiceLocator;
 using StrongBeaver.Core;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Navigation;
 using StrongBeaver.Showroom.Constants;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

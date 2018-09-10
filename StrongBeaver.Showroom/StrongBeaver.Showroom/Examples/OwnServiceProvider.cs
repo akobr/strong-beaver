@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Views;
-using Microsoft.Practices.ServiceLocation;
+using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Logging;
 using StrongBeaver.Core.Services.Permissions;
@@ -18,7 +18,7 @@ namespace StrongBeaver.Showroom.Examples
 
     public class OwnServiceProvider : ServiceProvider, IOwnServiceProvider
     {
-        public OwnServiceProvider(ISimpleIoc container, ILogService logService)
+        public OwnServiceProvider(IContainer container, ILogService logService)
           : base(container, logService)
         {
             Navigation = container.GetInstance<INavigationService>();

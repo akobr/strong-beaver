@@ -1,15 +1,15 @@
 ﻿using GalaSoft.MvvmLight;
-using SQLite.Net.Attributes;
 using StrongBeaver.Core.Model;
 using System;
 using System.Text;
+using SQLite;
 
 namespace StrongBeaver.Showroom.Model
 {
     public class ExemplaryItem : ObservableObject, IComplexStoreItem<ExemplaryItem>
     {
         private static int idCounter = 0;
-        private static Random randomity = new Random();
+        private static readonly Random randomity = new Random();
 
         public ExemplaryItem()
         {

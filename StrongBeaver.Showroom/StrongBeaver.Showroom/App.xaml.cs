@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+﻿using CommonServiceLocator;
+using GalaSoft.MvvmLight.Ioc;
 using StrongBeaver.Core.Services.Dialog;
 using StrongBeaver.Core.Services.Navigation;
 using StrongBeaver.Showroom.Constants;

@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using UIKit;
 using System.Collections.Generic;
+using CommonServiceLocator;
 using CoreGraphics;
-using Microsoft.Practices.ServiceLocation;
 using StrongBeaver.Core.Platform;
 
 namespace StrongBeaver.Core.Services.Dialog

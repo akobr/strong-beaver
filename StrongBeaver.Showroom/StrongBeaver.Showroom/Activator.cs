@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿
+using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Services.Device.Connectivity;
 using StrongBeaver.Core.Services.Device.Geolocator;
 using StrongBeaver.Core.Services.Permissions;
@@ -11,41 +12,41 @@ namespace StrongBeaver.Showroom
 {
     public static class Activator
     {
-        public static void Initialise(ISimpleIoc container)
+        public static void Initialise(IContainer container)
         {
             InitialiseLocalDatabase(container);
         }
 
-        public static void InitialiseIoc(ISimpleIoc container)
+        public static void InitialiseIoc(IContainer container)
         {
             InitiliaseServices(container);
             InitialiseStores(container);
             InitialiseViewModels(container);
         }
 
-        private static void InitiliaseServices(ISimpleIoc container)
+        private static void InitiliaseServices(IContainer container)
         {
             // SQLite persistent storage
             container.Register<IDataStorageBuilder, ExemplaryDataStorageBuilder>();
-            container.Register<IDataStorageService, SQLiteDataStorageService>();
+            container.Register<IDataStorageService, SqLiteDataStorageService>();
 
             container.Register<IPermissionsService, XamarinPermissionsPluginService>();
             container.Register<IConnectivityService, XamarinConnectivityPluginService>();
             container.Register<IGeolocatorService, XamarinGeolocatorPluginService>();
         }
 
-        private static void InitialiseStores(ISimpleIoc container)
+        private static void InitialiseStores(IContainer container)
         {
             container.Register<ExemplaryStore>();
         }
 
-        private static void InitialiseViewModels(ISimpleIoc container)
+        private static void InitialiseViewModels(IContainer container)
         {
             container.Register<IMainViewModel, MainViewModel>();
             container.Register<ExemplaryViewModel>();
         }
 
-        private static void InitialiseLocalDatabase(ISimpleIoc container)
+        private static void InitialiseLocalDatabase(IContainer container)
         {
             IDataStorageService dataStorage = container.GetInstance<IDataStorageService>();
 
