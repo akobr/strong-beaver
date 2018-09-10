@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>StrongBeaver.Core</RootNamespace>
+    <RootNamespace>StrongBeaver.Core.ServiceLocator</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
-    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+    <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
   </ItemGroup>
 
   <ItemGroup>

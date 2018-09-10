@@ -1,5 +1,6 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
+﻿using GalaSoft.MvvmLight.Ioc;
+using StrongBeaver.Core.Platform;
+using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Dialog;
 using StrongBeaver.Core.Services.Navigation;
 using StrongBeaver.Showroom.Constants;
@@ -24,6 +25,13 @@ namespace StrongBeaver.Showroom
         }
 
         public static IViewModelLocator ViewModelLocator { get; private set; }
+
+        public static IPlatformModel PlatformModel { get; private set; }
+
+        internal static void SetPlatformModel(IPlatformModel platformModel)
+        {
+            PlatformModel = platformModel;
+        }
 
         private void SetViewModelLocator()
         {
@@ -57,7 +65,7 @@ namespace StrongBeaver.Showroom
         {
             Core.Activator.InitialiseNavigationService(((MainPage)MainPage).Detail.Navigation);
 
-            INavigationService navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            INavigationService navigationService = ServiceProvider.Current.Get<INavigationService>();
 
             navigationService.Configure(ShowroomPageKeys.MAIN_PAGE, typeof(MainPage));
             navigationService.Configure(ShowroomPageKeys.WEB_VIEW_PAGE, typeof(WebViewPage));
@@ -72,7 +80,7 @@ namespace StrongBeaver.Showroom
         {
             Core.Activator.InitialiseDialogService(MainPage.Navigation);
 
-            IDialogService dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+            IDialogService dialogService = ServiceProvider.Current.Get<IDialogService>();
 
             dialogService.Configure(ShowroomDialogKeys.EXEMPLARY_DIALOG, typeof(ExemplaryDialog));
         }

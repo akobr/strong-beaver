@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Threading;
+﻿using GalaSoft.MvvmLight.Threading;
 using StrongBeaver.Core.Container;
 using StrongBeaver.Showroom.iOS.Platform;
 using StrongBeaver.Core.Platform;
@@ -15,7 +14,7 @@ namespace StrongBeaver.Showroom.iOS
     {
         public static void Initialise(UIApplication application)
         {
-            SimpleServiceLocator container = new SimpleServiceLocator();
+            IContainer container = new SimpleIocContainer();
 
             InitializeIoc(container);
 

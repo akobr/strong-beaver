@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using UIKit;
 using System.Collections.Generic;
-using CommonServiceLocator;
 using CoreGraphics;
 using StrongBeaver.Core.Platform;
 
@@ -10,9 +9,12 @@ namespace StrongBeaver.Core.Services.Dialog
 {
     class IosSpecificDialogService : IPlatformSpecificDialogService
     {
+        private readonly IDeviceInfo deviceInfo;
         private readonly ToastManager toastManager;
-        public IosSpecificDialogService()
+
+        public IosSpecificDialogService(IDeviceInfo deviceInfo)
         {
+            this.deviceInfo = deviceInfo;
             toastManager = new ToastManager();
         }
 
@@ -104,7 +106,7 @@ namespace StrongBeaver.Core.Services.Dialog
         {
             try
             {
-                return ServiceLocator.Current.GetInstance<IDeviceInfo>().FamilyType == DeviceFamilyTypeEnum.Tablet;
+                return deviceInfo.FamilyType == DeviceFamilyTypeEnum.Tablet;
             }
             catch
             {

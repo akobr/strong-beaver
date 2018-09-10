@@ -1,6 +1,5 @@
 ﻿using StrongBeaver.Core.Constants;
 using StrongBeaver.Core.Platform;
-using CommonServiceLocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,7 +19,7 @@ namespace StrongBeaver.Showroom.View
             TableRoot tableRoot = tableInfo.Root;
             tableRoot.Clear();
 
-            IPlatformModel platformModel = ServiceLocator.Current.GetInstance<IPlatformModel>();
+            IPlatformModel platformModel = App.PlatformModel;
 
             tableRoot.Add(CreateDeviceInfoSection(platformModel.Device));
             tableRoot.Add(CreatePlatformInfoSection(platformModel.Platform));

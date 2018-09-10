@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>BeaverSoft.StrongBeaver.Core.ServiceLocator</id>
+		<version>0.9.1-alpha</version>
+		<title>Adapter for service locator pattern for StrongBeaver Framework.</title>
+		<authors>BeaverSoft (Ales Kobr)</authors>
+		<owners>BeaverSoft (Ales Kobr)</owners>
+
+		<licenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/akobr/strong-beaver</projectUrl>
+		<iconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</iconUrl>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Adapter for service locator pattern for StrongBeaver Framework. Usable with core container SimpleIocContainer and library CommonServiceLocator.</description>
+		<releaseNotes>Alpha version created by BeaverSoft.</releaseNotes>
+		<copyright>Copyright 2017</copyright>
+		<tags>Framework Strong Beaver Service Locator</tags>
+
+		<dependencies>
+			<group targetFramework="netstandard2.0">
+			  <dependency id="CommonServiceLocator" version="2.0.4" />
+			  <dependency id="BeaverSoft.StrongBeaver.Core" version="0.9.1-alpha" />
+			</group>
+		</dependencies>
+	</metadata>
+
+	<files>
+		<!-- Cross-platform reference assemblies (netstandard2.0) -->
+		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.dll" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.dll" />
+		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.pdb" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.pdb" />
+		<file src="StrongBeaver.Core\bin\Debug\StrongBeaver.Core.xml" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.xml" />
+	</files>
+</package>

@@ -1,6 +1,4 @@
 ﻿using System.Globalization;
-using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
 using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Model;
 using StrongBeaver.Core.Platform;
@@ -28,11 +26,8 @@ namespace StrongBeaver.Core
         /// Initlialises the Service Locator (IoC container) and application culture.
         /// Must be called after <c>InitialiseIoc()</c>.
         /// </summary>
-        public static void Initialise(IServiceLocator serviceLocator)
+        public static void Initialise(IContainer serviceLocator)
         {
-            // Register default IoC container
-            ServiceLocator.SetLocatorProvider(() => serviceLocator);
-
             // Set providers
             ServiceProvider.SetCurrentProvider(serviceLocator.GetInstance<IServiceProvider>());
             StoreProvider.SetCurrentProvider(serviceLocator.GetInstance<IStoreProvider>());
@@ -48,7 +43,7 @@ namespace StrongBeaver.Core
         /// </summary>
         public static void InitialiseNavigationService(INavigation navigation)
         {
-            XamarinNavigationService navigationService = ServiceLocator.Current.GetInstance<INavigationService>() as XamarinNavigationService;
+            XamarinNavigationService navigationService = ServiceProvider.Current.Get<INavigationService>() as XamarinNavigationService;
             navigationService?.Initialise(navigation);
         }
 
@@ -58,7 +53,7 @@ namespace StrongBeaver.Core
         /// </summary>
         public static void InitialiseDialogService(INavigation navigation)
         {
-            XamarinDialogService dialogService = ServiceLocator.Current.GetInstance<IDialogService>() as XamarinDialogService;
+            XamarinDialogService dialogService = ServiceProvider.Current.Get<IDialogService>() as XamarinDialogService;
             dialogService?.Initialise(navigation);
         }
 
@@ -68,12 +63,7 @@ namespace StrongBeaver.Core
         /// <param name="targetCultureInResourceFile"></param>
         public static void InitialiseLocalisedResourceFileWithCulture(ref CultureInfo targetCultureInResourceFile)
         {
-            InitialiseLocalisedResourceFileWithCulture(ServiceLocator.Current, ref targetCultureInResourceFile);
-        }
-
-        public static void InitialiseLocalisedResourceFileWithCulture(IServiceLocator serviceLocator, ref CultureInfo targetCultureInResourceFile)
-        {
-            ILocalisationService localise = serviceLocator.GetInstance<ILocalisationService>();
+            ILocalisationService localise = ServiceProvider.Current.Get<ILocalisationService>();
             targetCultureInResourceFile = localise.GetCurrentCultureInfo();
         }
 
@@ -138,7 +128,7 @@ namespace StrongBeaver.Core
             container.Register<IDialogService, XamarinDialogService>();
         }
 
-        private static void InitialiseCulture(IServiceLocator serviceLocator)
+        private static void InitialiseCulture(IContainer serviceLocator)
         {
             IPlatformInfo platform = serviceLocator.GetInstance<IPlatformInfo>();
 

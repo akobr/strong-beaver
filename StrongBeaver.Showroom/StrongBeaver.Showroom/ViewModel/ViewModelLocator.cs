@@ -1,19 +1,18 @@
-﻿using CommonServiceLocator;
-using StrongBeaver.Core.Platform;
+﻿using StrongBeaver.Core.Platform;
 using StrongBeaver.Core.ViewModel;
 
 namespace StrongBeaver.Showroom.ViewModel
 {
     public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
     {
-        public ViewModelLocator()
-            : base(ServiceLocator.Current.GetInstance<IPlatformInfo>())
+        public ViewModelLocator(IPlatformInfo platformInfo, IMainViewModel mainViewModel, ExemplaryViewModel exemplaryViewModel)
+            : base(platformInfo)
         {
-            MainViewModel = ServiceLocator.Current.GetInstance<IMainViewModel>();
-            RegisterViewModel(MainViewModel);
+            MainViewModel = mainViewModel;
+            RegisterViewModel(mainViewModel);
 
-            Exemplary = ServiceLocator.Current.GetInstance<ExemplaryViewModel>();
-            RegisterViewModel(Exemplary);
+            Exemplary = exemplaryViewModel;
+            RegisterViewModel(exemplaryViewModel);
         }
 
         public static IViewModelLocator Current { get; private set; }
