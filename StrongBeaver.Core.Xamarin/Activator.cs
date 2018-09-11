@@ -91,11 +91,11 @@ namespace StrongBeaver.Core
             // Empty logging
             container.Register<ILogService, EmptyLogService>();
 #endif
-
             // Platform model
             container.Register<IPlatformModel, DefaultPlatformModel>();
 
             // IoC container and cleanup
+            container.Register<IContainer>(() => container);
             container.Register<IReadOnlyContainer>(() => container);
             container.Register<IIocCleanupService, DefaultIocCleanupService>();
 
