@@ -7,7 +7,6 @@ using StrongBeaver.Showroom.Constants;
 using StrongBeaver.Showroom.View.WebContent;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CommonServiceLocator;
 using Xamarin.Forms;
 
 namespace StrongBeaver.Showroom.ViewModel
@@ -16,9 +15,9 @@ namespace StrongBeaver.Showroom.ViewModel
     {
         private readonly INavigationService navigation;
 
-        public MainViewModel()
+        public MainViewModel(INavigationService navigation)
         {
-            navigation = ServiceLocator.Current.GetInstance<INavigationService>();
+            this.navigation = navigation;
         }
 
         public ICommand NavigateToArchitecturePageCommand
@@ -44,8 +43,7 @@ namespace StrongBeaver.Showroom.ViewModel
             {
                 MasterPage.IsPresented = false;
 
-                // Using IoC container directly
-                await ServiceLocator.Current.GetInstance<INavigationService>().NavigateToAsync(ShowroomPageKeys.DEVICE_INFO_PAGE);
+                await navigation.NavigateToAsync(ShowroomPageKeys.DEVICE_INFO_PAGE);
             });
 
         public ICommand NavigateToStoragePageCommand

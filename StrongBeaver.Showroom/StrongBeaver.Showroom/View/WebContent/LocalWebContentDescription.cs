@@ -1,4 +1,4 @@
-﻿using CommonServiceLocator;
+﻿using StrongBeaver.Core.Services;
 using StrongBeaver.Showroom.Services;
 
 namespace StrongBeaver.Showroom.View.WebContent
@@ -13,7 +13,7 @@ namespace StrongBeaver.Showroom.View.WebContent
         {
             get
             {
-                IWebContentPathService webContentPathService = ServiceLocator.Current.GetInstance<IWebContentPathService>();
+                IWebContentPathService webContentPathService = ServiceProvider.Current.Get<IWebContentPathService>();
                 return webContentPathService.GetPath() + "/" + PageName;
             }
         }

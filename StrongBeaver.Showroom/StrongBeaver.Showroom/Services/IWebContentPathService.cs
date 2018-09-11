@@ -1,6 +1,8 @@
-﻿namespace StrongBeaver.Showroom.Services
+﻿using StrongBeaver.Core.Services;
+
+namespace StrongBeaver.Showroom.Services
 {
-    public interface IWebContentPathService
+    public interface IWebContentPathService : IService
     {
         string GetPath();
     }

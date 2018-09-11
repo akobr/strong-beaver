@@ -1,32 +1,29 @@
-﻿using CommonServiceLocator;
-
-namespace StrongBeaver.Core.Services.Storage.Data
+﻿namespace StrongBeaver.Core.Services.Storage.Data
 {
     public class SqLiteDataStorageService : BaseService, IDataStorageService
     {
+        private readonly ISqlContext sqlContext;
+        private readonly IDataStorageBuilder storageBuilder;
+
+        public SqLiteDataStorageService(ISqlContext sqlContext, IDataStorageBuilder storageBuilder)
+        {
+            this.sqlContext = sqlContext;
+            this.storageBuilder = storageBuilder;
+        }
+
         public IDataStorageBuilder GetDataModelBuilder()
         {
-            return BuildDataModelBuilder();
+            return storageBuilder;
         }
 
         public IAsyncDataOperation GetAsyncDataOperation()
         {
-            return new DefaultAsyncDataOperation(BuildContext());
+            return new DefaultAsyncDataOperation(sqlContext);
         }
 
         public IDataOperation GetDataOperation()
         {
-            return new DefaultDataOperation(BuildContext());
-        }
-
-        protected virtual ISqlContext BuildContext()
-        {
-            return ServiceLocator.Current.GetInstance<ISqlContext>();
-        }
-
-        protected virtual IDataStorageBuilder BuildDataModelBuilder()
-        {
-            return ServiceLocator.Current.GetInstance<IDataStorageBuilder>();
+            return new DefaultDataOperation(sqlContext);
         }
     }
 }
