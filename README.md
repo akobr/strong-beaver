@@ -14,9 +14,9 @@ The StrongBeaver is .NET application framework mainly designed for Xamarin, but 
 
 ## Work in progress
 
-- [ ] Make the framework more .net standard friendly
-- [ ] Split framework to multiple libraries
-- [ ] Remove service locator as a anti-pattern from framework core 
+- [ x ] Make the framework more .net standard friendly
+- [   ] Split framework to multiple libraries
+- [ x ] Remove service locator as a anti-pattern from framework core 
 
 ## Introduction
 

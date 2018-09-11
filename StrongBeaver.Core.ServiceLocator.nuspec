@@ -27,8 +27,8 @@
 
 	<files>
 		<!-- Cross-platform reference assemblies (netstandard2.0) -->
-		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.dll" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.dll" />
-		<file src="StrongBeaver.Core\bin\$configuration$\StrongBeaver.Core.pdb" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.pdb" />
-		<file src="StrongBeaver.Core\bin\Debug\StrongBeaver.Core.xml" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.xml" />
+		<file src="StrongBeaver.Core.ServiceLocator\bin\$configuration$\StrongBeaver.Core.ServiceLocator.dll" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.dll" />
+		<file src="StrongBeaver.Core.ServiceLocator\bin\$configuration$\StrongBeaver.Core.ServiceLocator.pdb" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.pdb" />
+		<file src="StrongBeaver.Core.ServiceLocator\bin\Debug\StrongBeaver.Core.ServiceLocator.xml" target="lib\netstandard2.0\StrongBeaver.Core.ServiceLocator.xml" />
 	</files>
 </package>
