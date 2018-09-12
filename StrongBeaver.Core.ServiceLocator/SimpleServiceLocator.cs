@@ -57,14 +57,14 @@ namespace StrongBeaver.Core.ServiceLocator
             return container.GetAllInstances<TService>();
         }
 
-        public static IServiceLocator BuildAndRegister(SimpleIocContainer container)
+        public static SimpleServiceLocator BuildAndRegister(SimpleIocContainer container)
         {
             SimpleServiceLocator locator = new SimpleServiceLocator(container);
             CommonServiceLocator.ServiceLocator.SetLocatorProvider(() => locator);
             return locator;
         }
 
-        public static IServiceLocator BuildAndRegister()
+        public static SimpleServiceLocator BuildAndRegister()
         {
             return BuildAndRegister(new SimpleIocContainer());
         }

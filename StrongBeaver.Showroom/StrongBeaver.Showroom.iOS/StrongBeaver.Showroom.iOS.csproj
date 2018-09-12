@@ -188,10 +188,6 @@
       <Project>{aeabfd9e-3141-4a4b-984c-2b69eeb6c779}</Project>
       <Name>StrongBeaver.Core.Platform</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\StrongBeaver.Core.Providers\StrongBeaver.Core.Providers.csproj">
-      <Project>{b31b8653-7381-46cc-8ef4-bc718abf7f4f}</Project>
-      <Name>StrongBeaver.Core.Providers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\StrongBeaver.Core.ViewModel\StrongBeaver.Core.ViewModel.csproj">
       <Project>{e0bd998d-4210-404b-8b90-801be4097ecb}</Project>
       <Name>StrongBeaver.Core.ViewModel</Name>

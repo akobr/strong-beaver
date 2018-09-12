@@ -5,6 +5,7 @@ using StrongBeaver.Core.Services.Device.Connectivity;
 using StrongBeaver.Core.Services.Device.Geolocator;
 using StrongBeaver.Core.Services.Permissions;
 using StrongBeaver.Core.Services.Storage.Data;
+using StrongBeaver.Core.ViewModel;
 using StrongBeaver.Showroom.Model;
 using StrongBeaver.Showroom.Services.DataStorage;
 using StrongBeaver.Showroom.ViewModel;
@@ -16,7 +17,7 @@ namespace StrongBeaver.Showroom
         public static void Initialise(IContainer container)
         {
             InitialiseLocalDatabase(container);
-            App.SetPlatformModel(container.GetInstance<IPlatformModel>());
+            App.SetEnvironmentInfo(container.GetInstance<IEnvironmentInfo>());
         }
 
         public static void InitialiseIoc(IContainer container)
@@ -44,6 +45,7 @@ namespace StrongBeaver.Showroom
 
         private static void InitialiseViewModels(IContainer container)
         {
+            container.Register<IEnvironmentViewModel, EnvironmentViewModel>();
             container.Register<IMainViewModel, MainViewModel>();
             container.Register<ExemplaryViewModel>();
         }

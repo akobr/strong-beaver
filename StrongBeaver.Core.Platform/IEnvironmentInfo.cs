@@ -1,6 +1,6 @@
 ﻿namespace StrongBeaver.Core.Platform
 {
-    public interface IPlatformModel
+    public interface IEnvironmentInfo
     {
         IPlatformInfo Platform { get; }
 

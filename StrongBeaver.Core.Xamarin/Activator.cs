@@ -90,7 +90,7 @@ namespace StrongBeaver.Core
             container.Register<ILogService, EmptyLogService>();
 #endif
             // Platform model
-            container.Register<IPlatformModel, DefaultPlatformModel>();
+            container.Register<IEnvironmentInfo, EnvironmentInfo>();
 
             // IoC container and cleanup
             container.Register<IContainer>(() => container);

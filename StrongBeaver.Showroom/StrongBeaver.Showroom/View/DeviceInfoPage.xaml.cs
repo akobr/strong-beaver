@@ -19,11 +19,11 @@ namespace StrongBeaver.Showroom.View
             TableRoot tableRoot = tableInfo.Root;
             tableRoot.Clear();
 
-            IPlatformModel platformModel = App.PlatformModel;
+            IEnvironmentInfo environmentInfo = App.EnvironmentInfo;
 
-            tableRoot.Add(CreateDeviceInfoSection(platformModel.Device));
-            tableRoot.Add(CreatePlatformInfoSection(platformModel.Platform));
-            tableRoot.Add(CreateApplicationInfoSection(platformModel.Application));
+            tableRoot.Add(CreateDeviceInfoSection(environmentInfo.Device));
+            tableRoot.Add(CreatePlatformInfoSection(environmentInfo.Platform));
+            tableRoot.Add(CreateApplicationInfoSection(environmentInfo.Application));
         }
 
         private TableSection CreateDeviceInfoSection(IDeviceInfo info)

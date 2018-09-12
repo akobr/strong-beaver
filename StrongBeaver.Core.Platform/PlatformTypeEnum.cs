@@ -10,8 +10,7 @@ namespace StrongBeaver.Core.Platform
         WindowsPhone,
         WindowsUWP,
         WindowsDesktop,
-        Web,
-        WebSinglePage,
+        WebSite,
         Server,
     }
 }

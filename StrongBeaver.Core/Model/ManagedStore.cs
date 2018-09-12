@@ -46,8 +46,8 @@ namespace StrongBeaver.Core.Model
                 return resultItem;
             }
 
-            OnItemCreation(item);
             CreateLifetimeManager(key);
+            OnItemCreation(item);
             items[key] = item;
             return item;
         }

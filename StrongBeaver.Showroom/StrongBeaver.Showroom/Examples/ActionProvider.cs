@@ -11,7 +11,7 @@ namespace StrongBeaver.Showroom.Examples
 
     public class ActionProvider : IProvider<IAction>
     {
-        private IContainer container;
+        private readonly IContainer container;
 
         public ActionProvider(IContainer container)
         {
@@ -54,7 +54,7 @@ namespace StrongBeaver.Showroom.Examples
         public void Unregister<TInterface>(TInterface item)
           where TInterface : class, IAction
         {
-            container.Unregister<TInterface>(item);
+            container.Unregister<TInterface>();
         }
 
         public void Unregister<TInterface>(string key)

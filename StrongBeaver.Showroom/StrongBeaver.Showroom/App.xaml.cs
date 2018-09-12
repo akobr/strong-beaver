@@ -26,11 +26,11 @@ namespace StrongBeaver.Showroom
 
         public static IViewModelLocator ViewModelLocator { get; private set; }
 
-        public static IPlatformModel PlatformModel { get; private set; }
+        public static IEnvironmentInfo EnvironmentInfo { get; private set; }
 
-        internal static void SetPlatformModel(IPlatformModel platformModel)
+        internal static void SetEnvironmentInfo(IEnvironmentInfo environmentInfo)
         {
-            PlatformModel = platformModel;
+            EnvironmentInfo = environmentInfo;
         }
 
         private void SetViewModelLocator()

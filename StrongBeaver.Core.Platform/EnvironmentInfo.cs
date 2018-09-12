@@ -1,8 +1,8 @@
 ﻿namespace StrongBeaver.Core.Platform
 {
-    public class DefaultPlatformModel : IPlatformModel
+    public class EnvironmentInfo : IEnvironmentInfo
     {
-        public DefaultPlatformModel(IPlatformInfo platform, IDeviceInfo device, IApplicationInfo application)
+        public EnvironmentInfo(IPlatformInfo platform, IDeviceInfo device, IApplicationInfo application)
         {
             Platform = platform;
             Device = device;

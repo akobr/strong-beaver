@@ -5,8 +5,11 @@ namespace StrongBeaver.Showroom.ViewModel
 {
     public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
     {
-        public ViewModelLocator(IPlatformInfo platformInfo, IMainViewModel mainViewModel, ExemplaryViewModel exemplaryViewModel)
-            : base(platformInfo)
+        public ViewModelLocator(
+            IEnvironmentViewModel environmentViewModel,
+            IMainViewModel mainViewModel,
+            ExemplaryViewModel exemplaryViewModel)
+            : base(environmentViewModel)
         {
             MainViewModel = mainViewModel;
             RegisterViewModel(mainViewModel);

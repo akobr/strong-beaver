@@ -1,21 +1,27 @@
 ﻿using System;
 using StrongBeaver.Core.Lifetime;
+using StrongBeaver.Core.Strategies;
 
 namespace StrongBeaver.Core.Model
 {
-    public class ComplexStore<TKey, TItem> : ManagedStore<TKey, TItem, ReferenceCountLifetimeManager>, IComplexStore<TKey, TItem>
-        where TItem : IComplexStoreItem<TItem>
+    public class ComplexStore<TKey, TItem, TLifetimeManager> : ManagedStore<TKey, TItem, TLifetimeManager>, IComplexStore<TKey, TItem, TLifetimeManager>
+        where TLifetimeManager : class, ILifetimeManager
     {
-        public ComplexStore(IFactory<TKey, TItem> factory)
-            : base(factory, () => new ReferenceCountLifetimeManager())
-        {
-            // No operation
-        }
+        private readonly IInitialisationStrategy<TItem> initialisation;
+        private readonly IUpdateStrategy<TItem> update;
+        private readonly IDisposableStrategy<TItem> dispose;
 
-        public ComplexStore(Func<TItem, TKey> factory)
-            : this(new DelegatedFactory<TKey, TItem>(factory))
+        public ComplexStore(
+            IFactory<TKey, TItem> keyFactory,
+            Func<TLifetimeManager> lifetimeFactory,
+            IInitialisationStrategy<TItem> initialisation,
+            IUpdateStrategy<TItem> update,
+            IDisposableStrategy<TItem> dispose)
+            : base(keyFactory, lifetimeFactory)
         {
-            // No operation
+            this.initialisation = initialisation;
+            this.update = update;
+            this.dispose = dispose;
         }
 
         public bool TryUpdate(TItem item)
@@ -32,32 +38,8 @@ namespace StrongBeaver.Core.Model
                 return false;
             }
 
-            existingItem.Update(item);
+            update.UpdateIt(existingItem, item);
             return true;
-        }
-
-        public void AddReference(TItem item)
-        {
-            TKey key = keyFactory.Create(item);
-            GetLifetimeManager(key)?.IncreaseReferences();
-        }
-
-        public void RemoveReference(TItem item)
-        {
-            TKey key = keyFactory.Create(item);
-            ReferenceCountLifetimeManager lifetime = GetLifetimeManager(key);
-
-            if (lifetime == null)
-            {
-                return;
-            }
-
-            lifetime.DescreseReferences();
-
-            if (!lifetime.IsAlive)
-            {
-                RemoveItem(key, item);
-            }
         }
 
         protected override bool OnBeforeItemCreation(TKey key, TItem item, out TItem resultItem)
@@ -68,27 +50,29 @@ namespace StrongBeaver.Core.Model
                 return true;
             }
 
-            GetLifetimeManager(key).IncreaseReferences();
-            existingItem.Update(item);
+            update?.UpdateIt(existingItem, item);
             resultItem = existingItem;
             return false;
         }
 
         protected override void OnItemCreation(TItem item)
         {
-            item.Initialise();
+            initialisation?.InitialiseIt(item);
         }
 
         protected override void OnItemRemove(TItem item)
         {
-            item.Dispose();
+            dispose?.DisposeIt(item);
         }
 
         protected override void OnCleanup()
         {
-            foreach (TItem item in items.Values)
+            if (dispose != null)
             {
-                item.Dispose();
+                foreach (TItem item in items.Values)
+                {
+                    dispose.DisposeIt(item);
+                }
             }
 
             base.OnCleanup();
