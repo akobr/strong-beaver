@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 
 namespace StrongBeaver.Core.ViewModel
 {
@@ -18,12 +19,16 @@ namespace StrongBeaver.Core.ViewModel
 
         public bool IsDebugMode => IsDebugModeStatic;
 
+        public bool IsInDesignModel => IsInDesignModeStatic;
+
         public static bool IsDebugModeStatic
 #if DEBUG
             => true;
 #else
             => false;
 #endif
+
+        public static bool IsInDesignModeStatic => ViewModelBase.IsInDesignModeStatic;
 
         public void Initialise()
         {

@@ -35,7 +35,7 @@ namespace StrongBeaver.Core
             }
 
             Messanger.Register<TRecipient, TMessage>(recipient);
-            Provider.LogDebugMessage($"The message bus recipient '{typeof(TRecipient).Name}' has been registered with message type '{typeof(TMessage).Name}'.");
+            Provider.LogDebugMessage($"{GetType().Name}; The message bus recipient '{typeof(TRecipient).Name}' has been registered with message type '{typeof(TMessage).Name}'.");
         }
 
         public void UnregisterFromMessageBus(object recipient)

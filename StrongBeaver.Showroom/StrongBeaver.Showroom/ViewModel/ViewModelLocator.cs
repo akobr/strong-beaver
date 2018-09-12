@@ -1,5 +1,4 @@
-﻿using StrongBeaver.Core.Platform;
-using StrongBeaver.Core.ViewModel;
+﻿using StrongBeaver.Core.ViewModel;
 
 namespace StrongBeaver.Showroom.ViewModel
 {

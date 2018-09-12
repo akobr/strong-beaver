@@ -7,5 +7,7 @@ namespace StrongBeaver.Core.ViewModel
         IEnvironmentViewModel Environment { get; }
 
         bool IsDebugMode { get; }
+
+        bool IsInDesignModel { get; }
     }
 }
