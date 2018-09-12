@@ -2,7 +2,7 @@
 
 namespace StrongBeaver.Core.Services.Reflection
 {
-    public class DefaultInstanceCreationService : BaseService, IInstanceCreationService
+    public class InstanceCreationService : BaseService, IInstanceCreationService
     {
         public TType CreateInstance<TType>()
         {

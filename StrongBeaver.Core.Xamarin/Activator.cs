@@ -70,7 +70,7 @@ namespace StrongBeaver.Core
         /// IoC container itself is registered, as well;
         /// DebugLogService (only in DEBUG build);
         /// DefaultIocCleanupService;
-        /// DefaultInstanceCreationService;
+        /// InstanceCreationService;
         /// DefaultJsonSerializationService;
         /// DefaultHttpService;
         /// DefaultRestService;
@@ -102,10 +102,10 @@ namespace StrongBeaver.Core
             container.Register<IStoreProvider, StoreProvider>();
 
             // Instance creation
-            container.Register<IInstanceCreationService, DefaultInstanceCreationService>();
+            container.Register<IInstanceCreationService, InstanceCreationService>();
 
             // JSON serialization
-            container.Register<IJsonSerialisationService, DefaultJsonSerialisationService>();
+            container.Register<IJsonSerialisationService, JsonSerialisationService>();
             container.Register<ISerialisationService>(container.GetInstance<IJsonSerialisationService>);
 
             // Networking (HTTP and REST)

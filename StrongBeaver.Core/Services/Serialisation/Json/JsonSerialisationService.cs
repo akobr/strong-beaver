@@ -8,14 +8,14 @@ using Newtonsoft.Json.Linq;
 
 namespace StrongBeaver.Core.Services.Serialisation.Json
 {
-    public class DefaultJsonSerialisationService : BaseService, IJsonSerialisationService
+    public class JsonSerialisationService : BaseService, IJsonSerialisationService
     {
         private const int STREAM_BUFFER_SIZE = 1024;
 
         private readonly JsonSerializerSettings settings;
         private readonly JsonSerializer serializer;
 
-        public DefaultJsonSerialisationService()
+        public JsonSerialisationService()
         {
             settings = new JsonSerializerSettings();
             serializer = new JsonSerializer();
