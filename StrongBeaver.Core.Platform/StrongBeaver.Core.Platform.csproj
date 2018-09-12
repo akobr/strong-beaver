@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>BeaverSoft.StrongBeaver.Core.Platform</PackageId>
+    <Version>0.9.1-alpha</Version>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+    <Company>BeaverSoft (Ales Kobr)</Company>
+    <Product>Platform info objects for StrongBeaver Framework</Product>
+    <Description>Platform info objects for StrongBeaver Framework.</Description>
+    <Copyright>Copyright 2017</Copyright>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <PackageTags>Framework Strong Beaver Platform</PackageTags>
+    <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
+    <NeutralLanguage>en-150</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
