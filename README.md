@@ -14,9 +14,9 @@ The StrongBeaver is .NET application framework mainly designed for Xamarin, but 
 
 ## Work in progress
 
-- [ ] Make the framework more .net standard friendly
+- [X] Make the framework more .net standard friendly
 - [ ] Split framework to multiple libraries
-- [ ] Remove service locator as a anti-pattern from framework core 
+- [X] Remove service locator as a anti-pattern from framework core 
 
 ## Introduction
 
@@ -25,11 +25,11 @@ The middle layer is universally named **separation**, which can be used with any
 
 > The pattern **TVMS** has been created to help us to simplify application design and guide us how to separate concerns of layers and minimise coupling inside sub-systems.
 
-The Framework as one product is called **StrongBeaver**. The concepts and base interfaces can be used for any .NET application, but the framework is mainly created for *[Xamarin](https://www.xamarin.com/) platform*.
+The Framework as one product is called **StrongBeaver**. The concepts and base interfaces can be used for any .NET application, but the framework is mainly created for *[Xamarin](https://www.xamarin.com/) and WPF platform*.
 
 ## Architecture pattern diagrams
 
-The framework is mainly designed for *Xamarin* platform, but can be used with any layered architecture. See diagrams below.
+The framework is mainly designed for MVVM friendly technologies, but can be used with any layered architecture. See diagrams below.
 
 ### MVVM with universal XAML binder
 
@@ -51,14 +51,15 @@ The framework is mainly designed for *Xamarin* platform, but can be used with an
 
 Concept | Description
 --- | ---
-Activator | Static public class which will be called on application start for initialisation purposes.
+Activator | Static public class which will be called on application start for initialisation purposes. This is the perfect place for filing dependency injection container. Should contains entire [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/).
 Binder | Middle-man responsible for data and commands binding between view and view model.
-IoC and DI | Inversion of Control and Dependency Injection are the heart of this framework.
+IoC and DI | Inversion of Control and Dependency Injection are the heart of this framework. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern.
+Factory | When we speak about factories we mostly mean an [Abstract Factory](https://en.wikipedia.org/wiki/Abstract_factory_pattern) which is a generic type, and the return type of the *Create* method is determined by the type of the factory itself. In other words, *factory can only return instances of a single type*.
 Manager | Long-life and stateful service inside a specific instance of object.
 MessageBus (Messanger) | Message bus for a specific group of objects, e.g. services or view models.
 Provider | The facade / locator for a specific type of objects, e.g. services, view models and more.
 Service | Stateful or stateless, singleton and long-life service, which is registered in system.
-ServiceLocator (IoC) | [ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) is an abstraction of IoC container, which is used in the framework.
+*ServiceLocator (IoC)* | *[ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) is a generic factory for multiple types. Nevertheless, **we don't recommended it**, because it is an [anti-pattern](http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/) and an abstract factories [should be used instead](http://blog.ploeh.dk/2010/11/01/PatternRecognitionAbstractFactoryorServiceLocator/).*
 Store | In memory storage, responsible for caching and reusability of objects.
 Strategy | Lightweight service / behaviour inside a instance of object, which is used in unit of work approach.
 TVMS (Tidy View and Model Separation) | Universal architectural pattern for any layered application.
@@ -69,15 +70,15 @@ XAML | In the Microsoft solution stack, the universal binder is a markup languag
 
 > Everything is implemented with the main focus on **extensibility** and **flexibility**.
 
-The heart of the framework is **IoC container** wrapped by [ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) pattern and **ISimpleIoc** interface from [MVVM Light Toolkit](http://www.mvvmlight.net/), which allow us to use any IoC container.
+The heart of the framework is **Dependency Injection with IoC container** which is realised by simple interface **IContainer**. This abstraction is here not just to allow us to use any container but mostly for forcing us to use it only for storing *services*, *stores*, *providers* and *factories*, because all registered types are singletons by default and the interface is purposefully simple and lightweight. If no concrete container is specified the **SimpleIoc** container from [MVVM Light Toolkit](http://www.mvvmlight.net/) will be used. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern with single [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/).
 
-The main concept is **services**, which should be registered in global IoC container and for less coupling, they can communicate through a shared **message bus**. The concept of services with message bus is accessible via facade **ServiceProvider**. Respectively each layer is realised by own provider and main object type, e.g. the view model layer contains many **ViewModels** and **ViewModelProvider**.
+The main concept is about **services**, which should be registered in global service provider and for less coupling, they can communicate through a shared **message bus**. The services itself and their message bus can be accessible via facade **ServiceProvider**. Respectively each layer is realised by own provider with main object type, e.g. the view model layer contains many **ViewModels** and **ViewModelProvider**.
 
-With a problem of *data caching* or *in-memory storage* helps the concept of **stores**. A store can handle *life-time* and *destruction of stored objects*.
+With a problem of *data caching* or *in-memory storage* can help the concept of **stores**. A store can cache, handle *life-time* and *destruction of stored objects*. Stores are designed to manage objects which are necessary during runtime. Communication between them and layer of persistent storage should be realised by service(s).
 
-For better code management and low coupling, we are recommending to use [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) as much as possible. We are even splitting this pattern into more detailed cases. The first one we called same like pattern itself, therefore **Strategy** and should be used as a unit of the work, the instance of the strategy class will be created before calling an executive method and after execution would be forgotten. The Second case is when you need behaviour with state and longer lifetime, but only per one instance of an object, in this case we call it **Manager**. The *singleton* strategy (stateful or stateless) which can be used in many places in the system is realised by already spoken **Service** concept.
+For better code management and low coupling, we are recommending to use [strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) as much as possible. We are even splitting this pattern into more detailed cases. The first one we called same like pattern itself, therefore **strategy** and should be used as *a pure unit of work*, all calls of *an executive method* are independent, when *an executive method* is called again the next run can't be affected by previous one(s). The Second case is when you need behaviour with state or any type of longer lifetime, but only per an instance of an object, in this case we call it **manager**. The *singleton* strategy (stateful or stateless) which can be used in many places in the system is realised by already spoken **service** concept.
 
-> We are working on concepts of generic **Behaviours** and **States** of any object but mainly used for UI components. *We're going to describe it soon.*
+> We are working on concepts of generic **Behaviours** and **States** of any object but mainly used for UI components.
 
 ## Recommendations and guidelines
 
@@ -85,11 +86,12 @@ With the architecture pattern and framework, we are coming with recommendations,
 
 > We will add more recommendations and specify *code standards* with *naming convention* during the Framework growth.
 
-* Each class should have one and only one responsibility.
-* Every public type which can be used and extended outside a namespace should be  available also as an interface instead of just as a class.
-* Strategy pattern should be used as a unit of work (one instance per call), in other cases, we are speaking about a Manager or a Service.
-* If a behaviour / responsibility needs to have a state and would have long-life, then should be designed as a Manager.
-* If a Provider contains a message bus, then the bus should be used only by objects which provider provides.
+* Each class should have **one and only one responsibility**.
+* Every public type which can be used or extended outside a namespace needs to **be realised and referenced as an interface** instead of just as a class.
+* Strategy pattern should be used **as a pure unit of work**, in other cases, we are speaking about a Manager or a Service.
+* If a behaviour / responsibility of an object **needs longer lifetime or a state**, then should be designed as **a Manager**.
+* When **a shared behaviour / responsibility** is needed, then **a Service** should be created.
+* If a Provider contains a message bus, then the bus should be **used only by objects which provider provides**.
 
 > Our codding bible is [Clean Code](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882) and we follow [SOLID](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) principle.
 
@@ -97,37 +99,34 @@ With the architecture pattern and framework, we are coming with recommendations,
 
 Dependency | Description
 --- | ---
-[CommonServiceLocator](https://github.com/unitycontainer/commonservicelocator) | The library provides an abstraction over IoC containers and service locators. Using the library allows an application to indirectly access the capabilities without relying on hard references.
-[MVVM Light Toolkit](http://www.mvvmlight.net/) | The framework takes a lot of inspiration from this great and powerful toolkit. *This dependency will be integrated.*
+[MVVM Light Toolkit](http://www.mvvmlight.net/) | The framework takes a lot of inspiration from this great and powerful toolkit. *We would like to integrate engaged subset deeply to the framework, to be able to do this everything is already abstracted.*
 [Json.NET](https://www.newtonsoft.com/json) | The JSON is the most popular data transfer format used on the network and for communication between systems.
-[Popup Page Plugin for Xamarin](https://github.com/rotorgames/Rg.Plugins.Popup) | Xamarin plugin which is used for showing user-defined dialogues. *This dependency would be removed soon.*
 
 ## Service list
 
 >* A service written in **Bold** is already done.
 >* A service written in *Italic* will be implemented.
 
-* *Accounts* - Service for authenticating users. Support for *OAuth protocols* and third-party services, e.g. *Facebook*, *Google* account, *Microsoft* account, and *Twitter*. *Implementation is planned for next phase.*
-* **Cleanup** - Simple way how to delete instance(s) from main IoC container.
+* *Accounts* - Service for authenticating users. Support for *OAuth protocols* and third-party services, e.g. *Facebook*, *Google* and *Microsoft* account. *Implementation is planned for next phase.*
 * **Device**
   * **Connectivity** - Network connectivity information, e.g. if a connection is available.
   * *CurrentPosition* - This service simplifies access to the current location of the device to one method. Combination of in-memory cache storage, permissions service and KeyValues persistent storage service. *Implementation is in progress.*
   * **Geolocator** - Get GPS location of a device.
   * *Sensors and Motion* - Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.
 * **Dialog** - The service for showing dialogues and toasts.
-* **Localisation** - Retrieving and setting culture to an application.
+* **Localisation** *(Xamarin specific)* - Retrieving and setting culture to an application.
 * **Logging**
   * **Debug** - The simple logging service which uses the *System.Diagnostics.Debug* class.
-  * *NLog* - More useful logging service wrapping NLog. *Implementation is in progress.*
+  * *NLog* - More useful logging service wrapping NLog. *Implementation is planned for next phase.*
 * **Navigation** - Manages application navigation between pages or screens.
 * **Network**
   * **Http** - The service for sending HTTP requests.
   * **Rest** - The generic service for sending and processing REST requests.
-  * *Transfer* - Download or upload files in the background.
+  * *Transfer* - Download or upload files in the background. *Implementation is planned for next phase.*
 * *Notifications*
   * *We are planning to integrate a system, local and push notifications into the framework.*
 * **Permissions** - Manage permission on any platform.
-* *Progress* - Generic way how to show progress of any background operation on UI.
+* *Progress* - Generic way how to show progress of any background operation on UI. *Implementation is planned for next phase.*
 * **Reflection** - Simple service for runtime object creation (object/type instantiation).
 * **Serialisation**
   * *XML* - For serialisation and deserialization of an object from XML. *Implementation is scheduled, the default serialisation concept of .NET will be used.*
@@ -167,9 +166,14 @@ Dependency | Description
 >
 > The complete [list of available Xamarin Plugins](https://github.com/xamarin/XamarinComponents).
 
-## Download the showroom application
+## Showroom application
 
-> Will be added.
+> Current showroom application is written with Xamarin.Forms UI library, but right now is supported only iOS platform.
+
+## Project(s) based on the Framework
+
+* Queue Tracker
+* Texty.UI
 
 ## Nuget packages
 
@@ -631,10 +635,7 @@ We gladly thank designers, developers, and co-workers of:
 
 <address>
   <a href="http://www.beaversoft.cz/" target="blank">Beaver soft</a><br/>
-  <strong>Aleš Kobr</strong><br/><br/>
-  Hoření Lomnice 287<br/>
-  Lomnice n. Pop., 512 51<br/>
-  Czech Republic<br/>
+  <strong>Aleš Kobr</strong><br/>
   <br/>
   <a href="mailto:kobr.ales@hotmail.cz" class="mt-small">kobr.ales@hotmail.cz</a>
   <br/>
