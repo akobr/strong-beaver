@@ -61,7 +61,7 @@ Provider | The facade / locator for a specific type of objects, e.g. services, v
 Service | Stateful or stateless, singleton and long-life service, which is registered in system.
 *ServiceLocator (IoC)* | *[ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) is a generic factory for multiple types. Nevertheless, **we don't recommended it**, because it is an [anti-pattern](http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/) and an abstract factories [should be used instead](http://blog.ploeh.dk/2010/11/01/PatternRecognitionAbstractFactoryorServiceLocator/).*
 Store | In memory storage, responsible for caching and reusability of objects.
-Strategy | Lightweight service / behaviour inside a instance of object, which is used in unit of work approach.
+Strategy | Lightweight service / behaviour inside a instance of object, which is used in *pure unit of work* approach.
 TVMS (Tidy View and Model Separation) | Universal architectural pattern for any layered application.
 View Model | Bindable model of view, brinks for MVVM and binding is a grout.
 XAML | In the Microsoft solution stack, the universal binder is a markup language called XAML.
@@ -70,13 +70,13 @@ XAML | In the Microsoft solution stack, the universal binder is a markup languag
 
 > Everything is implemented with the main focus on **extensibility** and **flexibility**.
 
-The heart of the framework is **Dependency Injection with IoC container** which is realised by simple interface **IContainer**. This abstraction is here not just to allow us to use any container but mostly for forcing us to use it only for storing *services*, *stores*, *providers* and *factories*, because all registered types are singletons by default and the interface is purposefully simple and lightweight. If no concrete container is specified the **SimpleIoc** container from [MVVM Light Toolkit](http://www.mvvmlight.net/) will be used. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern with single [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/).
+The heart of the framework is **Dependency Injection with IoC container** which is realised by simple interface **IContainer**. This abstraction is here not just to allow us to use any container but mostly for forcing us to use it only for storing *services*, *stores*, *providers* and *factories*, because all registered types are singletons by default and the interface is purposefully simple and lightweight. If no concrete container is specified the **SimpleIoc** container from [MVVM Light Toolkit](http://www.mvvmlight.net/) will be used. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern with single [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/). Our IoC container is simplified to very thin facility to register and receive singleton based on type or string key. Anything else shouldn't be needed and if so then a new factory or provider should be created and register with the container.
 
-The main concept is about **services**, which should be registered in global service provider and for less coupling, they can communicate through a shared **message bus**. The services itself and their message bus can be accessible via facade **ServiceProvider**. Respectively each layer is realised by own provider with main object type, e.g. the view model layer contains many **ViewModels** and **ViewModelProvider**.
+The main concept is about **services**, which should be registered in service provider and for less coupling, they can communicate through a shared **message bus**. The services itself and their message bus can be accessible via facade **ServiceProvider**. Respectively each layer is realised by own provider with main object type, e.g. the view model layer contains many top level **ViewModels** and **ViewModelProvider**.
 
-With a problem of *data caching* or *in-memory storage* can help the concept of **stores**. A store can cache, handle *life-time* and *destruction of stored objects*. Stores are designed to manage objects which are necessary during runtime. Communication between them and layer of persistent storage should be realised by service(s).
+With a problem of *data caching* or *in-memory storage* can help the concept of **stores**. A store can cache, handle *life-time* and *destruction of stored objects*. Stores are designed to manage objects which are necessary during runtime. Communication between them and a layer of persistent storage should be realised by service(s).
 
-For better code management and low coupling, we are recommending to use [strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) as much as possible. We are even splitting this pattern into more detailed cases. The first one we called same like pattern itself, therefore **strategy** and should be used as *a pure unit of work*, all calls of *an executive method* are independent, when *an executive method* is called again the next run can't be affected by previous one(s). The Second case is when you need behaviour with state or any type of longer lifetime, but only per an instance of an object, in this case we call it **manager**. The *singleton* strategy (stateful or stateless) which can be used in many places in the system is realised by already spoken **service** concept.
+For better code management and low coupling, we are recommending to use [strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern) as much as possible. We are even splitting this pattern into more detailed cases. The first one we called same like pattern itself, therefore **strategy** and should be used as *a pure unit of work*, all calls of *an executive method* are independent, when *an executive method* is called again the next run can't be affected by previous one(s). The Second case is when you need behaviour with state or any type of longer lifetime, but only per one instance of an object, in this case we call it **manager**. The *singleton* strategy (stateful or stateless) which can be used in many places in the system is realised by already spoken **service** concept.
 
 > We are working on concepts of generic **Behaviours** and **States** of any object but mainly used for UI components.
 
@@ -129,12 +129,12 @@ Dependency | Description
 * *Progress* - Generic way how to show progress of any background operation on UI. *Implementation is planned for next phase.*
 * **Reflection** - Simple service for runtime object creation (object/type instantiation).
 * **Serialisation**
-  * *XML* - For serialisation and deserialization of an object from XML. *Implementation is scheduled, the default serialisation concept of .NET will be used.*
-  * **JSON** - For serialisation and deserialization of objects from JSON.
+  * *XML* - For serialisation and deserialisation of an object from XML. *Implementation is scheduled, the default serialisation concept of .NET will be used.*
+  * **JSON** - For serialisation and deserialisation of objects from JSON.
 * **Storage** (Persistent)
   * *Data* - Universal persistent data storage service. The service interface supports transition and all basic CRUD operations. All operations can be used synchronously or asynchronously.
     * *Entity Framework (Core)* - *In development*
-  * **JSON** - Universal persistent storage service for JSON format. Objects will be automatically serialised / deserialized by JSON serialisation service. *On Xamarin platform JSON objects are stored in the application dictionary.*
+  * **JSON** - Universal persistent storage service for JSON format. Objects will be automatically serialised / deserialised by JSON serialisation service. *On Xamarin platform JSON objects are stored in the application dictionary.*
   * **KeyValues** - Storage for key / value pairs. *On Xamarin platform the application dictionary is used.*
   * *File* - Universal file storage service. *Implementation is in progress.*
 
