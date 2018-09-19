@@ -5,8 +5,7 @@ using Newtonsoft.Json.Linq;
 
 namespace StrongBeaver.Core.Services.Serialisation.Json
 {
-    public interface IJsonSerialisationService
-        : IJsonSerialisationSyncService, IJsonSerialisationAsyncService, ISerialisationService
+    public interface IJsonSerialisationService : IJsonSerialisationSyncService, IJsonSerialisationAsyncService, ISerialisationService
     {
         // No member
     }

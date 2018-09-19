@@ -1,21 +1,26 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
+using StrongBeaver.Core.Services.Logging;
 
 namespace StrongBeaver.Core.ViewModel
 {
     public abstract class BaseViewModelLocator : IBaseViewModelLocator
     {
         private readonly IList<IViewModel> models;
+        private ILogService logging;
 
-        protected BaseViewModelLocator(IEnvironmentViewModel environmentViewModel)
+        protected BaseViewModelLocator()
         {
-            Environment = environmentViewModel;
-            RegisterViewModel(environmentViewModel);
-
             models = new List<IViewModel>();
         }
 
-        public IEnvironmentViewModel Environment { get; }
+        protected BaseViewModelLocator(ILogService logging, IEnvironmentViewModel environment)
+            : this()
+        {
+            Startup(logging, environment);
+        }
+
+        public IEnvironmentViewModel Environment { get; private set; }
 
         public bool IsDebugMode => IsDebugModeStatic;
 
@@ -33,14 +38,21 @@ namespace StrongBeaver.Core.ViewModel
         public void Initialise()
         {
             OnInitialise();
-            Provider.LogDebugMessage($"The ViewModel locator '{GetType().Name}' has been initialised.");
+            logging.Debug($"The ViewModel locator '{GetType().Name}' has been initialised.");
         }
 
         public void Cleanup()
         {
             OnCleanup();
-            Provider.LogDebugMessage($"The ViewModel locator '{GetType().Name}' has been cleanup.");
+            logging.Debug($"The ViewModel locator '{GetType().Name}' has been cleanup.");
+        }
 
+        protected void Startup(ILogService logService, IEnvironmentViewModel environmentModel)
+        {
+            logging = logService;
+
+            Environment = environmentModel;
+            RegisterViewModel(environmentModel);
         }
 
         protected virtual void OnInitialise()

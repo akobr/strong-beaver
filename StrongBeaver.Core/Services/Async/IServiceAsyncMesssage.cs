@@ -5,8 +5,14 @@
         ITaskHolder OperationHolder { get; }
     }
 
-    public interface IServiceAsyncMesssage<T> : IServiceMessage
+    public interface IServiceAsyncMesssage<TResult> : IServiceMessage
     {
-        ITaskHolder<T> OperationHolder { get; }
+        ITaskHolder<TResult> OperationHolder { get; }
+    }
+
+    public interface IServiceAsyncMesssage<TResult, in TService> : IServiceMessage<TService>
+        where TService : IService
+    {
+        ITaskHolder<TResult> OperationHolder { get; }
     }
 }

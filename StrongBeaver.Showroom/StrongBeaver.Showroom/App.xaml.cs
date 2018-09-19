@@ -1,9 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using StrongBeaver.Core.Platform;
-using StrongBeaver.Core.Services;
-using StrongBeaver.Core.Services.Dialog;
-using StrongBeaver.Core.Services.Navigation;
-using StrongBeaver.Showroom.Constants;
+﻿using StrongBeaver.Core.Services.Logging;
 using StrongBeaver.Showroom.View;
 using StrongBeaver.Showroom.ViewModel;
 using Xamarin.Forms;
@@ -14,31 +9,16 @@ namespace StrongBeaver.Showroom
     {
         private const string VIEW_MODEL_LOCATOR_RESOURCE_KEY = "ViewModelLocator";
 
-        public App()
+        public App(ILogService logService)
         {
+            Logger = logService;
             InitializeComponent();
-            SetViewModelLocator();
-
-            MainPage = new MainPage();
-
-            InitialiseNavigationAndDialogService();
+            ViewModelLocator = (ViewModelLocator)Resources[VIEW_MODEL_LOCATOR_RESOURCE_KEY];
         }
 
-        public static IViewModelLocator ViewModelLocator { get; private set; }
+        public static ILogService Logger { get; private set; }
 
-        public static IEnvironmentInfo EnvironmentInfo { get; private set; }
-
-        internal static void SetEnvironmentInfo(IEnvironmentInfo environmentInfo)
-        {
-            EnvironmentInfo = environmentInfo;
-        }
-
-        private void SetViewModelLocator()
-        {
-            ViewModelLocator = (IViewModelLocator)Resources[VIEW_MODEL_LOCATOR_RESOURCE_KEY];
-            SimpleIoc.Default.Register<IViewModelLocator>(() => { return ViewModelLocator; });
-            ViewModel.ViewModelLocator.SetCurrentLocator(ViewModelLocator);
-        }
+        public static ViewModelLocator ViewModelLocator { get; private set; }
 
         protected override void OnStart()
         {
@@ -53,36 +33,6 @@ namespace StrongBeaver.Showroom
         protected override void OnResume()
         {
             // Handle when your app resumes
-        }
-
-        private void InitialiseNavigationAndDialogService()
-        {
-            InitialiseNavigationService();
-            InitialiseDialogService();
-        }
-
-        private void InitialiseNavigationService()
-        {
-            Core.Activator.InitialiseNavigationService(((MainPage)MainPage).Detail.Navigation);
-
-            INavigationService navigationService = ServiceProvider.Current.Get<INavigationService>();
-
-            navigationService.Configure(ShowroomPageKeys.MAIN_PAGE, typeof(MainPage));
-            navigationService.Configure(ShowroomPageKeys.WEB_VIEW_PAGE, typeof(WebViewPage));
-            navigationService.Configure(ShowroomPageKeys.ARCHITECTORE_PAGE, typeof(ArchitecturePage));
-            navigationService.Configure(ShowroomPageKeys.STORAGE_PAGE, typeof(StoragePage));
-            navigationService.Configure(ShowroomPageKeys.NETWORK_PAGE, typeof(NetworkPage));
-            navigationService.Configure(ShowroomPageKeys.DIALOG_PAGE, typeof(DialogPage));
-            navigationService.Configure(ShowroomPageKeys.DEVICE_INFO_PAGE, typeof(DeviceInfoPage));
-        }
-
-        private void InitialiseDialogService()
-        {
-            Core.Activator.InitialiseDialogService(MainPage.Navigation);
-
-            IDialogService dialogService = ServiceProvider.Current.Get<IDialogService>();
-
-            dialogService.Configure(ShowroomDialogKeys.EXEMPLARY_DIALOG, typeof(ExemplaryDialog));
         }
     }
 }

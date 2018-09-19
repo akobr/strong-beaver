@@ -5,18 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using StrongBeaver.Core.Services.Logging;
 
 namespace StrongBeaver.Core.Services.Serialisation.Json
 {
-    public class JsonSerialisationService : BaseService, IJsonSerialisationService
+    public class JsonSerialisationService : BaseDisposableService, IJsonSerialisationService
     {
         private const int STREAM_BUFFER_SIZE = 1024;
 
+        private readonly ILogService logger;
         private readonly JsonSerializerSettings settings;
         private readonly JsonSerializer serializer;
 
-        public JsonSerialisationService()
+        public JsonSerialisationService(ILogService logger)
         {
+            this.logger = logger;
             settings = new JsonSerializerSettings();
             serializer = new JsonSerializer();
 
@@ -181,7 +184,7 @@ namespace StrongBeaver.Core.Services.Serialisation.Json
             settings.CheckAdditionalContent = false;
             serializer.CheckAdditionalContent = false;
 
-            JsonTraceWriter traceWriter = new JsonTraceWriter();
+            JsonTraceWriter traceWriter = new JsonTraceWriter(logger);
             settings.TraceWriter = traceWriter;
             serializer.TraceWriter = traceWriter;
 

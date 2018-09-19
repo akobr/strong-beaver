@@ -3,8 +3,7 @@ using System.Threading.Tasks;
 
 namespace StrongBeaver.Core.Services.Serialisation
 {
-    public interface ISerialisationService
-        : ISerialisationSyncService, ISerialisationAsyncService
+    public interface ISerialisationService : ISerialisationSyncService, ISerialisationAsyncService
     {
         // No member
     }

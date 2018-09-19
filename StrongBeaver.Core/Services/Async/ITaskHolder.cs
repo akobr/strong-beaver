@@ -9,8 +9,6 @@ namespace StrongBeaver.Core.Services.Async
         bool HasAssignedOperation { get; }
 
         bool IsOperationCompleted { get; }
-
-        void AssignOperation(Task operation);
     }
 
     public interface ITaskHolder<T>
@@ -20,7 +18,5 @@ namespace StrongBeaver.Core.Services.Async
         bool HasAssignedOperation { get; }
 
         bool IsOperationCompleted { get; }
-
-        void AssignOperation(Task<T> operation);
     }
 }

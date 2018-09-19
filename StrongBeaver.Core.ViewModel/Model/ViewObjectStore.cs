@@ -9,13 +9,13 @@ namespace StrongBeaver.Core.Model
         public ViewObjectStore(IFactory<TKey, TItem> factory)
             : base(factory, () => new ReferenceCountLifetimeManager())
         {
-            // No operation
+            // no operation
         }
 
         public ViewObjectStore(Func<TItem, TKey> factory)
             : this(new DelegatedFactory<TKey, TItem>(factory))
         {
-            // No operation
+            // no operation
         }
 
         public bool TryUpdate(TItem item)

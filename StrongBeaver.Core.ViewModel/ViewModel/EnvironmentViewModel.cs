@@ -6,9 +6,9 @@ namespace StrongBeaver.Core.ViewModel
     {
         private readonly IEnvironmentInfo environmentInfo;
 
-        public EnvironmentViewModel(IEnvironmentInfo environmentInfo)
+        public EnvironmentViewModel(IPlatformProvider platformProvider)
         {
-            this.environmentInfo = environmentInfo;
+            environmentInfo = platformProvider.EnvironmentInfo;
         }
 
         public IEnvironmentInfo Info => environmentInfo;

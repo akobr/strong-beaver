@@ -6,4 +6,10 @@ namespace StrongBeaver.Core.Services
     {
         // No member
     }
+
+    public interface IServiceMessage<in TService> : IServiceMessage
+        where TService : IService
+    {
+        void PerformMessage(TService service);
+    }
 }

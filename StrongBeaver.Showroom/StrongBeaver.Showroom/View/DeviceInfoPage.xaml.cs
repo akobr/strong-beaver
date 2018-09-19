@@ -8,8 +8,12 @@ namespace StrongBeaver.Showroom.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DeviceInfoPage : ContentPage
     {
-        public DeviceInfoPage()
+        private readonly IEnvironmentInfo environmentInfo;
+
+        public DeviceInfoPage(IEnvironmentInfo environmentInfo)
         {
+            this.environmentInfo = environmentInfo;
+
             InitializeComponent();
             InitialiseInfo();
         }
@@ -18,8 +22,6 @@ namespace StrongBeaver.Showroom.View
         {
             TableRoot tableRoot = tableInfo.Root;
             tableRoot.Clear();
-
-            IEnvironmentInfo environmentInfo = App.EnvironmentInfo;
 
             tableRoot.Add(CreateDeviceInfoSection(environmentInfo.Device));
             tableRoot.Add(CreatePlatformInfoSection(environmentInfo.Platform));

@@ -2,7 +2,7 @@
 
 namespace StrongBeaver.Showroom.Examples
 {
-    public class NewFirstService : BaseService
+    public class NewFirstService : BaseDisposableService
     {
         // Implement your new service
 

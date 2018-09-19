@@ -13,7 +13,7 @@ namespace StrongBeaver.Showroom.Examples
         // Implement your service interface
     }
 
-    public class NewMessageBusService : BaseService, INewMessageBusService
+    public class NewMessageBusService : INewMessageBusService
     {
         // Implement your service
 
