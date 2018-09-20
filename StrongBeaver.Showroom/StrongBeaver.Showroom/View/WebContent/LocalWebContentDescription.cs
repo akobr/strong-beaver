@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using CommonServiceLocator;
 using StrongBeaver.Showroom.Services;
 
 namespace StrongBeaver.Showroom.View.WebContent

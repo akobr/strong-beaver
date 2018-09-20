@@ -1,8 +1,8 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using CommonServiceLocator;
 
 namespace StrongBeaver.Core.Services.Storage.Data
 {
-    public class SQLiteDataStorageService : BaseService, IDataStorageService
+    public class SqLiteDataStorageService : BaseService, IDataStorageService
     {
         public IDataStorageBuilder GetDataModelBuilder()
         {

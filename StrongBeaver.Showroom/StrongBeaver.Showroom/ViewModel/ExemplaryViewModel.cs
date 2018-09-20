@@ -9,6 +9,7 @@ using StrongBeaver.Core.ViewModel;
 using StrongBeaver.Showroom.Model;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using CommonServiceLocator;
 
 namespace StrongBeaver.Showroom.ViewModel
 {
@@ -29,8 +30,8 @@ namespace StrongBeaver.Showroom.ViewModel
         public ExemplaryViewModel()
         {
             keyValueStorage = ServiceProvider.Current.Get<IKeyValuesStorageSyncService>();
-            jsonStorage = Provider.Get<IJsonStorageService>();
-            relationStorage = Provider.Locator.GetInstance<IDataStorageService>();
+            jsonStorage = Provider.Services.Get<IJsonStorageService>();
+            relationStorage = ServiceLocator.Current.GetInstance<IDataStorageService>();
         }
 
         public ExemplaryItem CurrentItem

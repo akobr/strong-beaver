@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
 using StrongBeaver.Core.Extensions;
-using StrongBeaver.Core.Services.Serialization.Json;
+using StrongBeaver.Core.Services.Serialisation.Json;
 using StrongBeaver.Core.Services.Storage.KeyValues;
 
 namespace StrongBeaver.Core.Services.Storage.Json

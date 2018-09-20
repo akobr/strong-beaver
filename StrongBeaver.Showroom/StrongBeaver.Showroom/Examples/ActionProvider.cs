@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using StrongBeaver.Core;
+﻿using StrongBeaver.Core;
 using System;
+using StrongBeaver.Core.Container;
 
 namespace StrongBeaver.Showroom.Examples
 {
@@ -11,9 +11,9 @@ namespace StrongBeaver.Showroom.Examples
 
     public class ActionProvider : IProvider<IAction>
     {
-        private SimpleIoc container;
+        private IContainer container;
 
-        public ActionProvider(SimpleIoc container)
+        public ActionProvider(IContainer container)
         {
             this.container = container;
         }

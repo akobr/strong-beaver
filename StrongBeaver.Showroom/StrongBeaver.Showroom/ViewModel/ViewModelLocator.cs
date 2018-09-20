@@ -1,4 +1,4 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using CommonServiceLocator;
 using StrongBeaver.Core.Platform;
 using StrongBeaver.Core.ViewModel;
 

@@ -1,9 +1,8 @@
-﻿using SQLite.Net;
-using SQLite.Net.Async;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using SQLite;
 
 namespace StrongBeaver.Core.Services.Storage.Data
 {
@@ -18,7 +17,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
         public DefaultAsyncDataOperation(ISqlContext context)
         {
             sqlContext = context;
-            asyncConnection = new SQLiteAsyncConnection(GetConnection);
+            asyncConnection = new SQLiteAsyncConnection(context.DatabasePath);
         }
 
         private SQLiteConnectionWithLock GetConnection()
@@ -42,8 +41,8 @@ namespace StrongBeaver.Core.Services.Storage.Data
             }
 
             connection = new SQLiteConnectionWithLock(
-                sqlContext.SqlPlatform,
-                new SQLiteConnectionString(sqlContext.DatabasePath, true));
+                new SQLiteConnectionString(sqlContext.DatabasePath, true),
+                SQLiteOpenFlags.ReadWrite);
         }
 
         public Task StartTransactionAsync()
@@ -62,49 +61,53 @@ namespace StrongBeaver.Core.Services.Storage.Data
         }
 
         public async Task<IList<TData>> GetAllAsync<TData>()
-            where TData : class
+            where TData : new()
         {
             return await asyncConnection.Table<TData>().ToListAsync();
         }
 
         public async Task<IList<TData>> GetAllAsync<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class
+            where TData : new()
         {
             return await asyncConnection.Table<TData>().Where(predicate).ToListAsync();
         }
 
         public Task<TData> GetAsync<TData>(object primaryKey)
-            where TData : class
+            where TData : new()
         {
             return asyncConnection.FindAsync<TData>(primaryKey);
         }
 
         public Task<TData> GetAsync<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class
+            where TData : new()
         {
             return asyncConnection.FindAsync<TData>(predicate);
         }
 
         public Task StoreAsync<TData>(TData item)
-            where TData : class
+            where TData : new()
         {
             return asyncConnection.InsertOrReplaceAsync(item);
         }
 
-        public Task StoreAsync<TData>(IEnumerable<TData> items)
-            where TData : class
+        public async Task StoreAsync<TData>(IEnumerable<TData> items)
+            where TData : new()
         {
-            return asyncConnection.InsertOrReplaceAllAsync(items);
+            foreach(TData item in items)
+            {
+                await asyncConnection.InsertOrReplaceAsync(item);
+            }
         }
 
-        public Task<int> DeleteAllAsync<TData>()
-            where TData : class
+        public async Task<int> DeleteAllAsync<TData>()
+            where TData : new()
         {
-            return asyncConnection.DeleteAllAsync<TData>();
+            List<TData> allItems = await asyncConnection.Table<TData>().ToListAsync();
+            return await DeleteAllAsync<TData>(allItems);
         }
 
         public async Task<int> DeleteAllAsync<TData>(IEnumerable<TData> items)
-            where TData : class
+            where TData : new()
         {
             int result = 0;
 
@@ -120,7 +123,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
         }
 
         public async Task<int> DeleteAllAsync<TData>(Expression<Func<TData, bool>> predicate)
-            where TData : class
+            where TData : new()
         {
             int result = 0;
 
@@ -136,13 +139,20 @@ namespace StrongBeaver.Core.Services.Storage.Data
         }
 
         public async Task<bool> DeleteAsync<TData>(object primaryKey)
-            where TData : class
+            where TData : new()
         {
-            return await asyncConnection.DeleteAsync<TData>(primaryKey) > 0;
+            TData item = await GetAsync<TData>(primaryKey);
+
+            if (item == null)
+            {
+                return false;
+            }
+
+            return await asyncConnection.DeleteAsync(item) > 0;
         }
 
         public async Task<bool> DeleteAsync<TData>(TData item)
-            where TData : class
+            where TData : new()
         {
             return await asyncConnection.DeleteAsync(item) > 0;
         }

@@ -1,5 +1,8 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Microsoft.Practices.ServiceLocation;
+﻿using System.Globalization;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight.Ioc;
+using StrongBeaver.Core.Container;
+using StrongBeaver.Core.Model;
 using StrongBeaver.Core.Platform;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Cleanup;
@@ -10,14 +13,12 @@ using StrongBeaver.Core.Services.Navigation;
 using StrongBeaver.Core.Services.Network.Http;
 using StrongBeaver.Core.Services.Network.Rest;
 using StrongBeaver.Core.Services.Reflection;
-using StrongBeaver.Core.Services.Serialization.Json;
+using StrongBeaver.Core.Services.Serialisation;
+using StrongBeaver.Core.Services.Serialisation.Json;
 using StrongBeaver.Core.Services.Storage.Json;
 using StrongBeaver.Core.Services.Storage.KeyValues;
-using Xamarin.Forms;
-using System.Globalization;
-using StrongBeaver.Core.Model;
 using StrongBeaver.Core.ViewModel;
-using StrongBeaver.Core.Services.Serialization;
+using Xamarin.Forms;
 
 namespace StrongBeaver.Core
 {
@@ -67,7 +68,7 @@ namespace StrongBeaver.Core
         /// <param name="targetCultureInResourceFile"></param>
         public static void InitialiseLocalisedResourceFileWithCulture(ref CultureInfo targetCultureInResourceFile)
         {
-            InitialiseLocalisedResourceFileWithCulture(SimpleIoc.Default, ref targetCultureInResourceFile);
+            InitialiseLocalisedResourceFileWithCulture(ServiceLocator.Current, ref targetCultureInResourceFile);
         }
 
         public static void InitialiseLocalisedResourceFileWithCulture(IServiceLocator serviceLocator, ref CultureInfo targetCultureInResourceFile)
@@ -89,9 +90,9 @@ namespace StrongBeaver.Core
         /// XamarinApplicationJsonStorageService;
         /// XamarinNavigationService;
         /// XamarinDialogService;
-        /// <c>Should be called before <see cref="Initialise(IServiceLocator)"/></c>.
+        /// <c>Should be called before <see cref="Initialise(IContainer)"/></c>.
         /// </summary>
-        public static void InitialiseIoc(ISimpleIoc container)
+        public static void InitialiseIoc(IContainer container)
         {
 #if DEBUG
             // Debug logging
@@ -100,12 +101,12 @@ namespace StrongBeaver.Core
             // Empty logging
             container.Register<ILogService, EmptyLogService>();
 #endif
-
             // Platform model
             container.Register<IPlatformModel, DefaultPlatformModel>();
 
             // IoC container and cleanup
-            container.Register<ISimpleIoc>(() => container);
+            container.Register<IContainer>(() => container);
+            container.Register<IReadOnlyContainer>(() => container);
             container.Register<IIocCleanupService, DefaultIocCleanupService>();
 
             // Providers (services, stores, view models)
@@ -118,7 +119,7 @@ namespace StrongBeaver.Core
 
             // JSON serialization
             container.Register<IJsonSerialisationService, DefaultJsonSerialisationService>();
-            container.Register<ISerialisationService>(() => container.GetInstance<IJsonSerialisationService>());
+            container.Register<ISerialisationService>(container.GetInstance<IJsonSerialisationService>);
 
             // Networking (HTTP and REST)
             container.Register<IHttpService, DefaultHttpService>();

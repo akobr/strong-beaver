@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.ServiceLocation;
 using StrongBeaver.Core;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Navigation;
@@ -8,6 +7,7 @@ using StrongBeaver.Showroom.Constants;
 using StrongBeaver.Showroom.View.WebContent;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CommonServiceLocator;
 using Xamarin.Forms;
 
 namespace StrongBeaver.Showroom.ViewModel
