@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Views;
+﻿using GalaSoft.MvvmLight.Views;
 using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Logging;
@@ -33,11 +32,6 @@ namespace StrongBeaver.Showroom.Examples
         public IPermissionsService Permissions { get; }
 
         public new static IOwnServiceProvider Current { get; private set; }
-
-        public static void SetDefaultProvider()
-        {
-            SetProvider(ServiceLocator.Current.GetInstance<IOwnServiceProvider>());
-        }
 
         public static void SetProvider(IOwnServiceProvider newProvider)
         {

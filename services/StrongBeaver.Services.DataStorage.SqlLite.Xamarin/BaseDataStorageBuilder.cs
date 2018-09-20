@@ -5,6 +5,7 @@ using SQLite;
 
 namespace StrongBeaver.Core.Services.Storage.Data
 {
+    // TODO: Should use IFileStorage service rather then sending message
     public abstract class BaseDataStorageBuilder : IDataStorageBuilder
     {
         private readonly ISqlContext context;
@@ -16,13 +17,7 @@ namespace StrongBeaver.Core.Services.Storage.Data
 
         public void EnsureDeleted()
         {
-            FileStorageDeleteFileMessage deleteMessage = new FileStorageDeleteFileMessage(context.DatabasePath);
-            ServiceProvider.Current.Messanger.Send<IFileStorageMessage>(deleteMessage);
-
-            if (deleteMessage.OperationHolder.HasAssignedOperation)
-            {
-                deleteMessage.OperationHolder.Operation.Wait();
-            }
+            EnsureDeletedAsync().Wait();
         }
 
         public Task EnsureDeletedAsync()

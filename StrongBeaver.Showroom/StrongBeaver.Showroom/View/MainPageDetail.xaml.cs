@@ -1,5 +1,4 @@
 ﻿using System;
-using CommonServiceLocator;
 using StrongBeaver.Core;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Navigation;
@@ -25,8 +24,8 @@ namespace StrongBeaver.Showroom.View
 
         private async void HandleDeviceInfoTileTapped(object sender, EventArgs e)
         {
-            // Using IoC container directly
-            await ServiceLocator.Current.GetInstance<INavigationService>().NavigateToAsync(ShowroomPageKeys.DEVICE_INFO_PAGE);
+            // Using singleton provider
+            await ServiceProvider.Current.Get<INavigationService>().NavigateToAsync(ShowroomPageKeys.DEVICE_INFO_PAGE);
         }
 
         private async void HandleArchitectureTileTapped(object sender, EventArgs e)

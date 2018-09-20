@@ -1,5 +1,6 @@
 ﻿
 using StrongBeaver.Core.Container;
+using StrongBeaver.Core.Platform;
 using StrongBeaver.Core.Services.Device.Connectivity;
 using StrongBeaver.Core.Services.Device.Geolocator;
 using StrongBeaver.Core.Services.Permissions;
@@ -15,6 +16,7 @@ namespace StrongBeaver.Showroom
         public static void Initialise(IContainer container)
         {
             InitialiseLocalDatabase(container);
+            App.SetPlatformModel(container.GetInstance<IPlatformModel>());
         }
 
         public static void InitialiseIoc(IContainer container)
