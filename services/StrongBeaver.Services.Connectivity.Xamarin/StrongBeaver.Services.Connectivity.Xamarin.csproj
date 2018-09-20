@@ -2,15 +2,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>StrongBeaver.Core.Services.Device.Connectivity</RootNamespace>
+    <RootNamespace>StrongBeaver.Services.Connectivity</RootNamespace>
+    <PackageId>BeaverSoft.StrongBeaver.Services.Connectivity.Xamarin</PackageId>
+    <Version>0.9.1-alpha</Version>
+    <Product>Xamarin implementation of connectivity service for StrongBeaver</Product>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+    <Company>BeaverSoft (Ales Kobr)</Company>
+    <Description>Xamarin implementation of connectivity service for StrongBeaver Framework. Pre-release of Xamarin.Essentials is used.</Description>
+    <PackageTags>Connectivity Network Service Plugin Strong Beaver Xamarin</PackageTags>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <NeutralLanguage>en-150</NeutralLanguage>
+    <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.10.0-preview" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Services.Connectivity\StrongBeaver.Services.Connectivity.csproj" />
   </ItemGroup>
 
 </Project>

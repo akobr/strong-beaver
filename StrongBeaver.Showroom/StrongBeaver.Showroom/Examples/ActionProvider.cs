@@ -1,6 +1,6 @@
-﻿using StrongBeaver.Core;
-using System;
-using StrongBeaver.Core.Container;
+﻿using System;
+using System.Collections.Generic;
+using StrongBeaver.Core.Services.Reflection;
 
 namespace StrongBeaver.Showroom.Examples
 {
@@ -9,58 +9,41 @@ namespace StrongBeaver.Showroom.Examples
         // Implementation of action interface
     }
 
-    public class ActionProvider : IProvider<IAction>
+    public class ActionProvider
     {
-        private IContainer container;
+        private readonly InstanceCreationService objectCreation;
+        private readonly Dictionary<Type, Type> registrations;
 
-        public ActionProvider(IContainer container)
+        public ActionProvider(InstanceCreationService objectCreation)
         {
-            this.container = container;
+            this.objectCreation = objectCreation;
+            registrations = new Dictionary<Type, Type>();
         }
 
         public TInterface Get<TInterface>()
-          where TInterface : IAction
+            where TInterface : class, IAction
         {
-            // Always create a new instance of an action (command)
-            return container.GetInstanceWithoutCaching<TInterface>();
-        }
+            Type requestedType = typeof(TInterface);
 
-        public TInterface Get<TInterface>(string key)
-          where TInterface : IAction
-        {
-            // Always create a new instance of an action (command)
-            return container.GetInstanceWithoutCaching<TInterface>(key);
+            if (!registrations.TryGetValue(requestedType, out Type responseType))
+            {
+                return null;
+            }
+
+            return objectCreation.CreateInstance(responseType) as TInterface;
         }
 
         public void Register<TInterface, TClass>()
-          where TInterface : class, IAction
-          where TClass : class, TInterface
-        {
-            container.Register<TInterface, TClass>();
-        }
-
-        public void Register<TInterface>(Func<TInterface> factory, string key)
             where TInterface : class, IAction
+            where TClass : class, TInterface
         {
-            container.Register<TInterface>(factory, key);
+            registrations[typeof(TInterface)] = typeof(TClass);
         }
 
         public void Unregister<TInterface>()
-          where TInterface : class, IAction
+            where TInterface : class, IAction
         {
-            container.Unregister<TInterface>();
-        }
-
-        public void Unregister<TInterface>(TInterface item)
-          where TInterface : class, IAction
-        {
-            container.Unregister<TInterface>(item);
-        }
-
-        public void Unregister<TInterface>(string key)
-          where TInterface : class, IAction
-        {
-            container.Unregister<TInterface>(key);
+            registrations.Remove(typeof(TInterface));
         }
     }
 }

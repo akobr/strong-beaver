@@ -1,30 +1,38 @@
 ﻿using System;
 using System.Diagnostics;
 using Newtonsoft.Json.Serialization;
+using StrongBeaver.Core.Services.Logging;
 
 namespace StrongBeaver.Core.Services.Serialisation.Json
 {
     public class JsonTraceWriter : ITraceWriter
     {
+        private readonly ILogService logging;
+
+        public JsonTraceWriter(ILogService logging)
+        {
+            this.logging = logging;
+        }
+
         public void Trace(TraceLevel level, string message, Exception ex)
         {
             switch (level)
             {
 
                 case TraceLevel.Error:
-                    Provider.LogErrorMessage(message, ex);
+                    logging.Error(message, ex);
                     break;
 
                 case TraceLevel.Warning:
-                    Provider.LogWarningMessage(message, ex);
+                    logging.Warn(message, ex);
                     break;
 
                 case TraceLevel.Verbose:
-                    Provider.LogTraceMessage(message, ex);
+                    logging.Trace(message, ex);
                     break;
 
                 case TraceLevel.Info:
-                    Provider.LogDebugMessage("[Info] " + message, ex);
+                    logging.Info(message, ex);
                     break;
             }
         }

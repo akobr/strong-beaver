@@ -4,13 +4,13 @@
              x:Class="StrongBeaver.Showroom.View.MainPage"
              xmlns:pages="clr-namespace:StrongBeaver.Showroom.View">
   <MasterDetailPage.Master>
-    <pages:MainPageMaster x:Name="MasterPage" />
+    <!--<pages:MainPageMaster x:Name="MasterPage" />-->
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
-    <NavigationPage>
+    <!--<NavigationPage>
       <x:Arguments>
         <pages:MainPageDetail />
       </x:Arguments>
-    </NavigationPage>
+    </NavigationPage>-->
   </MasterDetailPage.Detail>
 </MasterDetailPage>

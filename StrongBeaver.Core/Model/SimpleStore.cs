@@ -1,5 +1,4 @@
-﻿using StrongBeaver.Core.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace StrongBeaver.Core.Model
@@ -21,7 +20,7 @@ namespace StrongBeaver.Core.Model
             // No operation
         }
 
-        public int Count { get => items.Count; }
+        public int Count => items.Count;
 
         public bool Contains(TKey key)
         {

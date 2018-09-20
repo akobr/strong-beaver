@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json.Linq;
-using StrongBeaver.Core.Services;
-using StrongBeaver.Core.Services.Dialog;
+﻿using System;
+using System.Text;
+using Newtonsoft.Json.Linq;
+using StrongBeaver.Core.Services.Network;
 using StrongBeaver.Core.Services.Network.Http;
 using StrongBeaver.Core.Services.Network.Rest;
-using System;
-using System.Text;
+using StrongBeaver.Services.Toast;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,13 +15,13 @@ namespace StrongBeaver.Showroom.View
     {
         private readonly IHttpService httpService;
         private readonly IRestService restService;
-        private readonly IDialogService dialogService;
+        private readonly IToastService toastService;
 
-        public NetworkPage()
+        public NetworkPage(IHttpService httpService, IRestService restService, IToastService toastService)
         {
-            httpService = ServiceProvider.Current.Get<IHttpService>();
-            restService = ServiceProvider.Current.Get<IRestService>();
-            dialogService = ServiceProvider.Current.Get<IDialogService>();
+            this.httpService = httpService;
+            this.restService = restService;
+            this.toastService = toastService;
 
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace StrongBeaver.Showroom.View
 
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
             {
-                dialogService.ShowToast(new Toast("Invalid URL, change a input."));
+                toastService.ShowToast(new Toast("Invalid URL, change a input."));
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace StrongBeaver.Showroom.View
 
             if (!Uri.IsWellFormedUriString(uri, UriKind.Absolute))
             {
-                dialogService.ShowToast(new Toast("Invalid URI, change a input."));
+                toastService.ShowToast(new Toast("Invalid URI, change a input."));
                 return;
             }
 

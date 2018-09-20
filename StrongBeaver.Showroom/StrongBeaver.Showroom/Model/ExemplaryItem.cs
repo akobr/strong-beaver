@@ -6,7 +6,7 @@ using SQLite;
 
 namespace StrongBeaver.Showroom.Model
 {
-    public class ExemplaryItem : ObservableObject, IComplexStoreItem<ExemplaryItem>
+    public class ExemplaryItem : ObservableObject, IViewObject<ExemplaryItem>
     {
         private static int idCounter = 0;
         private static readonly Random randomity = new Random();

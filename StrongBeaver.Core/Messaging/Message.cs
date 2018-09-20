@@ -1,44 +1,59 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using StrongBeaver.Core.Constants;
+﻿using System;
 using System.Text;
 
 namespace StrongBeaver.Core.Messaging
 {
-    public class Message : MessageBase, IMessage
+    public class Message : IMessage
     {
         public Message()
-            : base()
         {
-            // No operation
+            // no operation
         }
 
         public Message(object sender)
-            : base(sender)
         {
-            // No operation
+            Sender = sender;
         }
 
         public Message(object sender, object target)
-            : base(sender, target)
         {
-            // No operation
+            Sender = sender;
+            Target = target;
         }
 
         public Message(object sender, string code)
-            : base(sender)
         {
+            Sender = sender;
             Code = code;
         }
 
         public string Code { get; set; }
 
+        public object Sender { get; set; }
+
+        public object Target { get; set; }
+
         public override string ToString()
         {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.AppendLine($"Mesage: {GetType().Name}");
-            stringBuilder.AppendLine($"Code: {Code ?? GlobalConstatns.DEFAULT_NULL_STRING}");
-            stringBuilder.AppendLine($"Source: {Sender?.GetType().Name ?? GlobalConstatns.DEFAULT_NULL_STRING}");
-            stringBuilder.Append($"Target: {Target?.GetType().Name ?? GlobalConstatns.DEFAULT_NULL_STRING}");
+
+            if (!string.IsNullOrEmpty(Code))
+            {
+                stringBuilder.AppendLine($"Code: {Code}");
+            }
+
+            if (Sender != null)
+            {
+                stringBuilder.AppendLine($"Sender: {Sender.GetType().Name}");
+            }
+
+            if (Target != null)
+            {
+                stringBuilder.AppendLine($"Target: {Target?.GetType().Name}");
+            }
+
+            stringBuilder.Remove(stringBuilder.Length - Environment.NewLine.Length, Environment.NewLine.Length);
             return stringBuilder.ToString();
         }
     }

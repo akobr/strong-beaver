@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>StrongBeaver.Core.Services.Navigation</RootNamespace>
+    <PackageId>BeaverSoft.StrongBeaver.Services.Navigation</PackageId>
+    <Description>Abstraction of navigation service for StrongBeaver Framework.</Description>
+    <Product>Abstraction of navigation service for StrongBeaver</Product>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+    <Company>BeaverSoft (Ales Kobr)</Company>
+    <Version>0.9.1-alpha</Version>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <PackageTags>Navigation Page Service Strong Beaver</PackageTags>
+    <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
+    <NeutralLanguage>en-150</NeutralLanguage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
+  </ItemGroup>
+
+</Project>

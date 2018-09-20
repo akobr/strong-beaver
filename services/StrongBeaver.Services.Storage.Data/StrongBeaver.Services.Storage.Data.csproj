@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>StrongBeaver.Services.Storage.Data</RootNamespace>
+    <Description>Abstraction of persistent data storage service for StrongBeaver Framework.</Description>
+    <Product>Abstraction of persistent data storage service for StrongBeaver</Product>
+    <Company>BeaverSoft (Ales Kobr)</Company>
+    <Version>0.9.1-alpha</Version>
+    <PackageId>BeaverSoft.StrongBeaver.Services.Storage.Data</PackageId>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <PackageTags>Persistent Storage Data Service Strong Beaver</PackageTags>
+    <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
+    <NeutralLanguage>en-150</NeutralLanguage>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
+  </ItemGroup>
+
+</Project>

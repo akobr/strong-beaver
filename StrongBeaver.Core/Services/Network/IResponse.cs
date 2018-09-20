@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using StrongBeaver.Core.Services.Network.Http;
 
-namespace StrongBeaver.Core.Services.Network.Http
+namespace StrongBeaver.Core.Services.Network
 {
     public interface IResponse
     {

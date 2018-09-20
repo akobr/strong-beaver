@@ -1,5 +1,5 @@
-﻿using StrongBeaver.Core.Services.Storage.Data;
-using System.IO;
+﻿using System.IO;
+using StrongBeaver.Services.Storage.Data;
 
 namespace StrongBeaver.Showroom.iOS.Services.DataStorage
 {

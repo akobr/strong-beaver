@@ -10,15 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.Connectivity.Xamarin\StrongBeaver.Services.Connectivity.Xamarin.csproj" />
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.DataStorage.SqlLite.Xamarin\StrongBeaver.Services.DataStorage.SqlLite.Xamarin.csproj" />
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.Geolocator.Xamarin\StrongBeaver.Services.Geolocator.Xamarin.csproj" />
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.Permissions.Xamarin\StrongBeaver.Services.Permissions.Xamarin.csproj" />
-    <ProjectReference Include="..\..\StrongBeaver.Core.Xamarin\StrongBeaver.Core.Xamarin.csproj" />
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Dialog\StrongBeaver.Services.Dialog.csproj" />
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Navigation\StrongBeaver.Services.Navigation.csproj" />
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Base\StrongBeaver.Services.Storage.Base.csproj" />
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Data.SqlLite.Xamarin\StrongBeaver.Services.Storage.Data.SqlLite.Xamarin.csproj" />
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Data\StrongBeaver.Services.Storage.Data.csproj" />
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Toast\StrongBeaver.Services.Toast.csproj" />
+    <ProjectReference Include="..\..\StrongBeaver.Core.ViewModel\StrongBeaver.Core.ViewModel.csproj" />
     <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
   </ItemGroup>
 </Project>

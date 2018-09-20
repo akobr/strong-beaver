@@ -22,12 +22,10 @@ namespace StrongBeaver.Showroom.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+            Activator activator = new Activator(app);
+            activator.Startup();
 
-            Activator.Initialise(app);
-
-            LoadApplication(new App());
-
+            LoadApplication(activator.Application);
             return base.FinishedLaunching(app, options);
         }
     }

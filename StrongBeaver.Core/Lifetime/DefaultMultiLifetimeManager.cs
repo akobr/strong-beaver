@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using StrongBeaver.Core.Helpers;
 
 namespace StrongBeaver.Core.Lifetime
 {

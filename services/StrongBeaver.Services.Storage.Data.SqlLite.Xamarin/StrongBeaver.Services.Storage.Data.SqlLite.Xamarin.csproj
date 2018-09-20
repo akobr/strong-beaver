@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>StrongBeaver.Services.Storage.Data</RootNamespace>
+    <PackageId>BeaverSoft.StrongBeaver.Services.Storage.Data.SqlLite.Xamarin</PackageId>
+    <Version>0.9.1-alpha</Version>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+    <Company>BeaverSoft (Ales Kobr)</Company>
+    <PackageTags>SQLite SQL Relation Persistent Storage Data Service Strong Beaver</PackageTags>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
+    <NeutralLanguage>en-150</NeutralLanguage>
+    <Description>SQLite persistent data storage service for StrongBeaver Framework.</Description>
+    <Product>SQLite persistent data storage service for StrongBeaver</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-standard" Version="1.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StrongBeaver.Services.Storage.Data\StrongBeaver.Services.Storage.Data.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Services.Storage.Files\StrongBeaver.Services.Storage.Files.csproj" />
+  </ItemGroup>
+
+</Project>

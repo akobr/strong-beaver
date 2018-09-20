@@ -1,6 +1,6 @@
 ﻿namespace StrongBeaver.Core.Lifetime
 {
-    interface IMultiLifetimeManager<in TKey, TLifetimeManager>
+    public interface IMultiLifetimeManager<in TKey, TLifetimeManager>
         where TLifetimeManager : ILifetimeManager
     {
         TLifetimeManager Create(TKey key);

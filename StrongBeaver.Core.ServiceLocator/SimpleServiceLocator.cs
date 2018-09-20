@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using CommonServiceLocator;
-using StrongBeaver.Core.Container;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace StrongBeaver.Core.ServiceLocator
 {
     public class SimpleServiceLocator : IServiceLocator
     {
-        private readonly SimpleIocContainer container;
+        private readonly SimpleIoc container;
 
-        public SimpleServiceLocator(SimpleIocContainer container)
+        public SimpleServiceLocator(SimpleIoc container)
         {
             this.container = container;
         }
 
         public SimpleServiceLocator()
-            : this(new SimpleIocContainer())
+            : this(new SimpleIoc())
         {
             // no operation
         }
 
-        public SimpleIocContainer Container => container;
+        public SimpleIoc Container => container;
 
         public object GetService(Type serviceType)
         {
@@ -57,16 +57,16 @@ namespace StrongBeaver.Core.ServiceLocator
             return container.GetAllInstances<TService>();
         }
 
-        public static IServiceLocator BuildAndRegister(SimpleIocContainer container)
+        public static SimpleServiceLocator BuildAndRegister(SimpleIoc container)
         {
             SimpleServiceLocator locator = new SimpleServiceLocator(container);
             CommonServiceLocator.ServiceLocator.SetLocatorProvider(() => locator);
             return locator;
         }
 
-        public static IServiceLocator BuildAndRegister()
+        public static SimpleServiceLocator BuildAndRegister()
         {
-            return BuildAndRegister(new SimpleIocContainer());
+            return BuildAndRegister(new SimpleIoc());
         }
     }
 }

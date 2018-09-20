@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>BeaverSoft.StrongBeaver.Services.Localisation.Xamarin.iOS</id>
+		<version>0.9.1-alpha</version>
+		<title>Localisation service for Xamarin.iOS platform on StrongBeaver</title>
+		<authors>BeaverSoft (Ales Kobr)</authors>
+		<owners>BeaverSoft (Ales Kobr)</owners>
+
+		<licenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/akobr/strong-beaver</projectUrl>
+		<iconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</iconUrl>
+
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Localisation service for Xamarin.iOS platform on StrongBeaver.</description>
+		<releaseNotes>Alpha version created by BeaverSoft.</releaseNotes>
+		<copyright>Copyright 2018</copyright>
+		<tags>Localisation Service Strong Beaver Xamarin iOS</tags>
+
+		<dependencies>
+			<group targetFramework="Xamarin.iOS">
+				<dependency id="BeaverSoft.StrongBeaver.Services.Localisation.Xamarin" version="0.9.1-alpha" />
+			</group>
+		</dependencies>
+	</metadata>
+
+	<files>
+	  <!-- iOS reference assemblies -->
+	  <file src="StrongBeaver.Services.Localisation.Xamarin.iOS\bin\$configuration$\StrongBeaver.Platform.Xamarin.iOS.dll" target="lib\Xamarin.iOS\StrongBeaver.Services.Localisation.Xamarin.iOS.dll" />
+	  <file src="StrongBeaver.Services.Localisation.Xamarin.iOS\bin\$configuration$\StrongBeaver.Platform.Xamarin.iOS.pdb" target="lib\Xamarin.iOS\StrongBeaver.Services.Localisation.Xamarin.iOS.pdb" />
+	  <file src="StrongBeaver.Services.Localisation.Xamarin.iOS\bin\Debug\StrongBeaver.Platform.Xamarin.iOS.xml" target="lib\Xamarin.iOS\StrongBeaver.Services.Localisation.Xamarin.iOS.xml" />
+	</files>
+</package>

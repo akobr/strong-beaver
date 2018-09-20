@@ -100,7 +100,7 @@
     <Compile Include="Renderers\NoSelectionTextCellRenderer.cs" />
     <Compile Include="Renderers\NoSelectionViewCellRenderer.cs" />
     <Compile Include="Services\DataStorage\IosSqLiteContext.cs" />
-    <Compile Include="Services\IosWebContentPathService.cs" />
+    <Compile Include="Services\DataStorage\IosSqLiteContextFactory.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Platform\ShowroomIosApplicationInfo.cs" />
@@ -158,35 +158,104 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>1.1.4.168</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.Connectivity.Xamarin\StrongBeaver.Services.Connectivity.Xamarin.csproj">
-      <Project>{6f5e381c-8dfa-423a-819e-cae5a30ecf45}</Project>
-      <Name>StrongBeaver.Services.Connectivity.Xamarin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.DataStorage.SqlLite.Xamarin\StrongBeaver.Services.DataStorage.SqlLite.Xamarin.csproj">
-      <Project>{adabac7d-c7e7-4781-a623-0db4768baba5}</Project>
-      <Name>StrongBeaver.Services.DataStorage.SqlLite.Xamarin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.Geolocator.Xamarin\StrongBeaver.Services.Geolocator.Xamarin.csproj">
-      <Project>{bd4d17cd-18df-43f9-bd1e-c47f0d9adbd3}</Project>
-      <Name>StrongBeaver.Services.Geolocator.Xamarin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\services\StrongBeaver.Services.Permissions.Xamarin\StrongBeaver.Services.Permissions.Xamarin.csproj">
-      <Project>{b1462907-adbd-4772-a8fe-47e189ce664f}</Project>
-      <Name>StrongBeaver.Services.Permissions.Xamarin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\StrongBeaver.Core.iOS\StrongBeaver.Core.iOS.csproj">
-      <Project>{e71f3053-056c-4381-9638-048ed73bdff6}</Project>
-      <Name>StrongBeaver.Core.iOS</Name>
+    <ProjectReference Include="..\..\platform\StrongBeaver.Platform.Xamarin.iOS\StrongBeaver.Platform.Xamarin.iOS.csproj">
+      <Project>{aba44b74-b45b-4d5d-847a-39bccbe25b89}</Project>
+      <Name>StrongBeaver.Platform.Xamarin.iOS</Name>
       <IsAppExtension>false</IsAppExtension>
       <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
-    <ProjectReference Include="..\..\StrongBeaver.Core.Xamarin\StrongBeaver.Core.Xamarin.csproj">
-      <Project>{f8a18afa-9516-40b2-a2af-73d95dab8a56}</Project>
-      <Name>StrongBeaver.Core.Xamarin</Name>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Connectivity.Xamarin\StrongBeaver.Services.Connectivity.Xamarin.csproj">
+      <Project>{149ecc98-76db-4b21-84b2-321260bedfa7}</Project>
+      <Name>StrongBeaver.Services.Connectivity.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Connectivity\StrongBeaver.Services.Connectivity.csproj">
+      <Project>{a963100e-7e2b-4c85-856b-9ed9674f5dea}</Project>
+      <Name>StrongBeaver.Services.Connectivity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Dialog.Xamarin.iOS\StrongBeaver.Services.Dialog.Xamarin.iOS.csproj">
+      <Project>{7d905e50-7ad6-45aa-a690-fc31f889e481}</Project>
+      <Name>StrongBeaver.Services.Dialog.Xamarin.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Dialog.Xamarin\StrongBeaver.Services.Dialog.Xamarin.csproj">
+      <Project>{93a3acad-f885-464b-895f-525bd4766f15}</Project>
+      <Name>StrongBeaver.Services.Dialog.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Dialog\StrongBeaver.Services.Dialog.csproj">
+      <Project>{b842cd52-e5b2-4dc1-afed-a50186f0c52c}</Project>
+      <Name>StrongBeaver.Services.Dialog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Geolocation.Xamarin\StrongBeaver.Services.Geolocation.Xamarin.csproj">
+      <Project>{410181c4-4676-44c2-a842-ae4055b04da2}</Project>
+      <Name>StrongBeaver.Services.Geolocation.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Geolocation\StrongBeaver.Services.Geolocation.csproj">
+      <Project>{21ca8305-3e36-4bc8-bf5f-e3efe9cdedd7}</Project>
+      <Name>StrongBeaver.Services.Geolocation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Localisation.Xamarin.iOS\StrongBeaver.Services.Localisation.Xamarin.iOS.csproj">
+      <Project>{3efd46ad-b6da-416e-9b04-80e2dd6fdcdf}</Project>
+      <Name>StrongBeaver.Services.Localisation.Xamarin.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Localisation.Xamarin\StrongBeaver.Services.Localisation.Xamarin.csproj">
+      <Project>{602d18ca-70f4-46ae-9fbb-dfdaf8467991}</Project>
+      <Name>StrongBeaver.Services.Localisation.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Navigation.Xamarin\StrongBeaver.Services.Navigation.Xamarin.csproj">
+      <Project>{711306d9-f158-4641-aecb-4de798d476db}</Project>
+      <Name>StrongBeaver.Services.Navigation.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Navigation\StrongBeaver.Services.Navigation.csproj">
+      <Project>{090f190b-c0f6-4058-ab25-91c6a579e3a7}</Project>
+      <Name>StrongBeaver.Services.Navigation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Permissions.Xamarin\StrongBeaver.Services.Permissions.Xamarin.csproj">
+      <Project>{1306dc0a-738e-418d-a2f0-46626204f60e}</Project>
+      <Name>StrongBeaver.Services.Permissions.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Base.Xamarin\StrongBeaver.Services.Storage.Base.Xamarin.csproj">
+      <Project>{41cd3ffa-1f87-4bae-b776-0dd75e3f095e}</Project>
+      <Name>StrongBeaver.Services.Storage.Base.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Base\StrongBeaver.Services.Storage.Base.csproj">
+      <Project>{768da7e7-2ae2-4556-bccc-d8c2b22faf12}</Project>
+      <Name>StrongBeaver.Services.Storage.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Data.SqlLite.Xamarin\StrongBeaver.Services.Storage.Data.SqlLite.Xamarin.csproj">
+      <Project>{4e3685bd-42b0-4350-9194-03d61f5e5a6f}</Project>
+      <Name>StrongBeaver.Services.Storage.Data.SqlLite.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Data\StrongBeaver.Services.Storage.Data.csproj">
+      <Project>{5a4679ee-b986-431a-af8f-602114114ab9}</Project>
+      <Name>StrongBeaver.Services.Storage.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Toast.Xamarin.iOS\StrongBeaver.Services.Toast.Xamarin.iOS.csproj">
+      <Project>{d447addb-c461-41d1-b721-95ec0a56836b}</Project>
+      <Name>StrongBeaver.Services.Toast.Xamarin.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
+    <ProjectReference Include="..\..\services\StrongBeaver.Services.Toast\StrongBeaver.Services.Toast.csproj">
+      <Project>{8c3a82f7-d757-472f-8bd0-cdb835a33ffd}</Project>
+      <Name>StrongBeaver.Services.Toast</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StrongBeaver.Core.Platform\StrongBeaver.Core.Platform.csproj">
+      <Project>{aeabfd9e-3141-4a4b-984c-2b69eeb6c779}</Project>
+      <Name>StrongBeaver.Core.Platform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StrongBeaver.Core.ViewModel\StrongBeaver.Core.ViewModel.csproj">
+      <Project>{e0bd998d-4210-404b-8b90-801be4097ecb}</Project>
+      <Name>StrongBeaver.Core.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj">
       <Project>{36c9218f-2fe5-4949-a7dd-8ffbd79175d9}</Project>

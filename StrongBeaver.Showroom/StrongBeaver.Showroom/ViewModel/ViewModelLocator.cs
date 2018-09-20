@@ -1,29 +1,23 @@
-﻿using StrongBeaver.Core.Platform;
+﻿using StrongBeaver.Core.Services.Logging;
 using StrongBeaver.Core.ViewModel;
 
 namespace StrongBeaver.Showroom.ViewModel
 {
     public class ViewModelLocator : BaseViewModelLocator, IViewModelLocator
     {
-        public ViewModelLocator(IPlatformInfo platformInfo, IMainViewModel mainViewModel, ExemplaryViewModel exemplaryViewModel)
-            : base(platformInfo)
+        public IMainViewModel Main { get; private set; }
+
+        public ExemplaryViewModel Exemplary { get; private set; }
+
+        public void Startup(ILogService logging, IViewModelProvider modelProvider)
         {
-            MainViewModel = mainViewModel;
-            RegisterViewModel(mainViewModel);
+            Startup(logging, modelProvider.Environment);
 
-            Exemplary = exemplaryViewModel;
-            RegisterViewModel(exemplaryViewModel);
-        }
+            Main = modelProvider.Main;
+            RegisterViewModel(Main);
 
-        public static IViewModelLocator Current { get; private set; }
-
-        public IMainViewModel MainViewModel { get; }
-
-        public ExemplaryViewModel Exemplary { get; }
-
-        public static void SetCurrentLocator(IViewModelLocator viewModelLocator)
-        {
-            Current = viewModelLocator;
+            Exemplary = modelProvider.Exemplary;
+            RegisterViewModel(Exemplary);
         }
     }
 }

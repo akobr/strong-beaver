@@ -4,51 +4,41 @@ namespace StrongBeaver.Core.Services.Async
 {
     public class TaskHolder : ITaskHolder
     {
-        public TaskHolder()
+        public TaskHolder(Task operation)
         {
-            Operation = null;
+            Operation = operation;
+        }
+
+        public TaskHolder()
+            : this(null)
+        {
+            // no operation
         }
 
         public Task Operation { get; set; }
 
-        public bool HasAssignedOperation
-        {
-            get { return Operation != null; }
-        }
+        public bool HasAssignedOperation => Operation != null;
 
-        public bool IsOperationCompleted
-        {
-            get { return HasAssignedOperation && Operation.IsCompleted; }
-        }
-
-        public void AssignOperation(Task operation)
-        {
-            Operation = operation;
-        }
+        public bool IsOperationCompleted => HasAssignedOperation && Operation.IsCompleted;
     }
 
     public class TaskHolder<T> : ITaskHolder<T>
     {
-        public TaskHolder()
+        public TaskHolder(Task<T> operation)
         {
-            Operation = null;
+            Operation = operation;
+        }
+
+        public TaskHolder()
+            : this(null)
+        {
+            // no operation
         }
 
         public Task<T> Operation { get; set; }
 
-        public bool HasAssignedOperation
-        {
-            get { return Operation != null; }
-        }
+        public bool HasAssignedOperation => Operation != null;
 
-        public bool IsOperationCompleted
-        {
-            get { return HasAssignedOperation && Operation.IsCompleted; }
-        }
-
-        public void AssignOperation(Task<T> operation)
-        {
-            Operation = operation;
-        }
+        public bool IsOperationCompleted => HasAssignedOperation && Operation.IsCompleted;
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>BeaverSoft.StrongBeaver.Services.Dialog.Xamarin.iOS</id>
+    <version>0.9.1-alpha</version>
+    <title>Service for showing dialogues on Xamarin.iOS platform on StrongBeaver</title>
+    <authors>BeaverSoft (Ales Kobr)</authors>
+    <owners>BeaverSoft (Ales Kobr)</owners>
+
+    <licenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/akobr/strong-beaver</projectUrl>
+    <iconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</iconUrl>
+
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Service for showing dialogues on Xamarin.iOS platform on StrongBeaver.</description>
+    <releaseNotes>Alpha version created by BeaverSoft.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Dialog MessageBox Service Strong Beaver Xamarin iOS</tags>
+
+    <dependencies>
+      <group targetFramework="Xamarin.iOS">
+        <dependency id="BeaverSoft.StrongBeaver.Core.Platform" version="0.9.1-alpha" />
+        <dependency id="BeaverSoft.StrongBeaver.Services.Dialog.Xamarin" version="0.9.1-alpha" />
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+    <!-- iOS reference assemblies -->
+    <file src="StrongBeaver.Services.Dialog.Xamarin.iOS\bin\$configuration$\StrongBeaver.Services.Geolocator.Xamarin.dll" target="lib\Xamarin.iOS\StrongBeaver.Services.Dialog.Xamarin.iOS.dll" />
+    <file src="StrongBeaver.Services.Dialog.Xamarin.iOS\bin\$configuration$\StrongBeaver.Services.Geolocator.Xamarin.pdb" target="lib\Xamarin.iOS\StrongBeaver.Services.Dialog.Xamarin.iOS.pdb" />
+    <file src="StrongBeaver.Services.Dialog.Xamarin.iOS\bin\Debug\StrongBeaver.Services.Geolocator.Xamarin.xml" target="lib\Xamarin.iOS\StrongBeaver.Services.Dialog.Xamarin.iOS.xml" />
+  </files>
+</package>
