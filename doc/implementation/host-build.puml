@@ -26,24 +26,6 @@ class BaseActivator {
     #void OnInitialise()
 }
 
-interface IContainer {
-
-}
-
-interface IReadOnlyContainer {
-    TType Get<TType>()
-    TType Get<TType>(string)
-}
-
-interface IWriteOnlyContainer {
-    void Register<TInterface, TClass>()
-    void Register<TInterface, TClass>(string)
-    void Register<TClass>()
-    void Register<TClass>(string)
-    void Register<TType>(Func<TType>)
-    void Register<TType>(Func<TType>, string)
-}
-
 IReadOnlyContainer <|.. IContainer
 IWriteOnlyContainer <|.. IContainer
 StrongBeaver --> IStrongBeaverBuilder

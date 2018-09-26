@@ -1,35 +1,36 @@
-# StrongBeaver Framework
+# StrongBeaver library/framework
 
-The StrongBeaver is .NET application framework mainly designed for Xamarin, but can be used with any platform and any layered architecture.
+The StrongBeaver is .NET application pattern and tools mainly designed for Xamarin, but can be used with any platform and any layered architecture.
 
 ![Strong beaver image](doc/design/img-strong-beaver.png)
 
-**The Framework is migrating to .NET standard and going to be split to small and more specific libraries!**
+**The library is migrating to .NET standard and going to be split to small and more specific libraries!**
 
-**The Framework is in early stage (ALFA version). A lot of stuff can be changed and unit testing is coming. Can be used for testing and as a playground, but for a real deployment please wait for a stable release.**
+**The library is in early stage (ALFA version). A lot of stuff can be changed and unit testing is coming. Can be used for testing and as a playground, but for a real deployment please wait for a stable release.**
 
-> Simplicity is the ultimate sofistication.
+> Simplicity is the ultimate sophistication.
 >
 > &mdash; *Leonardo da Vinci*
 
 ## Work in progress
 
-- [X] Make the framework more .net standard friendly
-- [ ] Split framework to multiple libraries
-- [X] Remove service locator as a anti-pattern from framework core 
+- [X] Make the library more .net standard friendly
+- [X] Split library to multiple libraries
+- [X] Remove service locator as a anti-pattern from the library core
+- [ ] Update this documentation
 
 ## Introduction
 
-The architecture is called **TVMS** from ***T**idy **V**iew and **M**odel **S**eparation* and has been designed to be able to use it with any View-Model layered application.
+The architecture pattern is called **TVMS** from ***T**idy **V**iew and **M**odel **S**eparation* and has been designed to be able to use it with any View-Model layered application.
 The middle layer is universally named **separation**, which can be used with any well-known patterns, e.g. [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller), [MVVM](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel), or any [MVP](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter).
 
 > The pattern **TVMS** has been created to help us to simplify application design and guide us how to separate concerns of layers and minimise coupling inside sub-systems.
 
-The Framework as one product is called **StrongBeaver**. The concepts and base interfaces can be used for any .NET application, but the framework is mainly created for *[Xamarin](https://www.xamarin.com/) and WPF platform*.
+The library as one product is called **StrongBeaver**. The concepts and base interfaces can be used for any .NET application, but the library is mainly created for *[Xamarin](https://www.xamarin.com/) and WPF platform*.
 
 ## Architecture pattern diagrams
 
-The framework is mainly designed for MVVM friendly technologies, but can be used with any layered architecture. See diagrams below.
+The library is mainly designed for MVVM friendly technologies, but can be used with any layered architecture. See diagrams below.
 
 ### MVVM with universal XAML binder
 
@@ -52,25 +53,25 @@ The framework is mainly designed for MVVM friendly technologies, but can be used
 Concept | Description
 --- | ---
 Activator | Static public class which will be called on application start for initialisation purposes. This is the perfect place for filing dependency injection container. Should contains entire [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/).
-Binder | Middle-man responsible for data and commands binding between view and view model.
-IoC and DI | Inversion of Control and Dependency Injection are the heart of this framework. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern.
+Binder *(MVVM)* | Middle-man responsible for data and commands binding between view and view model.
+IoC and DI | Inversion of Control and Dependency Injection should be the skeleton of an application. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern.
 Factory | When we speak about factories we mostly mean an [Abstract Factory](https://en.wikipedia.org/wiki/Abstract_factory_pattern) which is a generic type, and the return type of the *Create* method is determined by the type of the factory itself. In other words, *factory can only return instances of a single type*.
 Manager | Long-life and stateful service inside a specific instance of object.
-MessageBus (Messanger) | Message bus for a specific group of objects, e.g. services or view models.
-Provider | The facade / locator for a specific type of objects, e.g. services, view models and more.
+MessageBus | Message bus for a specific group of objects, e.g. *services* or *view models (MVVM)*.
+Provider | The provider / facade / locator for a specific type of objects, e.g. *services*, *view models* and more.
 Service | Stateful or stateless, singleton and long-life service, which is registered in system.
 *ServiceLocator (IoC)* | *[ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) is a generic factory for multiple types. Nevertheless, **we don't recommended it**, because it is an [anti-pattern](http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/) and an abstract factories [should be used instead](http://blog.ploeh.dk/2010/11/01/PatternRecognitionAbstractFactoryorServiceLocator/).*
 Store | In memory storage, responsible for caching and reusability of objects.
 Strategy | Lightweight service / behaviour inside a instance of object, which is used in *pure unit of work* approach.
 TVMS (Tidy View and Model Separation) | Universal architectural pattern for any layered application.
-View Model | Bindable model of view, brinks for MVVM and binding is a grout.
+View Model | Bindable model of view, bricks for MVVM and binding is a grout. Under the name **view models** are hidden top level models for *pages / forms / widows* and smaller objects with shorter life-time are called **view objects**, for better distinction.
 XAML | In the Microsoft solution stack, the universal binder is a markup language called XAML.
 
-## Framework basics
+## Library basics
 
 > Everything is implemented with the main focus on **extensibility** and **flexibility**.
 
-The heart of the framework is **Dependency Injection with IoC container** which is realised by simple interface **IContainer**. This abstraction is here not just to allow us to use any container but mostly for forcing us to use it only for storing *services*, *stores*, *providers* and *factories*, because all registered types are singletons by default and the interface is purposefully simple and lightweight. If no concrete container is specified the **SimpleIoc** container from [MVVM Light Toolkit](http://www.mvvmlight.net/) will be used. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern with single [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/). Our IoC container is simplified to very thin facility to register and receive singleton based on type or string key. Anything else shouldn't be needed and if so then a new factory or provider should be created and register with the container.
+The frame of an application should be **Dependency Injection with IoC container**. This abstraction is here not just to allow us to use any container but mostly for forcing us to use it only for storing *services*, *stores*, *providers* and *factories*, because all registered types are singletons by default and the interface is purposefully simple and lightweight. If no concrete container is specified the **SimpleIoc** container from [MVVM Light Toolkit](http://www.mvvmlight.net/) will be used. We are recommending to use [Register-Resolve-Release](http://blog.ploeh.dk/2010/09/29/TheRegisterResolveReleasepattern/) (RRR or 3R) pattern with single [Composition root](http://blog.ploeh.dk/2011/07/28/CompositionRoot/). Our IoC container is simplified to very thin facility to register and receive singleton based on type or string key. Anything else shouldn't be needed and if so then a new factory or provider should be created and register with the container.
 
 The main concept is about **services**, which should be registered in service provider and for less coupling, they can communicate through a shared **message bus**. The services itself and their message bus can be accessible via facade **ServiceProvider**. Respectively each layer is realised by own provider with main object type, e.g. the view model layer contains many top level **ViewModels** and **ViewModelProvider**.
 
@@ -82,9 +83,9 @@ For better code management and low coupling, we are recommending to use [strateg
 
 ## Recommendations and guidelines
 
-With the architecture pattern and framework, we are coming with recommendations, as well. These guidelines can be followed or not. They can help with better and cleaner application design and code base.
+With the architecture pattern and the library, we are coming with recommendations, as well. These guidelines can be followed or not. They can help with better and cleaner application design and code base.
 
-> We will add more recommendations and specify *code standards* with *naming convention* during the Framework growth.
+> We will add more recommendations and specify *code standards* with *naming convention* during the library growth.
 
 * Each class should have **one and only one responsibility**.
 * Every public type which can be used or extended outside a namespace needs to **be realised and referenced as an interface** instead of just as a class.
@@ -99,7 +100,7 @@ With the architecture pattern and framework, we are coming with recommendations,
 
 Dependency | Description
 --- | ---
-[MVVM Light Toolkit](http://www.mvvmlight.net/) | The framework takes a lot of inspiration from this great and powerful toolkit. *We would like to integrate engaged subset deeply to the framework, to be able to do this everything is already abstracted.*
+[MVVM Light Toolkit](http://www.mvvmlight.net/) | The library takes a lot of inspiration from this great and powerful toolkit. *We would like to integrate engaged subset deeply to the library, to be able to do this everything is already abstracted.*
 [Json.NET](https://www.newtonsoft.com/json) | The JSON is the most popular data transfer format used on the network and for communication between systems.
 
 ## Service list
@@ -124,7 +125,7 @@ Dependency | Description
   * **Rest** - The generic service for sending and processing REST requests.
   * *Transfer* - Download or upload files in the background. *Implementation is planned for next phase.*
 * *Notifications*
-  * *We are planning to integrate a system, local and push notifications into the framework.*
+  * *We are planning to integrate a system, local and push notifications into the library.*
 * **Permissions** - Manage permission on any platform.
 * *Progress* - Generic way how to show progress of any background operation on UI. *Implementation is planned for next phase.*
 * **Reflection** - Simple service for runtime object creation (object/type instantiation).
@@ -138,42 +139,31 @@ Dependency | Description
   * **KeyValues** - Storage for key / value pairs. *On Xamarin platform the application dictionary is used.*
   * *File* - Universal file storage service. *Implementation is in progress.*
 
-> A number of services will grow, with new versions of the framework. *More services = more power :)*
+> A number of services will grow, with new versions of the library. *More services = more power :)*
 
-## Integrated Plugins for Xamarin
+## Integration with Xamarin
 
->* A plugin written in **Bold** is already wrapped and ready as a NuGet package.
->* A plugin written in *Italic* will be wrapped.
+> Most of implementation for Xamarin is realised by [Xamarin.Essentials](https://docs.microsoft.com/en-us/xamarin/essentials/) library which is current in preview.
 
-* *API*
-  * *Facebook* - *Will be realised by [Xamarin Components for Facebook](https://github.com/xamarin/FacebookComponents)*.
-  * *GooglePlay* - *Will be realised by [Xamarin Component for Google Play Services Client Library](https://github.com/xamarin/GooglePlayServicesComponents)*.
-* **Device**
-  * **Connectivity** - Network connectivity information, e.g. if a connection is available. *Powered by [Connectivity Plugin for Xamarin](https://github.com/jamesmontemagno/ConnectivityPlugin)*.
-  * **Geolocator** - Get GPS location of a device. *Realised by [Geolocator Plugin for Xamarin](https://github.com/jamesmontemagno/GeolocatorPlugin)*.
-  * *Sensors and Motion* - Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass. *Will be realised by [Device Motion Plugin for Xamarin](https://github.com/rdelrosario/xamarin-plugins/tree/master/DeviceMotions)*.
-* **Dialog** - Service for showing dialogues and toasts. *Partially powered by [Popup Page Plugin for Xamarin](https://github.com/rotorgames/Rg.Plugins.Popup)*.
-* *Media*
-  * *Camera* - Access to camera or photo library on any platform. *Will be realised by [Media Plugin for Xamarin](https://github.com/jamesmontemagno/MediaPlugin)*.
-  * *Audio* - Playback for Audio. *Will be realised by [MediaManager Plugin for Xamarin](https://github.com/martijn00/XamarinMediaManager)*.
-* *Network*
-  * *Transfer* - Download or upload files in the background. *Will be realised by [ACR HTTP Transfers Plugin for Xamarin](https://github.com/aritchie/httptransfertasks)*.
+* **Dialog** - Service for showing dialogues. *Partially powered by [Popup Page Plugin for Xamarin](https://github.com/rotorgames/Rg.Plugins.Popup)*.
+* **Toast** - Shows toasts. *Spiked from XXX.*
 * **Permissions** - Manage permissions on any platform. *This service is realised by [Permissions Plugin for Xamarin](https://github.com/jamesmontemagno/PermissionsPlugin)*.
-* *Storage* (Persistent)
-  * *Embedded* - Unpack embedded resource cross-platform. *Will be realised by [Embedded Resource Plugin for Xamarin](https://github.com/JosephHill/EmbeddedResourcePlugin)*.
+* **Storage** (Persistent)
+  * **Base (KeyValue, JSON)** - Storage for string key/value pairs and JSON objects. *Using build-in [Application.Properties](https://docs.microsoft.com/en-us/dotnet/api/xamarin.forms.application.properties?view=xamarin-forms)*.
 
-> A number of Xamarin plugin wrappers will grow. If you want to help us, you can create one. It is a great opportunity to learn how to use the Framework and how it works under the hood.
->
-> The complete [list of available Xamarin Plugins](https://github.com/xamarin/XamarinComponents).
+> A number of Xamarin services will grow. If you want to help us, you can create one. It is a great opportunity to learn how to use the library and how it works under the hood.
 
 ## Showroom application
 
-> Current showroom application is written with Xamarin.Forms UI library, but right now is supported only iOS platform.
+> Current showroom application is written with **Xamarin.Forms** UI, but right now is supported only iOS platform.
 
-## Project(s) based on the Framework
+## Project(s) based on the library
 
-* Queue Tracker
-* Texty.UI
+* [Queue Tracker](http://beaversoft.cz/en-US/app/queue-tracker)
+  * Observe queues and waiting times for amusement parks, border crossings, authorities and other institutions.
+  * *Not fully migrated to the library, yet.*
+* Textum.UI
+  * Platform independent text base graphic user interface subsystem. Driven by commands and actions.
 
 ## Nuget packages
 
@@ -217,7 +207,7 @@ Here is some useful code by examples.
 
 ### Create Activator
 
-This example shows how to initialise Xamarin application with the *StrongBeaver* framework.
+This example shows how to initialise Xamarin application with the *StrongBeaver* library.
 
 #### Shared Activator static class
 
