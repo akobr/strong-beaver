@@ -61,10 +61,10 @@ MessageBus | Message bus for a specific group of objects, e.g. *services* or *vi
 Provider | The provider / facade / locator for a specific type of objects, e.g. *services*, *view models* and more.
 Service | Stateful or stateless, singleton and long-life service, which is registered in system.
 *ServiceLocator (IoC)* | *[ServiceLocator](https://msdn.microsoft.com/en-us/library/ff648968.aspx) is a generic factory for multiple types. Nevertheless, **we don't recommended it**, because it is an [anti-pattern](http://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/) and an abstract factories [should be used instead](http://blog.ploeh.dk/2010/11/01/PatternRecognitionAbstractFactoryorServiceLocator/).*
-Store | In memory storage, responsible for caching and reusability of objects.
+Store | In memory storage, responsible for caching and reusability of objects. Should be used with business and view objects.
 Strategy | Lightweight service / behaviour inside a instance of object, which is used in *pure unit of work* approach.
 TVMS (Tidy View and Model Separation) | Universal architectural pattern for any layered application.
-View Model | Bindable model of view, bricks for MVVM and binding is a grout. Under the name **view models** are hidden top level models for *pages / forms / widows* and smaller objects with shorter life-time are called **view objects**, for better distinction.
+View Model | Bindable model of view, bricks for MVVM and binding is a grout. Under the name **view models** are hidden top level models for *pages / forms / windows* and smaller objects with shorter life-time are called **view objects**, for better distinction.
 XAML | In the Microsoft solution stack, the universal binder is a markup language called XAML.
 
 ## Library basics
