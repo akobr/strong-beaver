@@ -1,6 +1,6 @@
-﻿using StrongBeaver.Core.Platform;
+﻿using System;
+using StrongBeaver.Platform;
 using StrongBeaver.Showroom.Constants;
-using System;
 
 namespace StrongBeaver.Showroom.iOS.Platform
 {

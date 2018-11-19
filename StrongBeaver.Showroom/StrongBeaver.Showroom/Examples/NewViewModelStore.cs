@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿using StrongBeaver.Core;
 using StrongBeaver.Core.Model;
 
 namespace StrongBeaver.Showroom.Examples
 {
-    public class NewViewModelStore : ComplexStore<int, NewObservableItem>
+    public class NewViewModelStore : ViewObjectStore<int, NewObservableItem>
     {
         // Create a new store class isn't necessary
 
@@ -14,10 +14,10 @@ namespace StrongBeaver.Showroom.Examples
         }
     }
 
-    public class NewObservableItem : ObservableObject, IComplexStoreItem<NewObservableItem>
+    public class NewObservableItem : ObservableObject, IViewObject<NewObservableItem>
     {
         // The base class ObservableObject is only recomendation for databinding,
-        // mandatory is only IComplexStoreItem interface
+        // mandatory is only IViewObject interface
 
         // Item key property
         public int Id { get; set; }

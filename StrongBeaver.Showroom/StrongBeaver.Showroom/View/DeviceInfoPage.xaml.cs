@@ -1,7 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
-using StrongBeaver.Core.Constants;
+﻿using StrongBeaver.Core.Constants;
 using StrongBeaver.Core.Platform;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,8 +8,12 @@ namespace StrongBeaver.Showroom.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DeviceInfoPage : ContentPage
     {
-        public DeviceInfoPage()
+        private readonly IEnvironmentInfo environmentInfo;
+
+        public DeviceInfoPage(IEnvironmentInfo environmentInfo)
         {
+            this.environmentInfo = environmentInfo;
+
             InitializeComponent();
             InitialiseInfo();
         }
@@ -21,11 +23,9 @@ namespace StrongBeaver.Showroom.View
             TableRoot tableRoot = tableInfo.Root;
             tableRoot.Clear();
 
-            IPlatformModel platformModel = ServiceLocator.Current.GetInstance<IPlatformModel>();
-
-            tableRoot.Add(CreateDeviceInfoSection(platformModel.Device));
-            tableRoot.Add(CreatePlatformInfoSection(platformModel.Platform));
-            tableRoot.Add(CreateApplicationInfoSection(platformModel.Application));
+            tableRoot.Add(CreateDeviceInfoSection(environmentInfo.Device));
+            tableRoot.Add(CreatePlatformInfoSection(environmentInfo.Platform));
+            tableRoot.Add(CreateApplicationInfoSection(environmentInfo.Application));
         }
 
         private TableSection CreateDeviceInfoSection(IDeviceInfo info)

@@ -1,17 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>BeaverSoft.StrongBeaver.Core</PackageId>
+    <Version>0.9.8-alpha</Version>
+    <Product>StrongBeaver Framework (the core library)</Product>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+    <Description>The application Framework (the core library).</Description>
+    <PackageReleaseNotes>Alpha version of application Framework (the core library) created by BeaverSoft.</PackageReleaseNotes>
+    <PackageTags>Framework Architecture MVVM PureMVC MVC Strong Beaver</PackageTags>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright 2017</Copyright>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <NeutralLanguage>en-150</NeutralLanguage>
+    <Company>BeaverSoft (Ales Kobr)</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\Lifetime\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

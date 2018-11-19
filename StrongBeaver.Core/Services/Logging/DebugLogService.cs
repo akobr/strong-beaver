@@ -7,52 +7,17 @@ using System.Text;
 
 namespace StrongBeaver.Core.Services.Logging
 {
-    public class DebugLogService : BaseService, ILogService
+    public class DebugLogService : ILogService
     {
-        public void Trace(string message, params object[] args)
+        public void Log(LogMessageLevelEnum level, string message, params object[] args)
         {
-            System.Diagnostics.Debug.WriteLine($"[{nameof(LogMessageLevelEnum.Trace)}]: {message ?? "NULL"}");
-            WriteObjectsToDebug(args);
-        }
-
-        public void Debug(string message, params object[] args)
-        {
-            System.Diagnostics.Debug.WriteLine($"[{nameof(LogMessageLevelEnum.Debug)}]: {message ?? "NULL"}");
-            WriteObjectsToDebug(args);
-        }
-
-        public void Info(string message, params object[] args)
-        {
-            System.Diagnostics.Debug.WriteLine($"[{nameof(LogMessageLevelEnum.Info)}]: {message ?? "NULL"}");
-            WriteObjectsToDebug(args);
-        }
-
-        public void Warn(string message, params object[] args)
-        {
-            System.Diagnostics.Debug.WriteLine($"[{nameof(LogMessageLevelEnum.Warn)}]: {message ?? "NULL"}");
-            WriteObjectsToDebug(args);
-        }
-
-        public void Error(string message, params object[] args)
-        {
-            System.Diagnostics.Debug.WriteLine($"[{nameof(LogMessageLevelEnum.Error)}]: {message ?? "NULL"}");
-            WriteObjectsToDebug(args);
-        }
-
-        public void Fatal(string message, params object[] args)
-        {
-            System.Diagnostics.Debug.WriteLine($"[{nameof(LogMessageLevelEnum.Fatal)}]: {message ?? "NULL"}");
+            Debug.WriteLine($"[{level}]: {message ?? "NULL"}");
             WriteObjectsToDebug(args);
         }
 
         public void ProcessMessage(ILogMessage message)
         {
-            if (message == null)
-            {
-                return;
-            }
-
-            message.PerformMessage(this);
+            message?.PerformMessage(this);
         }
 
         [Conditional("DEBUG")]
@@ -76,7 +41,7 @@ namespace StrongBeaver.Core.Services.Logging
                 return;
             }
 
-            System.Diagnostics.Debug.WriteLine(objectToWrite);
+            Debug.WriteLine(objectToWrite);
             Exception exception = objectToWrite as Exception;
 
             if (exception == null)
@@ -84,7 +49,7 @@ namespace StrongBeaver.Core.Services.Logging
                 return;
             }
 
-            System.Diagnostics.Debug.WriteLine("EXCEPTION DETAILS");
+            Debug.WriteLine("EXCEPTION DETAILS");
             WriteExceptionToDebug(exception, 0);
         }
 
@@ -96,9 +61,9 @@ namespace StrongBeaver.Core.Services.Logging
                 return;
             }
 
-            System.Diagnostics.Debug.WriteLine($"MESSAGE: {exception.Message ?? string.Empty}");
-            System.Diagnostics.Debug.WriteLine($"SOURCE: {exception.Source ?? string.Empty}");
-            System.Diagnostics.Debug.WriteLine(exception.StackTrace ?? string.Empty);
+            Debug.WriteLine($"MESSAGE: {exception.Message ?? string.Empty}");
+            Debug.WriteLine($"SOURCE: {exception.Source ?? string.Empty}");
+            Debug.WriteLine(exception.StackTrace ?? string.Empty);
             WriteExceptionDataToDebug(exception);
 
             if (exception.InnerException == null)
@@ -107,7 +72,7 @@ namespace StrongBeaver.Core.Services.Logging
             }
 
             int nextNestingLevel = nestingLevel + 1;
-            System.Diagnostics.Debug.WriteLine($"INNER EXCEPTION LEVEL {nextNestingLevel}");
+            Debug.WriteLine($"INNER EXCEPTION LEVEL {nextNestingLevel}");
             WriteExceptionToDebug(exception.InnerException, nextNestingLevel);
         }
 
@@ -134,8 +99,8 @@ namespace StrongBeaver.Core.Services.Logging
             }
 
             stb.Remove(stb.Length - 2, 2);
-            System.Diagnostics.Debug.WriteLine("EXCEPTION DATA:");
-            System.Diagnostics.Debug.WriteLine(stb.ToString());
+            Debug.WriteLine("EXCEPTION DATA:");
+            Debug.WriteLine(stb.ToString());
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace StrongBeaver.Core.Services
+﻿namespace StrongBeaver.Core.Services
 {
-    public interface IService : IDisposable
+    public interface IService
     {
         // No member
     }

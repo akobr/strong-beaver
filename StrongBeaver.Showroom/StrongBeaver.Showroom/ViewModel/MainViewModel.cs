@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.ServiceLocation;
-using StrongBeaver.Core;
+﻿using StrongBeaver.Core;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Navigation;
 using StrongBeaver.Core.ViewModel;
@@ -8,6 +6,7 @@ using StrongBeaver.Showroom.Constants;
 using StrongBeaver.Showroom.View.WebContent;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using StrongBeaver.Core.Commands;
 using Xamarin.Forms;
 
 namespace StrongBeaver.Showroom.ViewModel
@@ -16,36 +15,30 @@ namespace StrongBeaver.Showroom.ViewModel
     {
         private readonly INavigationService navigation;
 
-        public MainViewModel()
+        public MainViewModel(INavigationService navigation)
         {
-            navigation = ServiceLocator.Current.GetInstance<INavigationService>();
+            this.navigation = navigation;
         }
 
         public ICommand NavigateToArchitecturePageCommand
             => new RelayCommand(async () =>
             {
                 MasterPage.IsPresented = false;
-
-                // Using Provider as main Facade
-                await Provider.Services.Get<INavigationService>().NavigateToAsync(ShowroomPageKeys.ARCHITECTORE_PAGE);
+                await navigation.NavigateToAsync(ShowroomPageKeys.ARCHITECTORE_PAGE);
             });
 
         public ICommand NavigateToDialogPageCommand
             => new RelayCommand(async () =>
             {
                 MasterPage.IsPresented = false;
-
-                // Using singleton service provider
-                await ServiceProvider.Current.Get<INavigationService>().NavigateToAsync(ShowroomPageKeys.DIALOG_PAGE);
+                await navigation.NavigateToAsync(ShowroomPageKeys.DIALOG_PAGE);
             });
 
         public ICommand NavigateToDeviceInfoPageCommand
             => new RelayCommand(async () =>
             {
                 MasterPage.IsPresented = false;
-
-                // Using IoC container directly
-                await ServiceLocator.Current.GetInstance<INavigationService>().NavigateToAsync(ShowroomPageKeys.DEVICE_INFO_PAGE);
+                await navigation.NavigateToAsync(ShowroomPageKeys.DEVICE_INFO_PAGE);
             });
 
         public ICommand NavigateToStoragePageCommand
@@ -69,7 +62,7 @@ namespace StrongBeaver.Showroom.ViewModel
                  await NavigateToLocalWebContentPageAsync(description);
              });
 
-        private MasterDetailPage MasterPage => (MasterDetailPage)App.Current.MainPage;
+        private MasterDetailPage MasterPage => (MasterDetailPage)Application.Current.MainPage;
 
         private Task NavigateToLocalWebContentPageAsync(IWebContentDescription description)
         {

@@ -2,6 +2,6 @@
 {
     public interface IInitialisationStrategy<in TItem>
     {
-        void InitialiseItem(TItem item);
+        void InitialiseIt(TItem item);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using StrongBeaver.Core.Services.Dialog;
+using StrongBeaver.Services.Dialog;
+using StrongBeaver.Services.Toast;
+using StrongBeaver.Showroom.Constants;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using StrongBeaver.Showroom.Constants;
-using StrongBeaver.Core.Services;
 
 namespace StrongBeaver.Showroom.View
 {
@@ -12,10 +12,12 @@ namespace StrongBeaver.Showroom.View
     public partial class DialogPage : ContentPage
     {
         private readonly IDialogService dialogService;
+        private readonly IToastService toastService;
 
-        public DialogPage()
+        public DialogPage(IDialogService dialogService, IToastService toastService)
         {
-            dialogService = ServiceProvider.Current.Get<IDialogService>();
+            this.dialogService = dialogService;
+            this.toastService = toastService;
 
             InitializeComponent();
         }
@@ -26,7 +28,7 @@ namespace StrongBeaver.Showroom.View
             string text = string.IsNullOrWhiteSpace(entryDialogText.Text) ? "Sample message body." : entryDialogText.Text;
 
             int tappedButton = await dialogService.ShowDialogAsync(title, text, GetDialogActions());
-            dialogService.ShowToast(new Toast($"The button '{GetButtonTitle(tappedButton)}' has been tapped."));
+            toastService.ShowToast(new Toast($"The button '{GetButtonTitle(tappedButton)}' has been tapped."));
         }
 
         private void HandleShowToastClicked(object sender, EventArgs e)
@@ -36,15 +38,15 @@ namespace StrongBeaver.Showroom.View
             {
                 Duration = switchToastDismiss.On ? TimeSpan.FromSeconds(3.0) : TimeSpan.FromSeconds(20.0),
                 ActionTitle = "OK",
-                Action = () => { dialogService.ShowMessage("A toast message has been tapped.", "Action from toast"); }
+                Action = () => { dialogService.ShowDialogAsync("A toast message has been tapped.", "Action from toast"); }
             };
 
-            dialogService.ShowToast(toast);
+            toastService.ShowToast(toast);
         }
 
         private async void HandleShowCustomDialogClicked(object sender, EventArgs e)
         {
-            await dialogService.ShowDialogByNameAsync(ShowroomDialogKeys.EXEMPLARY_DIALOG);
+            await dialogService.ShowDialogAsync(ShowroomDialogKeys.EXEMPLARY_DIALOG);
         }
 
         private IReadOnlyCollection<IDialogActionDescription> GetDialogActions()

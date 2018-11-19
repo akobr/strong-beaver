@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>StrongBeaver.Services.Storage</RootNamespace>
+    <Description>Xamarin implementation of base data storage services for StrongBeaver Framework. Key values storage service and json object storage service, both of them use Xamarin application storage.</Description>
+    <Version>0.9.1-alpha</Version>
+    <Authors>BeaverSoft (Ales Kobr)</Authors>
+    <Company>BeaverSoft (Ales Kobr)</Company>
+    <Product>Xamarin implementation of base data storage services for StrongBeaver</Product>
+    <Copyright>Copyright 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
+    <NeutralLanguage>en-150</NeutralLanguage>
+    <PackageTags>KeyValue Json Storage Data Service Strong Beaver</PackageTags>
+    <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StrongBeaver.Services.Storage.Base\StrongBeaver.Services.Storage.Base.csproj" />
+  </ItemGroup>
+
+</Project>

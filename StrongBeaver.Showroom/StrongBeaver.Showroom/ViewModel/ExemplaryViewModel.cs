@@ -1,21 +1,19 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Newtonsoft.Json.Linq;
-using StrongBeaver.Core;
-using StrongBeaver.Core.Services;
-using StrongBeaver.Core.Services.Storage.Data;
-using StrongBeaver.Core.Services.Storage.Json;
-using StrongBeaver.Core.Services.Storage.KeyValues;
-using StrongBeaver.Core.ViewModel;
-using StrongBeaver.Showroom.Model;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Newtonsoft.Json.Linq;
+using StrongBeaver.Core.Commands;
+using StrongBeaver.Core.ViewModel;
+using StrongBeaver.Services.Storage.Data;
+using StrongBeaver.Services.Storage.Json;
+using StrongBeaver.Services.Storage.KeyValues;
+using StrongBeaver.Showroom.Model;
 
 namespace StrongBeaver.Showroom.ViewModel
 {
     public class ExemplaryViewModel : BaseViewModel
     {
         private const string KEY_VALUE_KEY = "42";
-        private const int JSON_STORED_ITEM_ID = 42;
+        private const string JSON_STORED_ITEM_KEY = "42";
 
         private readonly IKeyValuesStorageSyncService keyValueStorage;
         private readonly IJsonStorageService jsonStorage;
@@ -26,11 +24,14 @@ namespace StrongBeaver.Showroom.ViewModel
         private string keyValueData;
         private string jsonData;
 
-        public ExemplaryViewModel()
+        public ExemplaryViewModel(
+            IKeyValuesStorageSyncService keyValueStorage,
+            IJsonStorageService jsonStorage,
+            IDataStorageService relationStorage)
         {
-            keyValueStorage = ServiceProvider.Current.Get<IKeyValuesStorageSyncService>();
-            jsonStorage = Provider.Get<IJsonStorageService>();
-            relationStorage = Provider.Locator.GetInstance<IDataStorageService>();
+            this.keyValueStorage = keyValueStorage;
+            this.jsonStorage = jsonStorage;
+            this.relationStorage = relationStorage;
         }
 
         public ExemplaryItem CurrentItem
@@ -120,17 +121,17 @@ namespace StrongBeaver.Showroom.ViewModel
 
         private void StoreJson()
         {
-            jsonStorage.Store(JSON_STORED_ITEM_ID, CurrentItem);
+            jsonStorage.Store(JSON_STORED_ITEM_KEY, CurrentItem);
         }
 
         private void RetrieveJson()
         {
-            JsonData = jsonStorage.GetObject<JToken>(JSON_STORED_ITEM_ID)?.ToString();
+            JsonData = jsonStorage.GetObject<JToken>(JSON_STORED_ITEM_KEY)?.ToString();
         }
 
         private void StoreRelation()
         {
-            using (IDataOperation operation = relationStorage.GetDataOperation())
+            using (IDataOperation operation = relationStorage.GetOperation())
             {
                 operation.Store(CurrentItem);
             }
@@ -138,7 +139,7 @@ namespace StrongBeaver.Showroom.ViewModel
 
         private void RetrieveRelation()
         {
-            using (IDataOperation operation = relationStorage.GetDataOperation())
+            using (IDataOperation operation = relationStorage.GetOperation())
             {
                 RelationItems = new ObservableCollection<ExemplaryItem>(operation.GetAll<ExemplaryItem>());
             }

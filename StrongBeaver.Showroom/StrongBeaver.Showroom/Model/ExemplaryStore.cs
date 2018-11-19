@@ -2,7 +2,7 @@
 
 namespace StrongBeaver.Showroom.Model
 {
-    public class ExemplaryStore : ComplexStore<int, ExemplaryItem>
+    public class ExemplaryStore : ViewObjectStore<int, ExemplaryItem>
     {
         public ExemplaryStore()
             : base((item) => item.Id)

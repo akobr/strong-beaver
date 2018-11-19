@@ -3,7 +3,7 @@
              xmlns:webContent="clr-namespace:StrongBeaver.Showroom.View.WebContent"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StrongBeaver.Showroom.View.MainPageMaster"
-             BindingContext="{Binding Source={StaticResource ViewModelLocator}, Path=MainViewModel}"
+             BindingContext="{Binding Source={StaticResource ViewModelLocator}, Path=Main}"
              Title="Menu"
              Icon="icon-menu.png">
     <StackLayout>

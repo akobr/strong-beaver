@@ -8,6 +8,8 @@ namespace StrongBeaver.Core.Services.Reflection
 
         object CreateInstance(Type instanceType);
 
+        TType CreateInstance<TType>(object[] arguments);
+
         object CreateInstance(Type instanceType, object[] arguments);
     }
 }

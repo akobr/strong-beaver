@@ -1,5 +1,4 @@
 ﻿using System;
-using StrongBeaver.Core.Helpers;
 using StrongBeaver.Core.Lifetime;
 
 namespace StrongBeaver.Core.Model
@@ -47,8 +46,8 @@ namespace StrongBeaver.Core.Model
                 return resultItem;
             }
 
-            OnItemCreation(item);
             CreateLifetimeManager(key);
+            OnItemCreation(item);
             items[key] = item;
             return item;
         }

@@ -1,4 +1,5 @@
 ﻿using StrongBeaver.Core;
+using StrongBeaver.Core.Services.Logging;
 using UIKit;
 
 namespace StrongBeaver.Showroom.iOS
@@ -17,8 +18,8 @@ namespace StrongBeaver.Showroom.iOS
             }
             catch (System.Exception ex)
             {
-                Provider.LogErrorMessage("Unhandled exception occurred.", ex);
-                throw ex;
+                App.Logger.Error("Unhandled exception occurred.", ex);
+                throw;
             }
         }
     }

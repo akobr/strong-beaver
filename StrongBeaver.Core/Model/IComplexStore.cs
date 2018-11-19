@@ -1,17 +1,10 @@
-﻿namespace StrongBeaver.Core.Model
+﻿using StrongBeaver.Core.Lifetime;
+
+namespace StrongBeaver.Core.Model
 {
-    /// <summary>
-    /// The complex store is extending the simple one.
-    /// Initialisable, Updatable, and Disposable item.
-    /// Lifetime of each item is hadled by reference counting.
-    /// </summary>
-    public interface IComplexStore<TKey, TItem> : ISimpleStore<TKey, TItem>
-        where TItem : IComplexStoreItem<TItem>
+    public interface IComplexStore<TKey, TItem, TLifetimeManager> : IManagedStore<TKey, TItem, TLifetimeManager>
+        where TLifetimeManager : class, ILifetimeManager
     {
         bool TryUpdate(TItem item);
-
-        void AddReference(TItem item);
-
-        void RemoveReference(TItem item);
     }
 }

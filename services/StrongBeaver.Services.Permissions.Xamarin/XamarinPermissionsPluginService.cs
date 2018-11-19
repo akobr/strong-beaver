@@ -1,73 +1,31 @@
-﻿using Plugin.Permissions;
-using Plugin.Permissions.Abstractions;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 
-namespace StrongBeaver.Core.Services.Permissions
+namespace StrongBeaver.Services.Permissions
 {
-    public class XamarinPermissionsPluginService : BasePermissionsService
+    public class XamarinPermissionsPluginService : IPermissionsService
     {
-        private IPermissions permissions;
+        private readonly IPermissions facade;
         public XamarinPermissionsPluginService()
         {
-            permissions = CrossPermissions.Current;
+            facade = CrossPermissions.Current;
         }
 
-        public override async Task<PermissionStatusEnum> CheckPermissionStatusAsync(PermissionTypeEnum permission)
+        public Task<PermissionStatus> CheckPermissionStatusAsync(Permission permission)
         {
-            if (!CrossPermissions.IsSupported)
-            {
-                return PermissionStatusEnum.Unknown;
-            }
-
-            return TranslatePermissionStatus(await permissions.CheckPermissionStatusAsync(TranslatePermissionType(permission)));
+            return facade.CheckPermissionStatusAsync(permission);
         }
 
-        public override async Task<PermissionStatusEnum> RequestPermissionAsync(PermissionTypeEnum permission)
+        public Task<Dictionary<Permission, PermissionStatus>> RequestPermissionsAsync(params Permission[] permissions)
         {
-            if (!CrossPermissions.IsSupported)
-            {
-                return PermissionStatusEnum.Unknown;
-            }
-
-            Permission translatedPermission = TranslatePermissionType(permission);
-            return TranslatePermissionStatus((await permissions.RequestPermissionsAsync())[translatedPermission]);
+            return facade.RequestPermissionsAsync(permissions);
         }
 
-        public override async Task<bool> ShouldShowRequestPermissionRationaleAsync(PermissionTypeEnum permission)
+        public Task<bool> ShouldShowRequestPermissionRationaleAsync(Permission permission)
         {
-            if (!CrossPermissions.IsSupported)
-            {
-                return false;
-            }
-
-            return await permissions.ShouldShowRequestPermissionRationaleAsync(TranslatePermissionType(permission));
-        }
-
-        private Permission TranslatePermissionType(PermissionTypeEnum permissionType)
-        {
-            return (Permission)(int)permissionType;
-        }
-
-        private PermissionStatusEnum TranslatePermissionStatus(PermissionStatus permissionStatus)
-        {
-            switch (permissionStatus)
-            {
-                case PermissionStatus.Denied:
-                    return PermissionStatusEnum.Denied;
-
-                case PermissionStatus.Disabled:
-                    return PermissionStatusEnum.Disabled;
-
-                case PermissionStatus.Granted:
-                    return PermissionStatusEnum.Granted;
-
-                case PermissionStatus.Restricted:
-                    return PermissionStatusEnum.Restricted;
-
-                // case PermissionStatus.Unknown:
-                default:
-                    return PermissionStatusEnum.Unknown;
-            }
+            return facade.ShouldShowRequestPermissionRationaleAsync(permission);
         }
     }
 }
