@@ -1,8 +1,8 @@
-﻿using GalaSoft.MvvmLight;
-using StrongBeaver.Core.Model;
+﻿using StrongBeaver.Core.Model;
 using System;
 using System.Text;
 using SQLite;
+using StrongBeaver.Core;
 
 namespace StrongBeaver.Showroom.Model
 {

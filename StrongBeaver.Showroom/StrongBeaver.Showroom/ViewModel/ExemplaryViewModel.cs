@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json.Linq;
+using StrongBeaver.Core.Commands;
 using StrongBeaver.Core.ViewModel;
 using StrongBeaver.Services.Storage.Data;
 using StrongBeaver.Services.Storage.Json;

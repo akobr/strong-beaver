@@ -1,6 +1,4 @@
-﻿using StrongBeaver.Core.Messaging;
-
-namespace StrongBeaver.Core.ViewModel
+﻿namespace StrongBeaver.Core.ViewModel
 {
     public interface IViewModelMessageBus
     {
@@ -9,7 +7,7 @@ namespace StrongBeaver.Core.ViewModel
 
         void Send<TMessage, TTarget>(TMessage message)
             where TMessage : IViewModelMessage
-            where TTarget : IMessageBusRecipient<TMessage>;
+            where TTarget : IMessageBusViewModel<TMessage>;
 
         void Send<TMessage>(TMessage message, object token)
             where TMessage : IViewModelMessage;

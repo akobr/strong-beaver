@@ -1,15 +1,14 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using StrongBeaver.Core.Messaging;
+﻿using StrongBeaver.Core.Messaging;
 
 namespace StrongBeaver.Core.Services
 {
     public class ServiceMessageBus : IServiceMessageBus, IServiceMessageBusRegister
     {
-        private readonly Messenger messenger;
+        private readonly GenericMessageBus messenger;
 
         public ServiceMessageBus()
         {
-            messenger = new Messenger();
+            messenger = new GenericMessageBus();
         }
 
         public void Send<TMessage>(TMessage message)
@@ -25,7 +24,7 @@ namespace StrongBeaver.Core.Services
 
         public void Send<TMessage, TTarget>(TMessage message)
             where TMessage : IServiceMessage
-            where TTarget : IMessageBusRecipient<TMessage>
+            where TTarget : IMessageBusService<TMessage>
         {
             if (message == null)
             {
@@ -46,8 +45,7 @@ namespace StrongBeaver.Core.Services
             messenger.Send<TMessage>(message, token);
         }
 
-        public void Register<TRecipient, TMessage>(TRecipient recipient)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        public void Register<TMessage>(IMessageBusService<TMessage> recipient)
             where TMessage : IServiceMessage
         {
             if (recipient == null)
@@ -58,8 +56,7 @@ namespace StrongBeaver.Core.Services
             messenger.Register<TMessage>(recipient, true, recipient.ProcessMessage, false);
         }
 
-        public void Register<TRecipient, TMessage>(TRecipient recipient, object token)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        public void Register<TMessage>(IMessageBusService<TMessage> recipient, object token)
             where TMessage : IServiceMessage
         {
             if (recipient == null)
@@ -80,7 +77,7 @@ namespace StrongBeaver.Core.Services
             messenger.Unregister(recipient);
         }
 
-        public void Unregister<TMessage>(IMessageBusRecipient<TMessage> recipient)
+        public void Unregister<TMessage>(IMessageBusService<TMessage> recipient)
             where TMessage : IServiceMessage
         {
             if (recipient == null)
@@ -91,7 +88,7 @@ namespace StrongBeaver.Core.Services
             messenger.Unregister<TMessage>(recipient);
         }
 
-        public void Unregister<TMessage>(IMessageBusRecipient<TMessage> recipient, object token)
+        public void Unregister<TMessage>(IMessageBusService<TMessage> recipient, object token)
             where TMessage : IServiceMessage
         {
             if (recipient == null)

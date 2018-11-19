@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using GalaSoft.MvvmLight;
 
 namespace StrongBeaver.Core.ViewModel
 {
