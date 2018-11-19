@@ -6,6 +6,8 @@ The StrongBeaver is .NET application framework mainly designed for Xamarin, but 
 
 **The Framework is migrating to .NET standard and going to be split to small and more specific libraries!**
 
+> Some of the parts of this documentation are out of date.
+
 **The Framework is in early stage (ALFA version). A lot of stuff can be changed and unit testing is coming. Can be used for testing and as a playground, but for a real deployment please wait for a stable release.**
 
 > Simplicity is the ultimate sofistication.
@@ -15,8 +17,9 @@ The StrongBeaver is .NET application framework mainly designed for Xamarin, but 
 ## Work in progress
 
 - [x] Make the framework more .net standard friendly
-- [ ] Split framework to multiple libraries
-- [x] Remove service locator as a anti-pattern from framework core 
+- [x] Split framework to multiple libraries
+- [x] Remove service locator as a anti-pattern from framework core
+- [x] Decouple MvvmLight dependency
 
 ## Introduction
 
@@ -98,7 +101,7 @@ With the architecture pattern and framework, we are coming with recommendations,
 Dependency | Description
 --- | ---
 [CommonServiceLocator](https://github.com/unitycontainer/commonservicelocator) | The library provides an abstraction over IoC containers and service locators. Using the library allows an application to indirectly access the capabilities without relying on hard references.
-[MVVM Light Toolkit](http://www.mvvmlight.net/) | The framework takes a lot of inspiration from this great and powerful toolkit. *This dependency will be integrated.*
+[MVVM Light Toolkit](http://www.mvvmlight.net/) | The framework takes a lot of inspiration from this great and powerful toolkit! ***This dependency is already integrated.***
 [Json.NET](https://www.newtonsoft.com/json) | The JSON is the most popular data transfer format used on the network and for communication between systems.
 [Popup Page Plugin for Xamarin](https://github.com/rotorgames/Rg.Plugins.Popup) | Xamarin plugin which is used for showing user-defined dialogues. *This dependency would be removed soon.*
 
