@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
+using StrongBeaver.Core.Container;
 
 namespace StrongBeaver.Core.ServiceLocator
 {
@@ -24,7 +24,7 @@ namespace StrongBeaver.Core.ServiceLocator
 
         public object GetService(Type serviceType)
         {
-            return container.GetService(serviceType);
+            return container.GetInstance(serviceType);
         }
 
         public object GetInstance(Type serviceType)

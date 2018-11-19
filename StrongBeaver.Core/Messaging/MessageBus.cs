@@ -1,14 +1,12 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-
-namespace StrongBeaver.Core.Messaging
+﻿namespace StrongBeaver.Core.Messaging
 {
     public class MessageBus : IMessageBus, IMessageBusRegister
     {
-        private readonly Messenger messenger;
+        private readonly GenericMessageBus messenger;
 
         public MessageBus()
         {
-            messenger = new Messenger();
+            messenger = new GenericMessageBus();
         }
 
         public void Send<TMessage>(TMessage message)
@@ -45,8 +43,7 @@ namespace StrongBeaver.Core.Messaging
             messenger.Send<TMessage>(message, token);
         }
 
-        public void Register<TRecipient, TMessage>(TRecipient recipient)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        public void Register<TMessage>(IMessageBusRecipient<TMessage> recipient)
             where TMessage : IMessage
         {
             if (recipient == null)
@@ -57,8 +54,7 @@ namespace StrongBeaver.Core.Messaging
             messenger.Register<TMessage>(recipient, true, recipient.ProcessMessage, false);
         }
 
-        public void Register<TRecipient, TMessage>(TRecipient recipient, object token)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        public void Register<TMessage>(IMessageBusRecipient<TMessage> recipient, object token)
             where TMessage : IMessage
         {
             if (recipient == null)

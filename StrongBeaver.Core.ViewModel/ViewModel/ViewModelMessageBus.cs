@@ -1,15 +1,14 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using StrongBeaver.Core.Messaging;
+﻿using StrongBeaver.Core.Messaging;
 
 namespace StrongBeaver.Core.ViewModel
 {
     public class ViewModelMessageBus : IViewModelMessageBus, IViewModelMessageBusRegister
     {
-        private readonly Messenger messenger;
+        private readonly GenericMessageBus messenger;
 
         public ViewModelMessageBus()
         {
-            messenger = new Messenger();
+            messenger = new GenericMessageBus();
         }
 
         public void Send<TMessage>(TMessage message)
@@ -25,7 +24,7 @@ namespace StrongBeaver.Core.ViewModel
 
         public void Send<TMessage, TTarget>(TMessage message)
             where TMessage : IViewModelMessage
-            where TTarget : IMessageBusRecipient<TMessage>
+            where TTarget : IMessageBusViewModel<TMessage>
         {
             if (message == null)
             {
@@ -46,8 +45,7 @@ namespace StrongBeaver.Core.ViewModel
             messenger.Send<TMessage>(message, token);
         }
 
-        public void Register<TRecipient, TMessage>(TRecipient recipient)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        public void Register<TRecipient, TMessage>(IMessageBusViewModel<TMessage> recipient)
             where TMessage : IViewModelMessage
         {
             if (recipient == null)
@@ -58,8 +56,7 @@ namespace StrongBeaver.Core.ViewModel
             messenger.Register<TMessage>(recipient, true, recipient.ProcessMessage, false);
         }
 
-        public void Register<TRecipient, TMessage>(TRecipient recipient, object token)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        public void Register<TRecipient, TMessage>(IMessageBusViewModel<TMessage> recipient, object token)
             where TMessage : IViewModelMessage
         {
             if (recipient == null)
@@ -80,7 +77,7 @@ namespace StrongBeaver.Core.ViewModel
             messenger.Unregister(recipient);
         }
 
-        public void Unregister<TMessage>(IMessageBusRecipient<TMessage> recipient)
+        public void Unregister<TMessage>(IMessageBusViewModel<TMessage> recipient)
             where TMessage : IViewModelMessage
         {
             if (recipient == null)
@@ -91,7 +88,7 @@ namespace StrongBeaver.Core.ViewModel
             messenger.Unregister<TMessage>(recipient);
         }
 
-        public void Unregister<TMessage>(IMessageBusRecipient<TMessage> recipient, object token)
+        public void Unregister<TMessage>(IMessageBusViewModel<TMessage> recipient, object token)
             where TMessage : IViewModelMessage
         {
             if (recipient == null)

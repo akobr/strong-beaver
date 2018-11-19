@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>BeaverSoft.StrongBeaver.Core</PackageId>
-    <Version>0.9.1-alpha</Version>
+    <Version>0.9.8-alpha</Version>
     <Product>StrongBeaver Framework (the core library)</Product>
     <Authors>BeaverSoft (Ales Kobr)</Authors>
     <Description>The application Framework (the core library).</Description>
@@ -17,17 +17,8 @@
     <Company>BeaverSoft (Ales Kobr)</Company>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

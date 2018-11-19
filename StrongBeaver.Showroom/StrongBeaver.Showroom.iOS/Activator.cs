@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using Foundation;
-using GalaSoft.MvvmLight.Threading;
 using StrongBeaver.Showroom.iOS.Platform;
 using StrongBeaver.Core.Platform;
 using StrongBeaver.Core.Services.Logging;
@@ -28,8 +27,7 @@ using StrongBeaver.Showroom.Services.DataStorage;
 using StrongBeaver.Showroom.View;
 using Xamarin.Forms;
 using StrongBeaver.Showroom.ViewModel;
-using GalaSoft.MvvmLight.Ioc;
-using StrongBeaver.Core.Messaging;
+using StrongBeaver.Core.Container;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Startup;
 using StrongBeaver.Showroom.View.WebContent;
@@ -149,7 +147,6 @@ namespace StrongBeaver.Showroom.iOS
         {
             // Global initilisations
             global::Xamarin.Forms.Forms.Init();
-            DispatcherHelper.Initialize(application);
 
             // Local initilisations
             InitialiseInstanceCreation();

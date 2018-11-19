@@ -1,6 +1,4 @@
-﻿using StrongBeaver.Core.Messaging;
-
-namespace StrongBeaver.Core.Services
+﻿namespace StrongBeaver.Core.Services
 {
     public interface IServiceMessageBus
     {
@@ -9,7 +7,7 @@ namespace StrongBeaver.Core.Services
 
         void Send<TMessage, TTarget>(TMessage message)
             where TMessage : IServiceMessage
-            where TTarget : IMessageBusRecipient<TMessage>;
+            where TTarget : IMessageBusService<TMessage>;
 
         void Send<TMessage>(TMessage message, object token)
             where TMessage : IServiceMessage;

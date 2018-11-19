@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using StrongBeaver.Core;
+﻿using StrongBeaver.Core;
 using StrongBeaver.Core.Services;
 using StrongBeaver.Core.Services.Navigation;
 using StrongBeaver.Core.ViewModel;
@@ -7,6 +6,7 @@ using StrongBeaver.Showroom.Constants;
 using StrongBeaver.Showroom.View.WebContent;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using StrongBeaver.Core.Commands;
 using Xamarin.Forms;
 
 namespace StrongBeaver.Showroom.ViewModel

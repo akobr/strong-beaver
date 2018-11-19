@@ -2,12 +2,10 @@
 {
     public interface IMessageBusRegister
     {
-        void Register<TRecipient, TMessage>(TRecipient recipient)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        void Register<TMessage>(IMessageBusRecipient<TMessage> recipient)
             where TMessage : IMessage;
 
-        void Register<TRecipient, TMessage>(TRecipient recipient, object token)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        void Register<TMessage>(IMessageBusRecipient<TMessage> recipient, object token)
             where TMessage : IMessage;
 
         void Unregister(IMessageBusRecipient recipient);

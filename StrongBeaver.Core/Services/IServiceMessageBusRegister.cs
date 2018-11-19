@@ -4,20 +4,18 @@ namespace StrongBeaver.Core.Services
 {
     public interface IServiceMessageBusRegister
     {
-        void Register<TRecipient, TMessage>(TRecipient recipient)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        void Register<TMessage>(IMessageBusService<TMessage> recipient)
             where TMessage : IServiceMessage;
 
-        void Register<TRecipient, TMessage>(TRecipient recipient, object token)
-            where TRecipient : class, IMessageBusRecipient<TMessage>
+        void Register<TMessage>(IMessageBusService<TMessage> recipient, object token)
             where TMessage : IServiceMessage;
 
         void Unregister(IMessageBusRecipient recipient);
 
-        void Unregister<TMessage>(IMessageBusRecipient<TMessage> recipient)
+        void Unregister<TMessage>(IMessageBusService<TMessage> recipient)
             where TMessage : IServiceMessage;
 
-        void Unregister<TMessage>(IMessageBusRecipient<TMessage> recipient, object token)
+        void Unregister<TMessage>(IMessageBusService<TMessage> recipient, object token)
             where TMessage : IServiceMessage;
 
     }

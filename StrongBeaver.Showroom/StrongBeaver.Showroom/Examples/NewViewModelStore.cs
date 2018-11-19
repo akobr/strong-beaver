@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using StrongBeaver.Core;
 using StrongBeaver.Core.Model;
 
 namespace StrongBeaver.Showroom.Examples

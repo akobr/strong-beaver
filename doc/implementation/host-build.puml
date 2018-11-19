@@ -1,0 +1,35 @@
+@startuml host-init
+
+class StrongBeaver <<static>> {
+    IStrongBeaverBuilder CreateDefaultBuilder()
+}
+interface IStrongBeaverBuilder {
+    IStrongBeaverBuilder WithContainer(IContainer)
+    IStrongBeaverBuilder WithActivator(IActivator)
+    IStrongBeaverContext Build()
+}
+
+interface IStrongBeaverContext {
+    IContainer Container { get; }
+}
+
+interface IActivator {
+    void Register(IContainer)
+    void Initialise(IReadOnlyContainer)
+}
+
+class BaseActivator {
+    +void RegisterInitialiser(IInitialisable)
+    +void Register(IContainer)
+    +void Initialise(IReadOnlyContainer)
+    #void OnRegister()
+    #void OnInitialise()
+}
+
+IReadOnlyContainer <|.. IContainer
+IWriteOnlyContainer <|.. IContainer
+StrongBeaver --> IStrongBeaverBuilder
+IStrongBeaverBuilder --> IStrongBeaverContext
+IActivator <|.. BaseActivator
+
+@enduml
