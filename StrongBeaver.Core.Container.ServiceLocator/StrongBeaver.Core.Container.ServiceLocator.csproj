@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.Container.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Core.Container\StrongBeaver.Core.Container.csproj" />
   </ItemGroup>
 
 </Project>

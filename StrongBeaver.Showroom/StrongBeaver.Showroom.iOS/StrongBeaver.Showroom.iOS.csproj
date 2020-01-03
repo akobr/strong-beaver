@@ -264,7 +264,7 @@
       <Project>{aeabfd9e-3141-4a4b-984c-2b69eeb6c779}</Project>
       <Name>StrongBeaver.Core.Platform</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.Container.csproj">
+    <ProjectReference Include="..\..\StrongBeaver.Core.Container\StrongBeaver.Core.Container.csproj">
       <Project>{147b4396-a6d1-432e-980b-7a48b919a117}</Project>
       <Name>StrongBeaver.Core.Container</Name>
     </ProjectReference>
