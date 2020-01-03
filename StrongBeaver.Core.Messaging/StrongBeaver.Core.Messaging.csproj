@@ -3,24 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>StrongBeaver.Core</RootNamespace>
-    <PackageId>BeaverSoft.StrongBeaver.Core.ViewModel</PackageId>
+    <PackageId>BeaverSoft.StrongBeaver.Core.Messaging</PackageId>
     <Version>0.9.9-alpha</Version>
     <Authors>BeaverSoft (Ales Kobr)</Authors>
     <Company>BeaverSoft (Ales Kobr)</Company>
-    <Product>ViewModel layer for StrongBeaver Framework</Product>
-    <Description>ViewModel layer for StrongBeaver Framework.</Description>
-    <Copyright>Copyright 2017</Copyright>
+    <Product>Independend in-process messaging in StrongBeaver Framework</Product>
+    <Description>Independend in-process messagin in StrongBeaver Framework, support for notifications, requests, responses and async.</Description>
+    <Copyright>Copyright 2019</Copyright>
     <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/akobr/strong-beaver</PackageProjectUrl>
     <PackageIconUrl>https://github.com/akobr/strong-beaver/blob/master/doc/design/icon-nuget-package.png?raw=true</PackageIconUrl>
-    <PackageTags>Framework Strong Beaver View Model</PackageTags>
+    <PackageTags>Framework Strong Beaver Messaging</PackageTags>
     <PackageReleaseNotes>Alpha version created by BeaverSoft.</PackageReleaseNotes>
     <NeutralLanguage>en-150</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StrongBeaver.Core.Messaging\StrongBeaver.Core.Messaging.csproj" />
-    <ProjectReference Include="..\StrongBeaver.Core.Platform\StrongBeaver.Core.Platform.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
+    <ProjectReference Include="..\..\StrongBeaver.Core.Messaging\StrongBeaver.Core.Messaging.csproj" />
   </ItemGroup>
 
 </Project>

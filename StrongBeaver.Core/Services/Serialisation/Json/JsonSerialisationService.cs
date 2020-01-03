@@ -55,7 +55,9 @@ namespace StrongBeaver.Core.Services.Serialisation.Json
 
         public Task SerializeToStreamAsync(object data, Stream stream)
         {
-            return Task.Run(() => SerializeObjectIntoStream(data, stream));
+            Task task = Task.Run(() => SerializeObjectIntoStream(data, stream));
+            task.ConfigureAwait(false);
+            return task;
         }
 
         public JToken DeserializeFromStream(Stream data)
@@ -83,7 +85,9 @@ namespace StrongBeaver.Core.Services.Serialisation.Json
 
         public Task<TData> DeserializeFromStreamAsync<TData>(Stream data)
         {
-            return Task.Run(() => DeserializeObjectFromStream<TData>(data));
+            Task<TData> task = Task.Run(() => DeserializeObjectFromStream<TData>(data));
+            task.ConfigureAwait(false);
+            return task;
         }
 
         public string Serialize(object data)
@@ -93,7 +97,9 @@ namespace StrongBeaver.Core.Services.Serialisation.Json
 
         public Task<string> SerializeAsync(object data)
         {
-            return Task.Run(() => SerializeObjectToJson(data));
+            Task<string> task = Task.Run(() => SerializeObjectToJson(data));
+            task.ConfigureAwait(false);
+            return task;
         }
 
         public TData Deserialize<TData>(string jsonData)
@@ -103,7 +109,9 @@ namespace StrongBeaver.Core.Services.Serialisation.Json
 
         public Task<TData> DeserializeAsync<TData>(string jsonData)
         {
-            return Task.Run(() => DeserializeObjectFromJson<TData>(jsonData));
+            Task<TData> task = Task.Run(() => DeserializeObjectFromJson<TData>(jsonData));
+            task.ConfigureAwait(false);
+            return task;
         }
 
         #region Non-Public Methods

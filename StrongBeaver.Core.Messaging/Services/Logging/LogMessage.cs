@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace StrongBeaver.Core.Services.Logging
 {
@@ -10,26 +11,26 @@ namespace StrongBeaver.Core.Services.Logging
         }
 
         public LogMessage(string errorMessage)
-            : this(LogMessageLevelEnum.Error, errorMessage)
+            : this(LogLevel.Error, errorMessage)
         {
             // No operation
         }
 
-        public LogMessage(LogMessageLevelEnum level, string message)
+        public LogMessage(LogLevel level, string message)
         {
             Level = level;
             Message = message;
             Arguments = new List<object>();
         }
 
-        public LogMessage(LogMessageLevelEnum level, string message, params object[] args)
+        public LogMessage(LogLevel level, string message, params object[] args)
         {
             Level = level;
             Message = message;
             Arguments = new List<object>(args);
         }
 
-        public LogMessageLevelEnum Level { get; }
+        public LogLevel Level { get; }
 
         public string Message { get; }
 

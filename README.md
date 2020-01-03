@@ -20,6 +20,8 @@ The StrongBeaver is .NET application pattern and tools mainly designed for Xamar
 - [x] Split framework to multiple libraries
 - [x] Remove service locator as a anti-pattern from framework core
 - [x] Decouple MvvmLight dependency
+- [x] Split messaging (add support for MediatR)
+- [x] Decoupled SimpleIoc (local container)
 - [ ] Update this documentation
 - [ ] Release new nuget packages
 

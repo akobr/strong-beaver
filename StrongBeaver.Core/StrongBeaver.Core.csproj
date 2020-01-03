@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>BeaverSoft.StrongBeaver.Core</PackageId>
-    <Version>0.9.8-alpha</Version>
+    <Version>0.9.9-alpha</Version>
     <Product>StrongBeaver Framework (the core library)</Product>
     <Authors>BeaverSoft (Ales Kobr)</Authors>
     <Description>The application Framework (the core library).</Description>
@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 

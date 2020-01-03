@@ -1,9 +1,9 @@
-﻿namespace StrongBeaver.Core.Services.Logging
-{
-    public interface ILogService : IService, IMessageBusService<ILogMessage>
-    {
-        void Log(LogMessageLevelEnum level, string message, params object[] args);
+﻿using Microsoft.Extensions.Logging;
 
-        
+namespace StrongBeaver.Core.Services.Logging
+{
+    public interface ILogService : IService
+    {
+        void Log(LogLevel level, string message, params object[] args);
     }
 }

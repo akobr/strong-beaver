@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>BeaverSoft.StrongBeaver.Core.Platform</PackageId>
-    <Version>0.9.1-alpha</Version>
+    <Version>0.9.9-alpha</Version>
     <Authors>BeaverSoft (Ales Kobr)</Authors>
     <Company>BeaverSoft (Ales Kobr)</Company>
     <Product>Platform info objects for StrongBeaver Framework</Product>

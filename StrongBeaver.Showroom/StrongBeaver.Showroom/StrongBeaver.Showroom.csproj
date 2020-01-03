@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Data.SqlLite.Xamarin\StrongBeaver.Services.Storage.Data.SqlLite.Xamarin.csproj" />
     <ProjectReference Include="..\..\services\StrongBeaver.Services.Storage.Data\StrongBeaver.Services.Storage.Data.csproj" />
     <ProjectReference Include="..\..\services\StrongBeaver.Services.Toast\StrongBeaver.Services.Toast.csproj" />
+    <ProjectReference Include="..\..\StrongBeaver.Core.Networking\StrongBeaver.Core.Networking.csproj" />
     <ProjectReference Include="..\..\StrongBeaver.Core.ViewModel\StrongBeaver.Core.ViewModel.csproj" />
     <ProjectReference Include="..\..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
   </ItemGroup>

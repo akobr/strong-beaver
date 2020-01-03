@@ -613,7 +613,5 @@ namespace StrongBeaver.Core.Container
 
             return (TClass)constructor.Invoke(parameters);
         }
-
-
     }
 }

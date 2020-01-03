@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>StrongBeaver.Core.ServiceLocator</RootNamespace>
     <AssemblyName>StrongBeaver.Core.SimpleIoc.ServiceLocator</AssemblyName>
     <PackageId>BeaverSoft.StrongBeaver.Core.SimpleIoc.ServiceLocator</PackageId>
-    <Version>0.9.1-alpha</Version>
+    <Version>0.9.9-alpha</Version>
     <Description>Adapter for service locator pattern for StrongBeaver Framework. Usable with core container SimpleIocContainer and library CommonServiceLocator.</Description>
     <Authors>BeaverSoft (Ales Kobr)</Authors>
     <PackageLicenseUrl>https://github.com/akobr/strong-beaver/blob/master/LICENSE</PackageLicenseUrl>
@@ -20,11 +20,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
+    <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StrongBeaver.Core\StrongBeaver.Core.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.SimpleIoc.csproj" />
   </ItemGroup>
 
 </Project>
