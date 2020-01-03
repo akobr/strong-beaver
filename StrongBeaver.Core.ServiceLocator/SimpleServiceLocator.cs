@@ -7,20 +7,20 @@ namespace StrongBeaver.Core.ServiceLocator
 {
     public class SimpleServiceLocator : IServiceLocator
     {
-        private readonly SimpleIoc container;
+        private readonly SimpleContainer container;
 
-        public SimpleServiceLocator(SimpleIoc container)
+        public SimpleServiceLocator(SimpleContainer container)
         {
             this.container = container;
         }
 
         public SimpleServiceLocator()
-            : this(new SimpleIoc())
+            : this(new SimpleContainer())
         {
             // no operation
         }
 
-        public SimpleIoc Container => container;
+        public SimpleContainer Container => container;
 
         public object GetService(Type serviceType)
         {
@@ -57,7 +57,7 @@ namespace StrongBeaver.Core.ServiceLocator
             return container.GetAllInstances<TService>();
         }
 
-        public static SimpleServiceLocator BuildAndRegister(SimpleIoc container)
+        public static SimpleServiceLocator BuildAndRegister(SimpleContainer container)
         {
             SimpleServiceLocator locator = new SimpleServiceLocator(container);
             CommonServiceLocator.ServiceLocator.SetLocatorProvider(() => locator);
@@ -66,7 +66,7 @@ namespace StrongBeaver.Core.ServiceLocator
 
         public static SimpleServiceLocator BuildAndRegister()
         {
-            return BuildAndRegister(new SimpleIoc());
+            return BuildAndRegister(new SimpleContainer());
         }
     }
 }

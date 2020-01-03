@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StrongBeaver.Core.Container
 {
     // TODO: simplify this IoC
-    public class SimpleIoc : ISimpleIoc
+    public class SimpleContainer : ISimpleContainer
     {
+        private readonly IServiceCollection _collection;
+
         private readonly Dictionary<Type, ConstructorInfo> _constructorInfos
             = new Dictionary<Type, ConstructorInfo>();
 
@@ -26,6 +30,46 @@ namespace StrongBeaver.Core.Container
             = new Dictionary<Type, Type>();
 
         private readonly object _syncLock = new object();
+
+        public SimpleContainer()
+        {
+            _collection = new SimpleServiceCollection();
+        }
+
+        public SimpleContainer(IServiceCollection services)
+        {
+            _collection = services ?? throw new ArgumentNullException(nameof(services));
+        }
+
+        public int Count => _collection.Count;
+
+        public bool IsReadOnly => false;
+
+        public ServiceDescriptor this[int index]
+        {
+            get
+            {
+                lock (_syncLock)
+                {
+                    return _collection[index];
+                }
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                lock (_syncLock)
+                {
+                    RemoveAt(index);
+                    _collection[index] = value;
+                    DoRegister(value);
+                }
+            }
+        }
 
         public bool ContainsCreated<TClass>()
         {
@@ -257,40 +301,7 @@ namespace StrongBeaver.Core.Container
         public void Unregister<TClass>()
             where TClass : class
         {
-            lock (_syncLock)
-            {
-                var serviceType = typeof(TClass);
-                Type resolveTo;
-
-                if (_interfaceToClassMap.ContainsKey(serviceType))
-                {
-                    resolveTo = _interfaceToClassMap[serviceType] ?? serviceType;
-                }
-                else
-                {
-                    resolveTo = serviceType;
-                }
-
-                if (_instancesRegistry.ContainsKey(serviceType))
-                {
-                    _instancesRegistry.Remove(serviceType);
-                }
-
-                if (_interfaceToClassMap.ContainsKey(serviceType))
-                {
-                    _interfaceToClassMap.Remove(serviceType);
-                }
-
-                if (_factories.ContainsKey(serviceType))
-                {
-                    _factories.Remove(serviceType);
-                }
-
-                if (_constructorInfos.ContainsKey(resolveTo))
-                {
-                    _constructorInfos.Remove(resolveTo);
-                }
-            }
+            DoUnregister(typeof(TClass));
         }
 
         public void Unregister<TClass>(TClass instance)
@@ -363,6 +374,11 @@ namespace StrongBeaver.Core.Container
             return DoGetService(serviceType, key);
         }
 
+        public object GetService(Type serviceType)
+        {
+            return DoGetService(serviceType, _defaultKey);
+        }
+
         public TService GetInstanceWithoutCaching<TService>()
         {
             return (TService)DoGetService(typeof(TService), _defaultKey, false);
@@ -410,6 +426,115 @@ namespace StrongBeaver.Core.Container
             var serviceType = typeof(TService);
             return GetAllInstances(serviceType)
                 .Select(instance => (TService)instance);
+        }
+
+        public int IndexOf(ServiceDescriptor item)
+        {
+            lock (_syncLock)
+            {
+                return _collection.IndexOf(item);
+            }
+        }
+
+        public void Insert(int index, ServiceDescriptor item)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            lock (_syncLock)
+            {
+                _collection.Insert(index, item);
+                DoRegister(item);
+            }
+        }
+
+        public void RemoveAt(int index)
+        {
+            lock (_syncLock)
+            {
+                ServiceDescriptor item = _collection[index];
+                Unregister(item.ServiceType);
+                _collection.RemoveAt(index);
+            }
+        }
+
+        public void Add(ServiceDescriptor item)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            lock (_syncLock)
+            {
+                _collection.Add(item);
+                DoRegister(item);
+            }
+        }
+
+        public void Clear()
+        {
+            lock (_syncLock)
+            {
+                _constructorInfos.Clear();
+                _interfaceToClassMap.Clear();
+                _instancesRegistry.Clear();
+                _factories.Clear();
+                _collection.Clear();
+            }
+        }
+
+        public bool Contains(ServiceDescriptor item)
+        {
+            lock (_syncLock)
+            {
+                return _collection.Contains(item);
+            }
+        }
+
+        public void CopyTo(ServiceDescriptor[] array, int arrayIndex)
+        {
+            lock (_syncLock)
+            {
+                _collection.CopyTo(array, arrayIndex);
+            }
+        }
+
+        public bool Remove(ServiceDescriptor item)
+        {
+            if (item == null)
+            {
+                return false;
+            }
+
+            lock (_syncLock)
+            {
+                if (_collection.Remove(item))
+                {
+                    Unregister(item.ServiceType);
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+        public IEnumerator<ServiceDescriptor> GetEnumerator()
+        {
+            lock (_syncLock)
+            {
+                return _collection.GetEnumerator();
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            lock (_syncLock)
+            {
+                return _collection.GetEnumerator();
+            }
         }
 
         private object DoGetService(Type serviceType, string key, bool cache = true)
@@ -509,6 +634,68 @@ namespace StrongBeaver.Core.Container
                 };
 
                 _factories.Add(classType, list);
+            }
+        }
+
+        private void DoRegister(ServiceDescriptor descriptor)
+        {
+            Type implementationType = descriptor.ImplementationType;
+            _interfaceToClassMap.Add(descriptor.ServiceType, implementationType);
+
+            if (!_factories.TryGetValue(implementationType, out var factoryRegister))
+            {
+                factoryRegister = new Dictionary<string, Delegate>();
+                _factories[implementationType] = factoryRegister;
+            }
+
+            factoryRegister[_defaultKey] = new FactoryDelegate(() => descriptor.ImplementationFactory(this));
+
+            if (descriptor.ImplementationInstance != null)
+            {
+                if (!_instancesRegistry.TryGetValue(implementationType, out var instanceRegister))
+                {
+                    instanceRegister = new Dictionary<string, object>();
+                    _instancesRegistry[implementationType] = instanceRegister;
+                }
+
+                instanceRegister[_defaultKey] = descriptor.ImplementationInstance;
+            }
+        }
+
+        private void DoUnregister(Type serviceType)
+        {
+            lock (_syncLock)
+            {
+                Type resolveTo;
+
+                if (_interfaceToClassMap.ContainsKey(serviceType))
+                {
+                    resolveTo = _interfaceToClassMap[serviceType] ?? serviceType;
+                }
+                else
+                {
+                    resolveTo = serviceType;
+                }
+
+                if (_instancesRegistry.ContainsKey(serviceType))
+                {
+                    _instancesRegistry.Remove(serviceType);
+                }
+
+                if (_interfaceToClassMap.ContainsKey(serviceType))
+                {
+                    _interfaceToClassMap.Remove(serviceType);
+                }
+
+                if (_factories.ContainsKey(serviceType))
+                {
+                    _factories.Remove(serviceType);
+                }
+
+                if (_constructorInfos.ContainsKey(resolveTo))
+                {
+                    _constructorInfos.Remove(resolveTo);
+                }
             }
         }
 
@@ -613,5 +800,7 @@ namespace StrongBeaver.Core.Container
 
             return (TClass)constructor.Invoke(parameters);
         }
+
+        private delegate object FactoryDelegate();
     }
 }

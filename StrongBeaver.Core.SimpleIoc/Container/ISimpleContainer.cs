@@ -1,8 +1,9 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace StrongBeaver.Core.Container
 {
-    public interface ISimpleIoc
+    public interface ISimpleContainer : IServiceCollection, IServiceProvider
     {
         bool ContainsCreated<TClass>();
 
