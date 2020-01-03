@@ -3,8 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>StrongBeaver.Core.ServiceLocator</RootNamespace>
-    <AssemblyName>StrongBeaver.Core.SimpleIoc.ServiceLocator</AssemblyName>
-    <PackageId>BeaverSoft.StrongBeaver.Core.SimpleIoc.ServiceLocator</PackageId>
+    <PackageId>BeaverSoft.StrongBeaver.Core.Container.ServiceLocator</PackageId>
     <Version>0.9.9-alpha</Version>
     <Description>Adapter for service locator pattern for StrongBeaver Framework. Usable with core container SimpleIocContainer and library CommonServiceLocator.</Description>
     <Authors>BeaverSoft (Ales Kobr)</Authors>
@@ -24,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.SimpleIoc.csproj" />
+    <ProjectReference Include="..\StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.Container.csproj" />
   </ItemGroup>
 
 </Project>

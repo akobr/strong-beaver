@@ -98,11 +98,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Core.ServiceLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Platform.Xamarin.iOS", "platform\StrongBeaver.Platform.Xamarin.iOS\StrongBeaver.Platform.Xamarin.iOS.csproj", "{ABA44B74-B45B-4D5D-847A-39BCCBE25B89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Core.SimpleIoc", "StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.SimpleIoc.csproj", "{147B4396-A6D1-432E-980B-7A48B919A117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Core.Container", "StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.Container.csproj", "{147B4396-A6D1-432E-980B-7A48B919A117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Core.Messaging", "StrongBeaver.Core.Messaging\StrongBeaver.Core.Messaging.csproj", "{C3DB39BD-E03E-479A-891C-DB32DEECAD0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Core.Messaging", "StrongBeaver.Core.Messaging\StrongBeaver.Core.Messaging.csproj", "{C3DB39BD-E03E-479A-891C-DB32DEECAD0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Core.Networking", "StrongBeaver.Core.Networking\StrongBeaver.Core.Networking.csproj", "{E784A5F3-14EC-46F4-ADF8-780FFE84E3CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Core.Networking", "StrongBeaver.Core.Networking\StrongBeaver.Core.Networking.csproj", "{E784A5F3-14EC-46F4-ADF8-780FFE84E3CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
