@@ -36,12 +36,12 @@ namespace StrongBeaver.Showroom.iOS
 {
     public class Activator : BaseActivator
     {
-        private readonly SimpleIoc container;
+        private readonly ISimpleContainer container;
         private readonly UIApplication application;
 
         public Activator(UIApplication application)
         {
-            container = new SimpleIoc();
+            container = new SimpleContainer();
             this.application = application;
         }
 

@@ -37,9 +37,6 @@ namespace StrongBeaver.Core.Container
         public void CopyTo(ServiceDescriptor[] array, int arrayIndex)
             => container.CopyTo(array, arrayIndex);
 
-        public IEnumerator<ServiceDescriptor> GetEnumerator()
-            => container.GetEnumerator();
-
         public object GetService(Type serviceType)
             => container.GetService(serviceType);
 
@@ -51,6 +48,39 @@ namespace StrongBeaver.Core.Container
 
         public bool IsRegistered<T>(string key)
             => container.IsRegistered<T>(key);
+
+        public TService GetInstance<TService>()
+            => container.GetInstance<TService>();
+
+        public TService GetInstance<TService>(string key)
+            => container.GetInstance<TService>(key);
+
+        public object GetInstance(Type serviceType)
+            => container.GetInstance(serviceType);
+
+        public object GetInstance(Type serviceType, string key)
+            => container.GetInstance(serviceType, key);
+
+        public TService GetInstanceWithoutCaching<TService>()
+             => container.GetInstanceWithoutCaching<TService>();
+
+        public TService GetInstanceWithoutCaching<TService>(string key)
+            => container.GetInstanceWithoutCaching<TService>(key);
+
+        public object GetInstanceWithoutCaching(Type serviceType)
+            => container.GetInstanceWithoutCaching(serviceType);
+
+        public object GetInstanceWithoutCaching(Type serviceType, string key)
+            => container.GetInstanceWithoutCaching(serviceType, key);
+
+        public IEnumerable<object> GetAllInstances(Type serviceType)
+            => container.GetAllInstances(serviceType);
+
+        public IEnumerable<TService> GetAllInstances<TService>()
+            => container.GetAllInstances<TService>();
+
+        public IEnumerator<ServiceDescriptor> GetEnumerator()
+            => container.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator()
             => container.GetEnumerator();

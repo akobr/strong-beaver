@@ -158,6 +158,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <Version>3.1.0</Version>
+    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.168</Version>
     </PackageReference>
@@ -249,9 +252,21 @@
       <Project>{8c3a82f7-d757-472f-8bd0-cdb835a33ffd}</Project>
       <Name>StrongBeaver.Services.Toast</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\StrongBeaver.Core.Messaging\StrongBeaver.Core.Messaging.csproj">
+      <Project>{c3db39bd-e03e-479a-891c-db32deecad0c}</Project>
+      <Name>StrongBeaver.Core.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StrongBeaver.Core.Networking\StrongBeaver.Core.Networking.csproj">
+      <Project>{e784a5f3-14ec-46f4-adf8-780ffe84e3ca}</Project>
+      <Name>StrongBeaver.Core.Networking</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\StrongBeaver.Core.Platform\StrongBeaver.Core.Platform.csproj">
       <Project>{aeabfd9e-3141-4a4b-984c-2b69eeb6c779}</Project>
       <Name>StrongBeaver.Core.Platform</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\StrongBeaver.Core.SimpleIoc\StrongBeaver.Core.Container.csproj">
+      <Project>{147b4396-a6d1-432e-980b-7a48b919a117}</Project>
+      <Name>StrongBeaver.Core.Container</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\StrongBeaver.Core.ViewModel\StrongBeaver.Core.ViewModel.csproj">
       <Project>{e0bd998d-4210-404b-8b90-801be4097ecb}</Project>

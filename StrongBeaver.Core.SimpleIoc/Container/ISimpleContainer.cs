@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace StrongBeaver.Core.Container
@@ -12,6 +13,26 @@ namespace StrongBeaver.Core.Container
         bool IsRegistered<T>();
 
         bool IsRegistered<T>(string key);
+
+        TService GetInstance<TService>();
+
+        TService GetInstance<TService>(string key);
+
+        object GetInstance(Type serviceType);
+
+        object GetInstance(Type serviceType, string key);
+
+        TService GetInstanceWithoutCaching<TService>();
+
+        TService GetInstanceWithoutCaching<TService>(string key);
+
+        object GetInstanceWithoutCaching(Type serviceType);
+
+        object GetInstanceWithoutCaching(Type serviceType, string key);
+
+        IEnumerable<object> GetAllInstances(Type serviceType);
+
+        IEnumerable<TService> GetAllInstances<TService>();
 
         void Register<TInterface, TClass>()
             where TInterface : class
