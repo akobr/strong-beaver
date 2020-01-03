@@ -94,7 +94,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Services.Localisation.Xamarin.iOS", "services\StrongBeaver.Services.Localisation.Xamarin.iOS\StrongBeaver.Services.Localisation.Xamarin.iOS.csproj", "{3EFD46AD-B6DA-416E-9B04-80E2DD6FDCDF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Core.ServiceLocator", "StrongBeaver.Core.ServiceLocator\StrongBeaver.Core.ServiceLocator.csproj", "{F5DE713B-4358-4E97-8797-DAE4FD378989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StrongBeaver.Core.Container.ServiceLocator", "StrongBeaver.Core.ServiceLocator\StrongBeaver.Core.Container.ServiceLocator.csproj", "{F5DE713B-4358-4E97-8797-DAE4FD378989}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrongBeaver.Platform.Xamarin.iOS", "platform\StrongBeaver.Platform.Xamarin.iOS\StrongBeaver.Platform.Xamarin.iOS.csproj", "{ABA44B74-B45B-4D5D-847A-39BCCBE25B89}"
 EndProject
