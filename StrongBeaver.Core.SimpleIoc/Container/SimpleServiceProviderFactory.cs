@@ -3,21 +3,26 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace StrongBeaver.Core.Container
 {
-    public class SimpleServiceProviderFactory : IServiceProviderFactory<SimpleContainerBuilder>
+    public class SimpleServiceProviderFactory : IServiceProviderFactory<ISimpleContainerBuilder>
     {
-        public SimpleContainerBuilder CreateBuilder()
+        public IServiceCollection CreateCollection()
+        {
+            return new SimpleServiceCollection();
+        }
+
+        public ISimpleContainerBuilder CreateBuilder()
         {
             return new SimpleContainerBuilder();
         }
 
-        public SimpleContainerBuilder CreateBuilder(IServiceCollection services)
+        public ISimpleContainerBuilder CreateBuilder(IServiceCollection services)
         {
             return new SimpleContainerBuilder(services);
         }
 
-        public IServiceProvider CreateServiceProvider(SimpleContainerBuilder containerBuilder)
+        public IServiceProvider CreateServiceProvider(ISimpleContainerBuilder containerBuilder)
         {
-            return containerBuilder.Container;
+            return containerBuilder.CreateContainer();
         }
     }
 }

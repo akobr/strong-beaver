@@ -39,6 +39,7 @@ namespace StrongBeaver.Core.Container
         public SimpleContainer(IServiceCollection services)
         {
             _collection = services ?? throw new ArgumentNullException(nameof(services));
+            ProcessInitialDescriptors();
         }
 
         public int Count => _collection.Count;
@@ -292,10 +293,14 @@ namespace StrongBeaver.Core.Container
 
         public void Reset()
         {
-            _interfaceToClassMap.Clear();
-            _instancesRegistry.Clear();
-            _constructorInfos.Clear();
-            _factories.Clear();
+            lock (_syncLock)
+            {
+                _interfaceToClassMap.Clear();
+                _instancesRegistry.Clear();
+                _constructorInfos.Clear();
+                _factories.Clear();
+                _collection.Clear();
+            }
         }
 
         public void Unregister<TClass>()
@@ -476,14 +481,7 @@ namespace StrongBeaver.Core.Container
 
         public void Clear()
         {
-            lock (_syncLock)
-            {
-                _constructorInfos.Clear();
-                _interfaceToClassMap.Clear();
-                _instancesRegistry.Clear();
-                _factories.Clear();
-                _collection.Clear();
-            }
+            Reset();
         }
 
         public bool Contains(ServiceDescriptor item)
@@ -696,6 +694,14 @@ namespace StrongBeaver.Core.Container
                 {
                     _constructorInfos.Remove(resolveTo);
                 }
+            }
+        }
+
+        private void ProcessInitialDescriptors()
+        {
+            foreach (ServiceDescriptor descriptor in _collection)
+            {
+                DoRegister(descriptor);
             }
         }
 

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace StrongBeaver.Core.Container
 {
-    internal class SimpleServiceCollection : List<ServiceDescriptor>, IServiceCollection
+    public class SimpleServiceCollection : List<ServiceDescriptor>, IServiceCollection
     {
         // no member
     }

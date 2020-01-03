@@ -2,7 +2,7 @@
 
 namespace StrongBeaver.Core.Container
 {
-    public class SimpleContainerBuilder
+    public class SimpleContainerBuilder : ISimpleContainerBuilder
     {
         public SimpleContainerBuilder()
         {
@@ -14,6 +14,23 @@ namespace StrongBeaver.Core.Container
             Container = new SimpleContainer(services);
         }
 
+        public bool Writable { get; set; }
+
         public SimpleContainer Container { get; }
+
+        public IServiceCollection CreateCollection()
+        {
+            return new SimpleServiceCollection();
+        }
+
+        public ISimpleContainer CreateContainer()
+        {
+            return Writable ? Container : CreateReadonlyContainer();
+        }
+
+        public ISimpleContainer CreateReadonlyContainer()
+        {
+            return new SimpleReadonlyContainer(Container);
+        }
     }
 }
